@@ -53,7 +53,6 @@ const Charts = () => {
       chart: {
         type: "bar",
         height: 350,
-        // add this by typing
         foreColor: "grey",
       },
       plotOptions: {
@@ -75,7 +74,6 @@ const Charts = () => {
       fill: {
         opacity: 1,
       },
-      // remove  it tooltip
       grid: {
         show: false,
       },
@@ -102,7 +100,8 @@ const Charts = () => {
         },
       },
     },
-  }
+  };
+  
 
   const line = {
     series: [
