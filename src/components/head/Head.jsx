@@ -11,7 +11,7 @@ const Head = ({ dark, setMode }) => {
         <div className='container flexSB'>
           <div className='left'>
             <div className='logo'>
-              <img src='D:\Aminto-Dashboard\OIP.jpg' alt='D:\Aminto-Dashboard\OIP.jpg' />
+              
             </div>
           </div>
           <div className='right flexCenter'>
@@ -21,8 +21,8 @@ const Head = ({ dark, setMode }) => {
             </div>
             <NotificationsNoneOutlinedIcon className='iconHead' />
             <div className='profile flexCenter'>
-              <img className='imageCircle' src='https://images.pexels.com/photos/1964970/pexels-photo-1964970.jpeg?cs=srgb&dl=pexels-edgar-serrano-1964970.jpg&fm=jpg' alt='' />
-              <span>Rohit</span>
+              <img className='imageCircle' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/user.png' alt='' />
+              <span>User1</span>
               <KeyboardArrowDownOutlinedIcon className='iconHead' />
             </div>
             <button onClick={() => setMode(!dark)}>

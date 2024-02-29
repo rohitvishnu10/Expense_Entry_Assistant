@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: #282b38;
+  }
+  .chatbot-container {
+    background-color: #313844;
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Example height */
+    width: 85%; /* Example width */
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top:30px;
+
+  }
+  .chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  
+  .message {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 70%;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 20px;
+  }
+  
+  .bot {
+    background-color: #e6e6e6;
+    align-self: flex-start;
+  }
+  
+  .user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    
+  }
+  
+  .chatbot-input-form {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .chatbot-input-form input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+  }
+  
+  .chatbot-input-form button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 20px;
+  }
+  input{
+    font-family: "Source Sans Pro", sans-serif;
+    border-radius: 20px;
+    font-size: 20px;
+  }
+  .bot-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Adjust spacing as needed */
+  }
+  .user-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Adjust spacing as needed */
+  }
+  
+  .message {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    max-width: 70%;
+  }

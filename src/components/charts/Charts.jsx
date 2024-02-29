@@ -35,7 +35,7 @@ const Charts = () => {
           },
         },
       },
-      labels: ["In-Store Sales", "Download Sales", "Mail-Order Sales"],
+      labels: ["X", "Y", "Z"],
       legend: {
         position: "bottom",
       },
@@ -107,11 +107,11 @@ const Charts = () => {
   const line = {
     series: [
       {
-        name: "Sales",
+        name: "X",
         data: [50, 60, 10, 60, 80, 30],
       },
       {
-        name: "Revenu",
+        name: "Y",
         data: [0, 40, 80, 20, 40, 60],
       },
     ],

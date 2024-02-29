@@ -9,6 +9,7 @@ import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined"
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 
+
 const Header = ({ dark, setMode }) => {
   // Toogle Menu
   const [Mobile, setMobile] = useState(false)
@@ -23,24 +24,24 @@ const Header = ({ dark, setMode }) => {
               <li>
                 <a href='/' className='navIcon'>
                   <DashboardOutlinedIcon className='navIcon active' />
-                  Dashboard
+                  
                 </a>
               </li>
               <li>
                 <InvertColorsOutlinedIcon className='navIcon' />
-                <a href='/'>Chat Bot</a>
+                <a href='/bot'>Chat Bot</a>
               </li>
               <li>
                 <GridViewOutlinedIcon className='navIcon' />
-                <a href='/'>Optional</a>
+                <a href='/dashboard'>Dashboard</a>
               </li>
               <li>
                 <SupportOutlinedIcon className='navIcon' />
-                <a href='/'>Optional</a>
+                <a href='/'></a>
               </li>
               <li>
                 <StyleOutlinedIcon className='navIcon' />
-                <a href='/'>Optional</a>
+                <a href='/'></a>
               </li>
             </ul>
             <button className='toggle' onClick={() => setMobile(!Mobile)}>

@@ -2,8 +2,8 @@ const data = [
   {
     id: 1,
     cover:"",
-    title: "Rohit Vishnu",
-    email: "vishnurohit128@gmail.com",
+    title: "User1",
+    email: "user1@gmail.com",
     
   },
   {
