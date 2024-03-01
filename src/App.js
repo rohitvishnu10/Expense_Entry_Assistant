@@ -9,21 +9,22 @@ import Optional from "./pages/Optional"
 function App() {
   
   let component;
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/bot":
-      component = <Bot />;
-      break;
-    case "/dashboard":
-      component = <Optional />;
-      break;
-    default:
-      // Add a default case to handle unexpected values
-      component = <div>Page not found</div>;
-      break;
-  }
+switch (window.location.pathname) {
+  case "/":
+    component = <Home />;
+    break;
+  case "/bot":
+    component = <Bot />;
+    break;
+  case "/dashboard":
+    component = <Optional />;
+    break;
+  default:
+    // Add a default case to handle unexpected values
+    component = <div>Page not found</div>;
+    break;
+}
+
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode"))
