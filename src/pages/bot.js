@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './bot.css'; // Import your CSS file for styling
+import './bot.css'; 
 
 const Bot = () => {
   const [messages, setMessages] = useState([]);
@@ -9,10 +9,8 @@ const Bot = () => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
 
-    // Add user message
     setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
     
-    // Generate bot response after a short delay (simulating bot response time)
     setTimeout(() => {
       handleBotResponse(inputValue);
     }, 500);
@@ -21,10 +19,8 @@ const Bot = () => {
   };
 
   const handleBotResponse = (userInput) => {
-    // Replace this with your logic to generate bot response based on user input
     const botResponse = `Hi there! You said: ${userInput}`;
     
-    // Add bot message
     setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: "bot" }]);
   };
 
