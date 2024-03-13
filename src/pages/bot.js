@@ -1,26 +1,66 @@
 
 import React, { useState } from 'react';
-import './bot.css'; // Import your CSS file for styling
+import './bot.css'; 
 
 const Bot = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  const handleMessageSubmit = (e) => {
+
+  
+  const handleMessageSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
-    setMessages([...messages, { text: inputValue, sender: "user" }, { text: inputValue, sender: "user" }]);
-    // Call a function to handle user input and generate bot response
-    handleBotResponse(inputValue);
-    handleBotResponse(inputValue);
-    setInputValue("");
-  };
 
-  const handleBotResponse = (userInput) => {
-    // Replace this with your logic to generate bot response based on user input
-    const botResponse = `Hi there ! You said : ${userInput}`;
-    setMessages([...messages, { text: botResponse, sender: "bot" }]);
-  };
+    try {
+        
+        await fetch('http://localhost:8000/userchatinput', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_input: inputValue }), 
+        });
+
+        setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
+    
+    setTimeout(() => {
+      handleBotResponse(inputValue);
+    }, 500);
+
+    setInputValue("");
+    } catch (error) {
+        console.error("Error sending POST request:", error);
+    }
+};
+
+
+  
+  
+
+const handleBotResponse = async (userInput) => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/userchatinput', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user_input: userInput }), 
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    const botResponse = responseData.response;
+
+    setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: "bot" }]);
+  } catch (error) {
+    console.error("Error fetching bot response:", error);
+  }
+};
+
 
   return (
 

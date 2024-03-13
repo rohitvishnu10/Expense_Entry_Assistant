@@ -32,10 +32,17 @@ body {
     font-family: "Source Sans Pro", sans-serif;
     font-size: 20px;
   }
+  .user {
+    background-color: #007bff;
+    color:white;
+    align-self: flex-start; /* Align bot messages to the left */
+    margin-left: auto; /* Add margin-left:auto to push bot messages to the left */
+  }
   
   .bot {
     background-color: #e6e6e6;
-    align-self: flex-start;
+    align-self: flex-end; /* Align user messages to the right */
+    margin-right: auto; /* Add margin-right:auto to push user messages to the right */
   }
   
   .user {
