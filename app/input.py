@@ -4,7 +4,7 @@ from openai import OpenAI
 
 import time
 
- 
+
 def handle_interaction(user_input, thread, client, ASSISTANT_ID):
     # Add user's message to the existing thread
     client.beta.threads.messages.create(thread_id=thread.id, role="user", content=user_input)
