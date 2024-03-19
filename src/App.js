@@ -38,7 +38,6 @@ switch (window.location.pathname) {
       <div className={dark ? "app" : "light"}>
         <Header dark={dark} setMode={setMode} />
         {component}
-        <Home />
         <Footer />
       </div>
     </>
