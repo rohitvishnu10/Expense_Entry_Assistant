@@ -1,7 +1,7 @@
-import React from "react"
-import Common from "../../common/Common"
-import "./chart.css"
-import ReactApexChart from "react-apexcharts"
+import React from "react";
+import Common from "../../common/Common";
+import "./chart.css";
+import ReactApexChart from "react-apexcharts";
 
 const Charts = () => {
   const data = {
@@ -9,7 +9,6 @@ const Charts = () => {
     options: {
       chart: {
         type: "donut",
-        // add this by typing
         foreColor: "grey",
       },
       fill: {
@@ -40,7 +39,7 @@ const Charts = () => {
         position: "bottom",
       },
     },
-  }
+  };
 
   const bardata = {
     series: [
@@ -101,7 +100,6 @@ const Charts = () => {
       },
     },
   };
-  
 
   const line = {
     series: [
@@ -121,7 +119,6 @@ const Charts = () => {
         zoom: {
           enabled: false,
         },
-        //add
         foreColor: "grey",
       },
       dataLabels: {
@@ -133,12 +130,7 @@ const Charts = () => {
       xaxis: {
         type: "datetime",
         categories: ["2015", "2016", "2017", "2018", "2019", "2020"],
-      },
-      //add it
-      grid: {
-        show: false,
-      },
-      xaxis: {
+        // Add other xaxis options here
         axisTicks: {
           show: false,
         },
@@ -148,6 +140,9 @@ const Charts = () => {
         labels: {
           show: true,
         },
+      },
+      grid: {
+        show: false,
       },
       yaxis: {
         axisTicks: {
@@ -161,7 +156,7 @@ const Charts = () => {
         },
       },
     },
-  }
+  };
 
   return (
     <>
@@ -180,7 +175,7 @@ const Charts = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Charts
+export default Charts;

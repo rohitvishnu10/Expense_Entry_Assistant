@@ -5,24 +5,61 @@ const Bot = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  const handleMessageSubmit = (e) => {
+
+  
+  const handleMessageSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
 
-    setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
+    try {
+        
+        await fetch('http://localhost:8000/userchatinput', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_input: inputValue }), 
+        });
+
+        setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
     
     setTimeout(() => {
       handleBotResponse(inputValue);
     }, 500);
 
     setInputValue("");
-  };
+    } catch (error) {
+        console.error("Error sending POST request:", error);
+    }
+};
 
-  const handleBotResponse = (userInput) => {
-    const botResponse = `Hi there! You said: ${userInput}`;
-    
+
+  
+  
+
+const handleBotResponse = async (userInput) => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/userchatinput', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user_input: userInput }), 
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    const botResponse = responseData.response;
+
     setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: "bot" }]);
-  };
+  } catch (error) {
+    console.error("Error fetching bot response:", error);
+  }
+};
+
 
   return (
     <div className="chatbot-container">
