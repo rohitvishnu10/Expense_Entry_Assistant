@@ -10,7 +10,7 @@ function App() {
   
   let component;
 switch (window.location.pathname) {
-  case "/":
+  case "/home":
     component = <Home />;
     break;
   case "/bot":

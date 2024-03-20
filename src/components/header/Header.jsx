@@ -21,7 +21,7 @@ const Header = ({ dark, setMode }) => {
           <div className='container'>
             <ul className={Mobile ? "navMenu-list" : "link"} onClick={() => setMobile(false)}>
               <li>
-                <a href='/' className='navIcon'>
+                <a href='/home' className='navIcon'>
                   <DashboardOutlinedIcon className='navIcon active' />
                   Dashboard
                 </a>
