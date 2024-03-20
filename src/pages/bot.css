@@ -19,7 +19,7 @@ body {
   }
   .chatbot-messages {
     flex: 1;
-    
+    overflow-y: auto;
     padding: 10px;
     font-family: "Source Sans Pro", sans-serif;
   }
@@ -39,22 +39,18 @@ body {
     margin-left: auto; /* Add margin-left:auto to push bot messages to the left */
   }
   
-  .user {
-    background-color: #007bff;
-    color:white;
-    align-self: flex-start; /* Align bot messages to the left */
-    margin-left: auto; /* Add margin-left:auto to push bot messages to the left */
-  }
-  
   .bot {
     background-color: #e6e6e6;
     align-self: flex-end; /* Align user messages to the right */
     margin-right: auto; /* Add margin-right:auto to push user messages to the right */
-    align-self: flex-end; /* Align user messages to the right */
-    margin-right: auto; /* Add margin-right:auto to push user messages to the right */
   }
   
-  
+  .user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    
+  }
   
   .chatbot-input-form {
     display: flex;

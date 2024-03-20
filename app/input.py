@@ -1,8 +1,7 @@
-from thread import thread,client,ASSISTANT_ID
+import json
 from openai import OpenAI
-
-
 import time
+from thread import thread, client, ASSISTANT_ID
 
 
 def handle_interaction(user_input, thread, client, ASSISTANT_ID):
@@ -23,6 +22,27 @@ def handle_interaction(user_input, thread, client, ASSISTANT_ID):
 
     # Print the chatbot response.
     latest_message = messages[0]
-    return latest_message.content[0].text.value
+    chatbot_response = latest_message.content[0].text.value
 
+    # Extract JSON part from
+    #  chatbot response
+    json_start = chatbot_response.find("{")
+    if json_start != -1:
+        # Find the index of the last '}'
+        json_end = chatbot_response.rfind("}")
+        json_part = chatbot_response[json_start:json_end + 1]
 
+        # Save JSON part to file
+        # with open("chatbot_response1.json", "w") as file:
+        #     file.write(json_part)
+        print(json_part)
+
+    return chatbot_response
+
+# Usage example:
+# while True:
+#     user_input = input("User: ")  # Prompting user for input
+#     if not user_input:
+#         break
+# 
+#     response = handle_interaction(user_input, thread, client, ASSISTANT_ID)

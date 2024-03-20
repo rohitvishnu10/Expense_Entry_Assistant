@@ -10,6 +10,8 @@ const Bot = () => {
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
+    setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
+    
 
     try {
         
@@ -21,11 +23,9 @@ const Bot = () => {
             body: JSON.stringify({ user_input: inputValue }), 
         });
 
-        setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
-    
-    setTimeout(() => {
-      handleBotResponse(inputValue);
-    }, 500);
+        setInputValue("");
+        handleBotResponse(inputValue); 
+        
 
     setInputValue("");
     } catch (error) {
