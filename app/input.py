@@ -79,6 +79,7 @@ def handle_interaction(user_input, thread, client, ASSISTANT_ID, eid=None):
     chatbot_response = latest_message.content[0].text.value
 
     # Extract JSON part from chatbot response
+    json_part=""
     json_start = chatbot_response.find("{")
     if json_start != -1:
         json_end = chatbot_response.rfind("}")
@@ -95,7 +96,9 @@ def handle_interaction(user_input, thread, client, ASSISTANT_ID, eid=None):
         expenses_dict = json.loads(json_part)  # Convert JSON string to dictionary
         expenses_collection.insert_one(expenses_dict)  # Insert into MongoDB
 
-
+    chatbot_response = chatbot_response.replace("JSON Format:", "")
+    chatbot_response = chatbot_response.replace(json_part, "")
+    print(chatbot_response)
     return chatbot_response
 
 
