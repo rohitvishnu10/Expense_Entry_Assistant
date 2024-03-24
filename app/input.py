@@ -47,6 +47,9 @@ def parse_date_expressions(user_input):
 
     # Parse natural language date expressions
     try:
+        # Handle date expressions like "9th Jan 2023" and convert them to "9-01-2023"
+        user_input = re.sub(r"(\d+)(st|nd|rd|th)\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})", r"\1-\3-\4", user_input)
+
         parsed_date = dateutil.parser.parse(user_input, fuzzy=True)
         # Convert parsed date to string in dd-mm-yyyy format
         parsed_input = parsed_date.strftime("%d-%m-%Y")
@@ -57,10 +60,38 @@ def parse_date_expressions(user_input):
     return parsed_input
 
 
+def add_day_to_parsed_input(parsed_input):
+    # Define a list of days of the week
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    # Define a regular expression pattern to match dates in the format dd-mm-yyyy
+    date_pattern = r"\b\d{1,2}-\d{1,2}-\d{4}\b"
+
+    # Find all occurrences of dates in the parsed input
+    dates_found = re.findall(date_pattern, parsed_input)
+
+    # Iterate through each date found
+    for date_str in dates_found:
+        # Parse the date string
+        parsed_date = dateutil.parser.parse(date_str, dayfirst=True)
+
+        # Get the day of the week from the parsed date
+        day_of_week = days_of_week[parsed_date.weekday()]
+
+        # Construct the new string with the day of the week added
+        updated_date_str = f"{date_str} on {day_of_week}"
+
+        # Replace the date in the parsed input with the updated date string
+        parsed_input = parsed_input.replace(date_str, updated_date_str)
+
+    return parsed_input
+
+
 def handle_interaction(user_input, thread, client, ASSISTANT_ID, eid=None):
     parsed_input = parse_date_expressions(user_input)
+    new_parse=add_day_to_parsed_input(parsed_input)
     # Add user's message to the existing thread
-    client.beta.threads.messages.create(thread_id=thread.id, role="user", content=parsed_input)
+    client.beta.threads.messages.create(thread_id=thread.id, role="user", content=new_parse)
 
     # Submit the thread to the assistant (as a new run).
     run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=ASSISTANT_ID)
@@ -99,6 +130,7 @@ def handle_interaction(user_input, thread, client, ASSISTANT_ID, eid=None):
     chatbot_response = chatbot_response.replace("JSON Format:", "")
     chatbot_response = chatbot_response.replace(json_part, "")
     print(chatbot_response)
+    print(new_parse)
     return chatbot_response
 
 
