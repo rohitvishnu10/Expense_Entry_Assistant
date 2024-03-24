@@ -1,0 +1,95 @@
+.MuiTableRow-root > * {
+    padding: 10px;
+    background-color: #1d2634 !important;
+    color: #EDEDED;
+    background-color: #404258;
+  }
+  
+
+  .data-container {
+    width: 100%; /* Set the width to 100% to take up the full width */
+    background-color: #191922;
+    max-height: 900px; /* Set a maximum height for scrolling */
+    overflow: auto; /* Enable vertical scrolling if content exceeds the container height */
+  }
+  
+  
+  .data-item {
+    width: 90%; /* Set the width of each item to 50% */
+    margin: 10px; /* Add margin between items */
+    background-color: #191922;
+    margin-left: 40px;
+    
+  }
+  
+  .data-row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #404258;
+    padding:10px;
+    font-size: 20px;
+  }
+  
+  .emp1 {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    margin-right: 3%;
+  }
+  
+  .MuiTableRow-root.MuiTableRow-head > * {
+    font-weight: bold !important;
+    color: #404052 !important;
+  }
+  
+  .Table td,
+  .Table th {
+    border: none !important;
+    color: #191922;;
+  }
+  
+  .Table:first-child {
+    border-radius: 0.7rem !important;
+    color: #191922;;
+  }
+  
+  .status {
+    padding: 8px;
+    border-radius: 9px;
+    color: antiquewhite;
+  }
+  
+  .Table {
+    background-color: #191922;;
+    
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .Table {
+      width: 170%;
+      margin-top: 2rem;
+      
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .Table {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 23rem;
+      
+    }
+  }
+  .requests{
+    background-color: #191922;
+    margin-left: 35px;
+    font-size: 35px;
+  }
+  .emp{
+    color:#EDEDED
+  }
+
+
