@@ -7,19 +7,19 @@ const Navbar = () => {
     const menuOptions = [
       {
         text: "Home",
-        link:"#home",
+        link:"/home",
       },
       {
         text: "About",
-        link:"#about",
+        link:"/about",
       },
       {
         text: "User Guide",
-        link: "/#UserGuide",
+        link: "/UserGuide",
       },
       {
         text: "Feedback",
-        link: "/#Feedback",
+        link: "/Feedback",
       },
     ];
     return (
@@ -29,10 +29,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-links-container">
           <a href="/">Home</a>
-          <a href="About.js">About</a>
-          <a href="/">User Guide</a>
-          <a href="#contact">Feedback</a>
-          <a href="">FAQ's</a>
+          <a href="/About">About</a>
+          <a href="/UserGuide">User Guide</a>
+          <a href="/Feedback">Feedback</a>
+          <a href="/">FAQ's</a>
           
           <button className="primary-button">Login</button>
         </div>
