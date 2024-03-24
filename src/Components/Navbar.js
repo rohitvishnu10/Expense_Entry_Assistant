@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {Box,Drawer,ListItem,ListItemButton,ListItemIcon,ListItemText,List,Divider} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";   
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -16,11 +15,11 @@ const Navbar = () => {
       },
       {
         text: "User Guide",
-        link: "/#testimonials",
+        link: "/#UserGuide",
       },
       {
         text: "Feedback",
-        link: "/#contact",
+        link: "/#Feedback",
       },
     ];
     return (

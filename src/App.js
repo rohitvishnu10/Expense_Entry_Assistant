@@ -1,8 +1,8 @@
 import "./App.css";
 import Home from "./Components/Home";
 import About from "./Components/About";
-import Work from "./Components/Work";
-import Contact from "./Components/Contact";
+import UserGuide from "./Components/UserGuide";
+import Feedback from "./Components/Feedback";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <Home />
       <About />
-      <Work />
-      <Contact />
+      <UserGuide />
+      <Feedback />
       <Footer />
     </div>
   );

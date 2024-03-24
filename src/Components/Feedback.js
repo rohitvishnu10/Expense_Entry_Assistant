@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contact = () => {
+const Feedback = () => {
   return (
     <div className="contact-page-wrapper">
       <h1 className="primary-heading">Your feedback matters!</h1>   
@@ -13,7 +13,7 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Feedback;
 
 /*Have Question In Mind?*/
 // How Was Your Experience?

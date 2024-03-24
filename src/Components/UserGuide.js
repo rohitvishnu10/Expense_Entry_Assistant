@@ -1,10 +1,10 @@
 import React from "react";
 
-const Work = () => {
+const UserGuide = () => {
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading">Work</p>
+        <p className="primary-subheading">User Guide</p>
         <h1 className="primary-heading">How It Works</h1>
         <p className="second-text"> 
         "Welcome to our Expense Management Chatbot User Guide! <br /> 
@@ -38,4 +38,4 @@ Enjoy hassle-free expense management with our intuitive chatbot solution. If you
   );
 };
 
-export default Work;
+export default UserGuide;

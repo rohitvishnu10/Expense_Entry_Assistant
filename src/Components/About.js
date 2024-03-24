@@ -24,12 +24,6 @@ const About = () => {
         <p className="primary-text">
         Our chatbot offers clear summaries and visualizations, providing valuable insights into company spending.
         </p>
-        {/* <div className="about-buttons-container">
-          <button className="secondary-button">Learn More</button>
-          <button className="watch-video-button">
-            <BsFillPlayCircleFill /> Watch Video
-          </button>
-        </div> */}
       </div>
     </div>
   );
