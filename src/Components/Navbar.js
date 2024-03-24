@@ -1,54 +1,43 @@
 import React, { useState } from "react";
-import Logo from "../Assets/Logo.png";
-import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {Box,Drawer,ListItem,ListItemButton,ListItemIcon,ListItemText,List,Divider} from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
-import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { Link as RouterLink } from "react-router-dom";   
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const menuOptions = [
       {
         text: "Home",
-        icon: <HomeIcon />,
+        link:"#home",
       },
       {
         text: "About",
-        icon: <InfoIcon />,
+        link:"#about",
       },
       {
-        text: "Testimonials",
-        icon: <CommentRoundedIcon />,
+        text: "User Guide",
+        link: "/#testimonials",
       },
       {
-        text: "Contact",
-        icon: <PhoneRoundedIcon />,
+        text: "Feedback",
+        link: "/#contact",
       },
-      // {
-      //   text: "Cart",
-      //   icon: <ShoppingCartRoundedIcon />,
-      // },
     ];
     return (
       <nav>
         <div className="nav-logo-container">
-          {/* <img src={Logo} alt="" /> */}
+          { }
         </div>
         <div className="navbar-links-container">
           <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/testimonial">User Guide</a>
-          <a href="/contact">Feedback</a>
+          <a href="About.js">About</a>
+          <a href="/">User Guide</a>
+          <a href="#contact">Feedback</a>
           <a href="">FAQ's</a>
-          {/* <a href="">
-            <BsCart2 className="navbar-cart-icon" />
-          </a> */}
+          
           <button className="primary-button">Login</button>
         </div>
+        
         <div className="navbar-menu-container">
           <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
         </div>

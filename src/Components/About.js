@@ -1,7 +1,7 @@
 import React from "react";
 import AboutBackground from "../Assets/about-background.png";
-import AboutBackgroundImage from "../Assets/about-background-image.png";
-import { BsFillPlayCircleFill } from "react-icons/bs";
+import AboutBackgroundImage from "../Assets/chatbot5.png";
+// import { BsFillPlayCircleFill } from "react-icons/bs";
 
 const About = () => {
   return (
@@ -15,22 +15,21 @@ const About = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">About</p>
         <h1 className="primary-heading">
-          Food Is An Important Part Of A Balanced Diet
+        Simplify Expense Management with Us
         </h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+        Simplify expense management with our chatbot. 
+        Employees can easily input expenses and request approval, ensuring swift reimbursements.
         </p>
         <p className="primary-text">
-          Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-          facilisis at fringilla quam.
+        Our chatbot offers clear summaries and visualizations, providing valuable insights into company spending.
         </p>
-        <div className="about-buttons-container">
+        {/* <div className="about-buttons-container">
           <button className="secondary-button">Learn More</button>
           <button className="watch-video-button">
             <BsFillPlayCircleFill /> Watch Video
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
