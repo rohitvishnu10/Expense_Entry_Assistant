@@ -3,12 +3,31 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useState } from "react";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [formValues, setFormValues] = useState(initialValues);
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
+  const handleFormSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:9000/add_employee/?eid=${values.email}&ename=${values.name}&pwd=${values.password}&department=${values.department}&aid=${localStorage.getItem("username")}`, {
+        method: 'POST'
+      });
+      if (!response.ok) {
+        throw new Error('Failed to add employee');
+      }
+      const data = await response.json();
+      if (data.message === 'Employee added successfully.') {
+        alert('Employee added successfully');
+        resetForm(); // Reset form values
+      } else {
+        console.error('Failed to add employee:', data.message);
+      }
+    } catch (error) {
+      alert('Failed to add employee: Employee with the provided email already exists');
+      console.error('Error adding employee:', error);
+    }
   };
 
   return (
@@ -17,7 +36,7 @@ const Form = () => {
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={formValues}
         validationSchema={checkoutSchema}
       >
         {({
@@ -66,14 +85,14 @@ const Form = () => {
               />
               <TextField
                 fullWidth
-                variant="filled" // Change the variant to "outlined" for a different visual style
-                type="password" // Change the type to "password" for password input
+                variant="filled"
+                type="password"
                 label="Password"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.password}
                 name="password"
-                error={touched.password && !!errors.password} // Simplified the error condition
+                error={touched.password && !!errors.password}
                 helperText={touched.password && errors.password}
                 sx={{ gridColumn: "span 4" }}
               />
@@ -82,55 +101,37 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="CompanyID"
+                label="Department"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.companyID}
-                name="companyID"
-                error={!!touched.companyID && !!errors.companyID}
-                helperText={touched.companyID && errors.companyID}
+                value={values.department}
+                name="department"
+                error={!!touched.department && !!errors.department}
+                helperText={touched.department && errors.department}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Company Name "
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.companyName}
-                name="companyName"
-                error={!!touched.companyName && !!errors.companyName}
-                helperText={touched.companyName && errors.companyName}
-                sx={{ gridColumn: "span 4" }}
-              />
+              
             </Box>
             
-            <Box display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}>
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                padding: "18px 32px",
-                marginTop: "40px",
-                backgroundColor: "#644eea",
-                color: "#fff",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "#0056b3",
-                },
-              }}
-            >
-              Create New User
-            </Button>
-
+            <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: isNonMobile ? undefined : "span 4" } }}>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  padding: "18px 32px",
+                  marginTop: "40px",
+                  backgroundColor: "#644eea",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#0056b3",
+                  },
+                }}
+              >
+                Create New User
+              </Button>
             </Box>
           </form>
         )}
@@ -144,21 +145,16 @@ const passwd =
 
 const checkoutSchema = yup.object().shape({
   name: yup.string().required("required"),
-  
   email: yup.string().email("invalid email").required("required"),
-  password: yup
-    .string()
-    .matches(passwd, "Password is not valid")
-    .required("required"),
-  companyID: yup.string().required("required"),
-  companyName: yup.string().required("required"),
+  password: yup.string().matches(passwd, "Password is not valid").required("required"),
+  department: yup.string().required("required"),
 });
+
 const initialValues = {
   name: "",
   email: "",
   password: "",
-  companyID: "",
-  companyName: "",
+  department: "",
 };
 
 export default Form;

@@ -60,7 +60,7 @@ export const mockPieData = [
   },
   {
     id: "travel",
-    value: 170,
+    value: 12,
   },
   {
     id: "accomodation",

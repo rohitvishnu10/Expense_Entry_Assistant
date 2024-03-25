@@ -11,7 +11,7 @@ const LoginForm = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/login", {
+            const response = await fetch("http://127.0.0.1:9000/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const LoginForm = () => {
             if (data.success) {
                 console.log("Login successful");
                 localStorage.setItem("username", username);
-                navigate("/home"); // Redirect to home page after successful login
+                navigate("/app"); // Redirect to home page after successful login
             } else {
                 setPopupStyle("login-popup");
                 setTimeout(() => setPopupStyle("hide"), 3000);
@@ -39,9 +39,7 @@ const LoginForm = () => {
     };
 
     const onFailure = (error) => {
-        alert("user failed");
         console.error("Google login failed:", error);
-        navigate("/app");
     };
 
     return (
