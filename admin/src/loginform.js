@@ -35,13 +35,13 @@ const LoginForm = () => {
     const onSuccess = (response) => {
         alert("User signed in");
         console.log(response);
-        navigate("/"); // Redirect to home page after successful login
+        navigate("/app"); // Redirect to home page after successful login
     };
 
     const onFailure = (error) => {
         alert("user failed");
         console.error("Google login failed:", error);
-        navigate("/");
+        navigate("/app");
     };
 
     return (

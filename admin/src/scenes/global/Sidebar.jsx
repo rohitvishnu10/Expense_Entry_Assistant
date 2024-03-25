@@ -111,7 +111,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/app"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -127,7 +127,7 @@ const Sidebar = () => {
 
             <Item
               title="Pending Requests"
-              to="/requests"
+              to="/app/requests"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -142,14 +142,14 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Add User"
-              to="/form"
+              to="/app/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Delete User"
-              to="/form2"
+              to="/app/form2"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -164,21 +164,21 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Bar Chart"
-              to="/bar"
+              to="/app/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
-              to="/pie"
+              to="/app/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
-              to="/line"
+              to="/app/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
