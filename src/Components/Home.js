@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div id='home' className="home-container">
       <Navbar />
       <div className="home-banner-container">
         <div className="home-bannerImage-container">
@@ -19,7 +19,7 @@ const Home = () => {
           <p className="primary-text">
           Effortlessly manage expenses with our intuitive Expense Entry Assistance Tracker.
           Say goodbye to manual data entry hassles and simplify your financial record-keeping. <br/> <br/>
-          Explore FAQs and inspiring quotes to kickstart your journey towards financial organization.
+          Explore our user guide to know about our expense tracking chatbot and kickstart your journey towards financial organization.
           </p>
           {/* <button className="secondary-button">
             Order Now <FiArrowRight />{" "}

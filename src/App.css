@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Reem Kufi", sans-serif;
+    color: hsl(217, 12%, 63%)
   }
   img {
     max-width: 100%;
@@ -20,7 +21,7 @@
   }
   
   body {
-    background-color: #313844;
+    background-color: hsl(216, 12%, 8%);
   }
   
   nav {
@@ -35,7 +36,7 @@
   .navbar-links-container a {
     margin-right: 3rem;
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
     font-size: 1.1rem;
     font-weight: 600;
 
@@ -62,6 +63,34 @@
     visibility: visible;
     transform: scaleX(1);
   }
+  .admin-button {
+    background-color: hsl(216, 12%, 8%); 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+  
+  .user-button {
+    background-color: hsl(216, 12%, 8%);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+  
 
   .primary-button {
     padding: 0.9rem 1.75rem;
@@ -109,14 +138,14 @@
   }
   .primary-heading {
     font-size: clamp(2rem, 5vw, 4rem);
-    color: #4c4c4c;
+    color: hsl(217, 12%, 63%);
     /* line-height: 5rem; */
     max-width: 600px;
   }
   .primary-text {
     font-size: clamp(1rem, 3vw, 1.5rem);
     max-width: 500px;
-    color: #6a6a6a;
+    color: hsl(217, 12%, 63%);
     margin: 1.5rem 0rem;
   }
   .secondary-button {
@@ -141,6 +170,7 @@
   .secondary-button:hover {
     background-color: #e48f0f;
   }
+
   .about-section-container {
     margin-top: 20rem;
     position: relative;
@@ -176,7 +206,7 @@
   .second-text {
     font-size: clamp(0.5rem, 3vw, 1.5rem);
     max-width: 800px;
-    color: #6a6a6a;
+    color: hsl(217, 12%, 63%);
     margin: 1.5rem 0rem;
   }
   
@@ -222,7 +252,7 @@
   .footer-icons svg {
     font-size: 1.5rem;
     margin-right: 1.25rem;
-    color: #585858;
+    color: hsl(217, 12%, 63%);
   }
   .footer-section-two {
     flex: 1;
@@ -237,7 +267,7 @@
   .footer-section-columns span {
     margin: 0.25rem 0rem;
     font-weight: 600;
-    color: #4c4c4c;
+    color: hsl(217, 12%, 63%);
     cursor: pointer;
   }
   .work-section-wrapper {
@@ -267,7 +297,7 @@
     align-items: center;
     text-align: center;
     border-radius: 1rem;
-    color: #505050;
+    color: hsl(217, 12%, 63%);
     margin: 1rem 2rem;
   }
   .work-section-info h2 {
