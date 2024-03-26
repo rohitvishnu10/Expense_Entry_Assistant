@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {Box,Drawer,ListItem,ListItemButton,ListItemIcon,ListItemText,List,Divider} from "@mui/material";
+import About from './About.js';
+import Feedback from "./Feedback.js";
+import UserGuide from "./UserGuide.js";
+
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const menuOptions = [
       {
         text: "Home",
-        link:"/home",
+        link:"home",
       },
       {
         text: "About",
-        link:"/about",
+        link:'about',
       },
       {
         text: "User Guide",
-        link: "/UserGuide",
+        link: "userGuide",
       },
       {
         text: "Feedback",
-        link: "/Feedback",
+        link: "feedback",
       },
     ];
     return (
@@ -29,12 +33,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-links-container">
           <a href="/">Home</a>
-          <a href="/About">About</a>
-          <a href="/UserGuide">User Guide</a>
-          <a href="/Feedback">Feedback</a>
-          <a href="/">FAQ's</a>
-          
-          <button className="primary-button">Login</button>
+          <a href="/#about">About</a>
+          <a href="/#userGuide">User Guide</a>
+          <a href="/#feedback">Feedback</a>
+          <button className="admin-button">Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button className="user-button">User Login</button>
         </div>
         
         <div className="navbar-menu-container">

@@ -2,7 +2,7 @@ import React from "react";
 
 const UserGuide = () => {
   return (
-    <div className="work-section-wrapper">
+    <div id="userGuide" className="work-section-wrapper">
       <div className="work-section-top">
         <p className="primary-subheading">User Guide</p>
         <h1 className="primary-heading">How It Works</h1>
