@@ -40,20 +40,7 @@ const Form2 = () => {
                   "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                 }}
               >
-                <TextField
-                  fullWidth
-                  variant="filled"
-                  type="text"
-                  label="Full name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.name}
-                  name="name"
-                  error={!!touched.name && !!errors.name}
-                  helperText={touched.name && errors.name}
-                  sx={{ gridColumn: "span 4" }}
-                />
-  
+
                 <TextField
                   fullWidth
                   variant="filled"
@@ -99,12 +86,10 @@ const Form2 = () => {
   // Remove the password validation and schema for companyID and companyName
   
   const checkoutSchema = yup.object().shape({
-    name: yup.string().required("required"),
     email: yup.string().email("invalid email").required("required"),
   });
   
   const initialValues = {
-    name: "",
     email: "",
   };
   
