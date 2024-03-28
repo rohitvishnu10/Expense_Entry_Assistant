@@ -2,55 +2,16 @@ import { tokens } from "../theme";
 
 
 export const mockBarData = [
-  {
-    day: "Monday",
-    food: 137,
-    travel: 96,
-    accomodation: 72,
-    entertainment: 140,
-  },
-  {
-    day: "Tuesday",
-    food: 55,
-    travel: 28,
-    accomodation: 58,
-    entertainment: 29,
-  },
-  {
-    day: "Wednesday",
-    food: 109,
-    travel: 23,
-    accomodation: 34,
-    entertainment: 152,
-  },
-  {
-    day: "Thursday",
-    food: 133,
-    travel: 52,
-    accomodation: 43,
-    entertainment: 83,
-  },
-  {
-    day: "Friday",
-    food: 81,
-    travel: 45,
-    accomodation: 67,
-    entertainment: 92,
-  },
-  {
-    day: "Saturday",
-    food: 81,
-    travel: 45,
-    accomodation: 67,
-    entertainment: 92,
-  },
-  {
-    day: "Sunday",
-    food: 81,
-    travel: 45,
-    accomodation: 67,
-    entertainment: 92,
-  },
+  { department: "Sales", food: 100, travel: 200, accomodation: 150, entertainment: 75 },
+  { department: "Marketing", food: 150, travel: 100, accomodation: 120, entertainment: 90 },
+  { department: "Finance", food: 200, travel: 180, accomodation: 100, entertainment: 120 },
+  { department: "HR", food: 120, travel: 220, accomodation: 130, entertainment: 80 },
+  { department: "IT", food: 180, travel: 150, accomodation: 110, entertainment: 100 },
+  { department: "Operations", food: 130, travel: 250, accomodation: 140, entertainment: 70 },
+  { department: "Customer Service", food: 160, travel: 170, accomodation: 90, entertainment: 110 },
+  { department: "Research & Development", food: 140, travel: 190, accomodation: 80, entertainment: 130 },
+  { department: "Legal", food: 110, travel: 210, accomodation: 170, entertainment: 60 },
+  { department: "Administration", food: 190, travel: 160, accomodation: 200, entertainment: 140 },
 ];
 
 export const mockPieData = [

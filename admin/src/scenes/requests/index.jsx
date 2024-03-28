@@ -262,7 +262,7 @@ function Request() {
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button style={{ color:"white",paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
             Close
           </Button>
         </DialogActions>

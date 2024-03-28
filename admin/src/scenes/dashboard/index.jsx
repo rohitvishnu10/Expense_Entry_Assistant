@@ -56,46 +56,80 @@ const Dashboard = () => {
         gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
         gap="20px"
       >
-        <Box className="card" style={{ backgroundColor: "#FB2576" }}>
+        <Box className="card" style={{ backgroundColor: "#FB2576", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
           <div className="card-inner">
-            <h3>EMPLOYEES</h3>
+            <h3 style={{ margin: 0, fontSize: "1.5rem" }} >EMPLOYEES</h3>
           </div>
-          <h1>{employeesCount}</h1>
+          <h1 style={{ fontSize: "1.2rem" }}>{employeesCount}</h1>
         </Box>
-        <Box className="card" style={{ backgroundColor: "#E3651D" }}>
+        <Box className="card" style={{ backgroundColor: "#E3651D", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
           <div className="card-inner">
-            <h3>CATEGORIES</h3>
+            <h3 style={{ margin: 0, fontSize: "1.5rem" }}>CATEGORIES</h3>
           </div>
           <h1>5</h1>
         </Box>
-        <Box className="card" style={{ backgroundColor: "#5356FF" }}>
+        <Box className="card" style={{ backgroundColor: "#5356FF", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
           <div className="card-inner">
-            <h3>TOTAL SPENT</h3>
+            <h3 style={{ margin: 0, fontSize: "1.5rem" }}>TOTAL SPENT</h3>
           </div>
           <h1>₹330000</h1>
         </Box>
-        <Box className="card" style={{ backgroundColor: "#4CCD99" }}>
+        <Box className="card" style={{ backgroundColor: "#4CCD99", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
           <div className="card-inner">
-            <h3>PENDING REQUESTS</h3>
+            <h3 style={{ margin: 0, fontSize: "1.5rem" }}>PENDING REQUESTS</h3>
           </div>
           <h1>{pendingRequests}</h1>
         </Box>
       </Box>
 
+
+      <Box display="grid" gridTemplateColumns="1fr 1fr " gap="20px">
+        <Box>
+            <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+              <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
+                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Highest Spending User</h3>
+              </div>
+              <div style={{ marginTop: "10px" }}>
+                <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
+                <p style={{ marginBottom: "5px" }}>Name: user1</p>
+                <p style={{ marginBottom: "5px" }}>Email: user1@example.com</p>
+                <p style={{ marginBottom: "5px" }}>Department: Sales</p>
+                <p style={{ marginBottom: "5px" }}>Total Expense: ₹45,000</p>
+              </div>
+            </Box>
+
+        </Box>
+        <Box>
+            <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+              <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
+                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Lowest Spending User</h3>
+              </div>
+              <div style={{ marginTop: "10px" }}>
+                <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
+                <p style={{ marginBottom: "5px" }}>Name: user2</p>
+                <p style={{ marginBottom: "5px" }}>Email: user2@example.com</p>
+                <p style={{ marginBottom: "5px" }}>Department: Marketing</p>
+                <p style={{ marginBottom: "5px" }}>Total Expense: ₹20,000</p>
+              </div>
+            </Box>
+        </Box>
+      </Box>
+
+
       {/* ROW 2 - Line Chart, Pie Chart, Bar Chart */}
-      <Box display="grid" gridTemplateColumns="1fr 1fr" gap="20px">
+      <Box display="grid" gridTemplateColumns="1fr 1fr" gap="10px">
         <Box>
           <Box m="20px">
-            <Header title="Line Chart" subtitle="" />
-            <Box height="40vh">
-              <LineChart />
+            <Header title="Department-wise Expense" subtitle="" />
+            <Box height="50vh">
+              <BarChart />
             </Box>
           </Box>
         </Box>
         <Box>
           <Box m="20px">
-            <Header title="Pie Chart" subtitle="" />
-            <Box height="40vh">
+            <Header title="Category-wise Expense" subtitle="" />
+            <Box height="50vh">
               <PieChart />
             </Box>
           </Box>
@@ -103,17 +137,7 @@ const Dashboard = () => {
 
       </Box>
       {/*ROW 3 */}
-      <Box display="grid" gridTemplateColumns="1fr " gap="20px">
-      
-        <Box>
-          <Box m="20px">
-            <Header title="Bar Chart" subtitle="" />
-            <Box height="40vh">
-              <BarChart />
-            </Box>
-          </Box>
-        </Box>
-      </Box>
+
     </Box>
   );
 };

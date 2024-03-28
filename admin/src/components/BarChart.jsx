@@ -1,17 +1,18 @@
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockBarData as data } from "../data/mockData";
+import { mockBarData as newData } from "../data/mockData";
 
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  // Sample data for 10 bars with department names
+
   return (
     <ResponsiveBar
-      data={data}
+      data={newData}
       theme={{
-        // added
         axis: {
           domain: {
             line: {
@@ -40,7 +41,7 @@ const BarChart = ({ isDashboard = false }) => {
         },
       }}
       keys={["food", "travel", "accomodation", "entertainment"]}
-      indexBy="day"
+      indexBy="department" // Change the indexBy to "department"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -75,8 +76,8 @@ const BarChart = ({ isDashboard = false }) => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
-        legend: isDashboard ? undefined : "day", // changed
+        tickRotation: -45, // Rotate the x-axis labels for better visibility
+        legend: isDashboard ? undefined : "", // Adjust the x-axis legend
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -84,7 +85,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "Amount Spent", // changed
+        legend: isDashboard ? undefined : "Amount Spent", // Adjust the y-axis legend
         legendPosition: "middle",
         legendOffset: -40,
       }}
