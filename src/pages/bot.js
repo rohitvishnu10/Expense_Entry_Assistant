@@ -8,7 +8,7 @@ const Bot = () => {
   const handleMessageSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
-    setMessages(prevMessages => [...prevMessages, { text: inputValue, sender: "user" }]);
+    setMessages(prevMessages => [...prevMessages, { text: <><i className="fas fa-user user-icon"></i> {inputValue}</>, sender: "user" }]);
 
     try {
       const response = await fetch('http://localhost:8000/userchatinput', {
