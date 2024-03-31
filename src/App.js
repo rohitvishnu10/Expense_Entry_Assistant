@@ -14,7 +14,7 @@ export default function App() {
    <BrowserRouter>
    <Routes>
    <Route path="/login" exact element={<Signup />} />
-   <Route path="/home" exact element={<Home />}></Route>
+   <Route path="/dashboard" exact element={<Home />}></Route>
    <Route path="/Chatbot" exact element={<Chatbot/>}></Route>
    <Route path='/Transactions' exact element={<Transactions/>}></Route>
    <Route path="/Settings" exact element={<Settings/>}></Route>

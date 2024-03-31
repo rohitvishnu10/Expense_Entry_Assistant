@@ -13,7 +13,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { colors } from '@mui/material';
-import BarChart from '../charts/BarChart';
+import BarChart from '../charts/LineChart';
 import PieChart from '../charts/PieChart';
 export default function Home() {
   return (

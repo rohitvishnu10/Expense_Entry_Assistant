@@ -34,7 +34,7 @@ export const options = {
   colors: ["#013220","rgb(53,138,148)","rgb(37,11,165)","#188310"]
 };
 
-export default function BarChart() {
+export default function LineChart() {
   return (
     <Chart
       chartType="Line"

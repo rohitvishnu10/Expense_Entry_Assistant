@@ -22,7 +22,7 @@ const LoginForm = () => {
             if (data.success) {
                 console.log("Login successful");
                 localStorage.setItem("username", username);
-                navigate("/home"); // Redirect to home page after successful login
+                navigate("/dashboard"); // Redirect to home page after successful login
             } else {
                 setPopupStyle("login-popup");
                 setTimeout(() => setPopupStyle("hide"), 3000);

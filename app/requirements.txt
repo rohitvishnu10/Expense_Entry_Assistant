@@ -1,0 +1,6 @@
+uvicorn
+openai
+pymongo
+python-dateutil
+fastapi
+pydantic

@@ -86,7 +86,7 @@ export default function Sidenav() {
         </DrawerHeader> 
         <Divider />
         <List>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>(navigate("/"))}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>(navigate("/dashboard"))}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -106,6 +106,7 @@ export default function Sidenav() {
                 <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            
             <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>(navigate("/chatbot"))}>
               <ListItemButton
                 sx={{
