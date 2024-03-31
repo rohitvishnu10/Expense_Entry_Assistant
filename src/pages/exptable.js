@@ -21,6 +21,18 @@ const Exptable = () => {
       eid: "rohit@c1.com"
     },
     // Add more initial rows as needed
+    {
+      category: "travel",
+      location: "stn",
+      city: "coimbatore",
+      amount: 4000,
+      date: "24-03-2024",
+      day: "Sunday",
+      purpose: "travel ticket",
+      accepted: false,
+      eid: "john@d2.com"
+    },
+    // Add more rows here...
   ];
 
   const initialRows2 = [
@@ -36,6 +48,18 @@ const Exptable = () => {
       eid: "rohit@c1.com"
     },
     // Add more initial rows as needed
+    {
+      category: "food",
+      location: "restaurant",
+      city: "chennai",
+      amount: 6000,
+      date: "25-03-2024",
+      day: "Monday",
+      purpose: "dinner",
+      accepted: true,
+      eid: "jane@e3.com"
+    },
+    // Add more rows here...
   ];
 
   const handleShowTable1Click = () => {
@@ -65,40 +89,42 @@ const Exptable = () => {
 
   return (
     <div className="chatbot-container">
-      <Button style={{ textAlign: "center", background:"#EE4266",color:"white",margin:"20px",padding:"20px" }} onClick={handleShowTable1Click}>
-        Show Pending Requests
-      </Button>
-      <Button style={{ textAlign: "center", background:"#FFD23F",padding:"20px" }} onClick={handleShowTable2Click}>
-        Show Accepted Requests
-      </Button>
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+        <Button style={{ fontSize: "12px", padding: "10px", marginRight: "10px", background: "#EE4266", color: "white" }} onClick={handleShowTable1Click}>
+          Show Pending Requests
+        </Button>
+        <Button style={{ fontSize: "12px", padding: "10px", background: "#FFD23F" }} onClick={handleShowTable2Click}>
+          Show Accepted Requests
+        </Button>
+      </div>
       {showTable1 && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "#365486" ,opacity:"0.87",color:"white"}}>
+              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Employee ID</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Status</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Date</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Category</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Action</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}></TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Employee ID</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Status</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Date</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Category</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Action</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {initialRows1.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell style={{ fontSize:"15px" }}>{row.eid}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.accepted ? 'Accepted' : 'Pending'}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.date}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.category}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>
-                      <Button style={{ fontSize:"15px",color:"#35374B",backgroundColor: "#54E346" }} onClick={() => handleStatusButtonClick(row, 'someAction')}>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.eid}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.accepted ? 'Accepted' : 'Pending'}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.date}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.category}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>
+                      <Button style={{ fontSize: "10px", padding: "6px", color: "#35374B", backgroundColor: "#54E346" }} onClick={() => handleStatusButtonClick(row, 'someAction')}>
                         Approve
                       </Button>
                     </TableCell>
                     <TableCell>
-                      <Button style={{ fontSize:"15px",color:"#40A2E3" }} onClick={() => handlePopUpClick(row)}>
+                      <Button style={{ fontSize: "10px", padding: "6px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
                       </Button>
                     </TableCell>
@@ -114,24 +140,24 @@ const Exptable = () => {
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "#365486" ,opacity:"0.87",color:"white"}}>
+              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
-                <TableCell style={{ fontSize:"15px",color:"white" }}>Employee ID</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Status</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Date</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}>Category</TableCell>
-                  <TableCell style={{ fontSize:"15px",color:"white" }}></TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Employee ID</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Status</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Date</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}>Category</TableCell>
+                  <TableCell style={{ fontSize: "12px", padding: "8px", color: "white" }}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {initialRows2.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell style={{ fontSize:"15px" }}>{row.eid}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.accepted ? 'Accepted' : 'Pending'}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.date}</TableCell>
-                    <TableCell style={{ fontSize:"15px" }}>{row.category}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.eid}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.accepted ? 'Accepted' : 'Pending'}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.date}</TableCell>
+                    <TableCell style={{ fontSize: "12px", padding: "8px" }}>{row.category}</TableCell>
                     <TableCell>
-                      <Button style={{ fontSize:"15px",color:"#40A2E3" }} onClick={() => handlePopUpClick(row)}>
+                      <Button style={{ fontSize: "10px", padding: "6px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
                       </Button>
                     </TableCell>
@@ -183,7 +209,7 @@ const Exptable = () => {
           )}
         </DialogContent>
         <DialogActions>
-          <Button style={{ color:"white",paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
+          <Button style={{ color: "white", paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
             Close
           </Button>
         </DialogActions>
