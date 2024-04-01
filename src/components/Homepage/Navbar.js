@@ -35,7 +35,7 @@ const Navbar = () => {
           <a href="/home#about">About</a>
           <a href="/home#userGuide">User Guide</a>
           <a href="/home#feedback">Feedback</a>
-          <button className="admin-button">Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button className="admin-button" onClick={()=>(navigate("/adminlogin"))}>Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button className="user-button" onClick={()=>(navigate("/login"))}>User Login</button>
         </div>
         

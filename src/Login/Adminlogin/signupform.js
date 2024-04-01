@@ -1,6 +1,6 @@
 import LoginForm from "./loginform";
 
-function Signup() {
+function AdminSignup() {
   return (
     <div className="page">
       <LoginForm />
@@ -8,4 +8,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default AdminSignup;
