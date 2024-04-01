@@ -5,6 +5,7 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Bot from "./pages/bot"
 import Optional from "./pages/Optional"
+import Exptable from "./pages/exptable"
 
 function App() {
   
@@ -17,7 +18,7 @@ switch (window.location.pathname) {
     component = <Bot />;
     break;
   case "/dashboard":
-    component = <Optional />;
+    component = <Exptable />;
     break;
   default:
     // Add a default case to handle unexpected values

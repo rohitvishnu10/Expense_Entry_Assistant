@@ -14,6 +14,7 @@ root.render(
       <Route path="/home" element={<App />} />
       <Route path="/" element={<Signup />} />
       <Route path="/bot" element={<App />} />
+      <Route path="/dashboard" element={<App />} />
     </Routes>
   </BrowserRouter>
 );
