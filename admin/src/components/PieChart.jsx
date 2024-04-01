@@ -1,12 +1,33 @@
+import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
-import { mockPieData as data } from "../data/mockData";
 
 const PieChart = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the URL using localStorage.getItem("username")
+    const fetchCategorySpending = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:9000/cat_spending/${localStorage.getItem("username")}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        // Convert category totals object to array of objects
+        const newData = Object.entries(jsonData).map(([id, value]) => ({ id, value }));
+        setData(newData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchCategorySpending();
+  }, []);
+
   return (
     <ResponsivePie
       data={data}
@@ -43,13 +64,8 @@ const PieChart = () => {
             color: "white", // Set tooltip text color to white
           },
         },
-        legends: {
-          text: {
-            fill: "white", // Set category names color to white
-          },
-        },
       }}
-      tooltip={({ datum }) => `${datum.label}: ${datum.value}%`}
+      tooltip={({ datum }) => `${datum.id}: ${datum.value}%`}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}

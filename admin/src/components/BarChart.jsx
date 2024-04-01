@@ -1,17 +1,35 @@
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockBarData as newData } from "../data/mockData";
 
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the URL using localStorage.getItem("username")
+    const fetchDepartmentData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:9000/department_spending/${localStorage.getItem("username")}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchDepartmentData();
+  }, []);
 
   // Sample data for 10 bars with department names
-
   return (
     <ResponsiveBar
-      data={newData}
+      data={data}
       theme={{
         axis: {
           domain: {
