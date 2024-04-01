@@ -137,10 +137,10 @@
     align-items: flex-start;
   }
   .primary-heading {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     color: hsl(217, 12%, 63%);
-    /* line-height: 5rem; */
-    max-width: 600px;
+    line-height: 5rem;
+    max-width: 650px;
   }
   .primary-text {
     font-size: clamp(1rem, 3vw, 1.5rem);

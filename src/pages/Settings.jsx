@@ -74,11 +74,11 @@ const SettingsContent = ({ handleLogout, toggleTheme, themeMode }) => {
       </Box>
       <Box sx={{ mb: 4 }}>
         <Typography variant="h6" gutterBottom>Feedback</Typography>
-        <Button variant="outlined" component={Link} to="/home1#feedback">Give Feedback</Button>
+        <Button variant="outlined" component={Link} to="/#feedback">Give Feedback</Button>
       </Box>
       <Box sx={{ mb: 4 }}>
         <Typography variant="h6" gutterBottom>Help</Typography>
-        <Button variant="outlined" component={Link} to="/home1#user-guide">User Guide</Button>
+        <Button variant="outlined" component={Link} to="/#user-guide">User Guide</Button>
       </Box>
       <Box sx={{ mb: 4 }}>
         <Button variant="contained" color="secondary" onClick={handleLogout}>Logout</Button>

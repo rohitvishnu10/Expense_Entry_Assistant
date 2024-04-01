@@ -1,5 +1,5 @@
 
-/myenv
+/app/myenv
 node_modules
 /.pnp
 .pnp.js

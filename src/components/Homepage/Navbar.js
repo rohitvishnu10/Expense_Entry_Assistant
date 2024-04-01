@@ -34,10 +34,10 @@ const Navbar = () => {
           { }
         </div>
         <div className="navbar-links-container">
-          <a href="/home1">Home</a>
-          <a href="/home1#about">About</a>
-          <a href="/home1#userGuide">User Guide</a>
-          <a href="/home1#feedback">Feedback</a>
+          <a href="/">Home</a>
+          <a href="#about">About</a>
+          <a href="#userGuide">User Guide</a>
+          <a href="#feedback">Feedback</a>
           <button className="admin-button">Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button className="user-button" onClick={()=>(navigate("/login"))}>User Login</button>
         </div>

@@ -8,17 +8,18 @@ import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import '../Dash.css'
-import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { colors } from '@mui/material';
-import BarChart from '../charts/LineChart';
+import LineChart from '../charts/LineChart';
 import PieChart from '../charts/PieChart';
 export default function Home() {
+  const currentUser = localStorage.getItem("username");
   return (
     <>
     <div className='bgcolor'>
+      
     <Navbar />
     <Box height={70} />
     <Box sx={{ display: "flex" }}>
@@ -58,43 +59,37 @@ export default function Home() {
        
       </CardContent>
     </Card> 
+    <Card sx={{ minWidth: 49 + "%",height:150}} className="gradientlight2">
+      <CardContent>
+        <div className="iconstyle">
+            <AccountCircleIcon/>
+        </div>
+        <Typography gutterBottom variant="h5" component="div" sx={{color: 'black'}}>
+          {currentUser}
+        </Typography>
+        <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
+          Current User
+        </Typography>
+       
+      </CardContent>
+    </Card> 
     </Stack>
   </Grid>
-  <Grid item xs={4}>
-  <Stack spacing={2} >
-    <Card className="gradientlight">
-      <Stack spacing={2} direction={"row"} alignItems={"center"} >
-      <div className="iconstyle" style={{ marginLeft: '20px' }}>
-        <CurrencyRupeeTwoToneIcon />
-        </div>
-        <div className="paddingall">
-        <span className='pricetitle'style={{color:'white'}}>$203K</span>
-        <br />
-        <span className='pricesubtitle' style={{color:'white'}}>Total Amount Alloted</span>
-        </div>
-        </Stack>
-    </Card>
-    <Card >
-      <Stack spacing={2} direction={"row"} alignItems={"center"}>
-      <div  style={{ marginLeft: '20px' }}>
-        <AccountBalanceWalletIcon />
-        </div>
-        <div className='paddingall'>
-        <span className='pricetitle'>$203K</span>
-        <br />
-        <span className='pricesubtitle'>Balance Amount</span>
-        </div>
-        </Stack>
-    </Card>
-    </Stack>
-  </Grid>
+  
 </Grid>
 <Box height={20} />
 <Grid container spacing={2}>
   <Grid item xs={8}>
   <Card sx={{ height:60+"vh",alignItems: "center"}}>
       <CardContent>
-      <BarChart />
+      <Typography variant="h2" sx={{ fontSize: "17px", marginTop:"5px",marginLeft: "15px", marginBottom: "5px", color: "#434545" }}>
+  User Expense Statistics
+</Typography>
+<Typography variant="h4" sx={{ fontSize: "14px",marginTop:"5px", marginLeft: "15px", marginBottom: "10px", color: "#ccd1d1" }}>
+  Overall Monthly Expense
+</Typography>
+<LineChart />
+
       </CardContent>
     </Card>
   </Grid>
