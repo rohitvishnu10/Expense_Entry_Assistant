@@ -75,7 +75,6 @@ export default function Navbar() {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-    navigate("/login");
   };
 
   const handleMenuClose = () => {

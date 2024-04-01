@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {Box,Drawer,ListItem,ListItemButton,ListItemIcon,ListItemText,List,Divider} from "@mui/material";
-import About from './About.js';
-import Feedback from "./Feedback.js";
-import UserGuide from "./UserGuide.js";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -34,10 +31,10 @@ const Navbar = () => {
           { }
         </div>
         <div className="navbar-links-container">
-          <a href="/">Home</a>
-          <a href="#about">About</a>
-          <a href="#userGuide">User Guide</a>
-          <a href="#feedback">Feedback</a>
+          <a href="/home">Home</a>
+          <a href="/home#about">About</a>
+          <a href="/home#userGuide">User Guide</a>
+          <a href="/home#feedback">Feedback</a>
           <button className="admin-button">Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button className="user-button" onClick={()=>(navigate("/login"))}>User Login</button>
         </div>
