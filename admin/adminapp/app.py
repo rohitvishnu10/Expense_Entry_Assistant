@@ -262,3 +262,69 @@ async def approve_request(request_id: str):
         return {"message": "Request approved successfully"}
     except Exception as e:
         return {"error": str(e)}
+    
+@app.get("/get_max_spender/{aid}")
+async def get_max_spender(aid: str):
+    # Fetch corresponding cid from admin table
+    
+    admin_doc = admindata.find_one({"aid": aid})
+    if not admin_doc:
+        return {"message": "Admin not found"}
+
+    cid = admin_doc["cid"]
+
+    # Find employees working under the cid
+    
+    employees = employeedata.find({"companyid": cid})
+
+    # Calculate total expenses made by each employee where accepted status is true
+    
+    expenses = {}
+    for employee in employees:
+        eid = employee["eid"]
+        total_expenses = expenses_collection.aggregate([
+            {"$match": {"eid": eid, "accepted": True}},
+            {"$group": {"_id": "$eid", "total_amount": {"$sum": "$amount"}}}
+        ])
+        total_amount = 0
+        for expense in total_expenses:
+            total_amount = expense["total_amount"]
+        expenses[eid] = total_amount
+
+    # Find the maximum spender
+    max_spender = max(expenses, key=expenses.get)
+
+    return {"max_spender": max_spender, "total_expenses": expenses[max_spender]}
+
+@app.get("/get_min_spender/{aid}")
+async def get_min_spender(aid: str):
+    # Fetch corresponding cid from admin table
+    
+    admin_doc = admindata.find_one({"aid": aid})
+    if not admin_doc:
+        return {"message": "Admin not found"}
+
+    cid = admin_doc["cid"]
+
+    # Find employees working under the cid
+    
+    employees = employeedata.find({"companyid": cid})
+
+    # Calculate total expenses made by each employee where accepted status is true
+    
+    expenses = {}
+    for employee in employees:
+        eid = employee["eid"]
+        total_expenses = expenses_collection.aggregate([
+            {"$match": {"eid": eid, "accepted": True}},
+            {"$group": {"_id": "$eid", "total_amount": {"$sum": "$amount"}}}
+        ])
+        total_amount = 0
+        for expense in total_expenses:
+            total_amount = expense["total_amount"]
+        expenses[eid] = total_amount
+
+    # Find the minimum spender
+    min_spender = min(expenses, key=expenses.get)
+
+    return {"min_spender": min_spender, "total_expenses": expenses[min_spender]}

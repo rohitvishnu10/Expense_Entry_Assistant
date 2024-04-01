@@ -11,6 +11,8 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
   const [employeesCount, setEmployeesCount] = useState(0);
   const [pendingRequests, setPendingRequests] = useState(0);
+  const [maxSpender, setMaxSpender] = useState({});
+  const [minSpender, setMinSpender] = useState({});
 
   useEffect(() => {
     const fetchEmployeesCount = async () => {
@@ -38,6 +40,36 @@ const Dashboard = () => {
         console.error('Error fetching pending requests count:', error);
       }
     };
+
+
+    const fetchMaxSpender = async () => {
+      try {
+        const maxSpenderResponse = await fetch(`http://127.0.0.1:9000/get_max_spender/${localStorage.getItem("username")}`);
+        if (!maxSpenderResponse.ok) {
+          throw new Error('Failed to fetch maximum spender');
+        }
+        const maxSpenderData = await maxSpenderResponse.json();
+        setMaxSpender(maxSpenderData);
+      } catch (error) {
+        console.error('Error fetching maximum spender:', error);
+      }
+    };
+
+    const fetchMinSpender = async () => {
+      try {
+        const minSpenderResponse = await fetch(`http://127.0.0.1:9000/get_min_spender/${localStorage.getItem("username")}`);
+        if (!minSpenderResponse.ok) {
+          throw new Error('Failed to fetch minimum spender');
+        }
+        const minSpenderData = await minSpenderResponse.json();
+        setMinSpender(minSpenderData);
+      } catch (error) {
+        console.error('Error fetching minimum spender:', error);
+      }
+    };
+
+    fetchMaxSpender();
+    fetchMinSpender();
 
     fetchEmployeesCount();
     fetchPendingRequests();
@@ -68,12 +100,7 @@ const Dashboard = () => {
           </div>
           <h1>5</h1>
         </Box>
-        <Box className="card" style={{ backgroundColor: "#5356FF", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-          <div className="card-inner">
-            <h3 style={{ margin: 0, fontSize: "1.5rem" }}>TOTAL SPENT</h3>
-          </div>
-          <h1>₹330000</h1>
-        </Box>
+        
         <Box className="card" style={{ backgroundColor: "#4CCD99", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
           <div className="card-inner">
             <h3 style={{ margin: 0, fontSize: "1.5rem" }}>PENDING REQUESTS</h3>
@@ -85,33 +112,28 @@ const Dashboard = () => {
 
       <Box display="grid" gridTemplateColumns="1fr 1fr " gap="20px">
         <Box>
-            <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-              <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
-                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Highest Spending User</h3>
-              </div>
-              <div style={{ marginTop: "10px" }}>
-                <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
-                <p style={{ marginBottom: "5px" }}>Name: user1</p>
-                <p style={{ marginBottom: "5px" }}>Email: user1@example.com</p>
-                <p style={{ marginBottom: "5px" }}>Department: Sales</p>
-                <p style={{ marginBottom: "5px" }}>Total Expense: ₹45,000</p>
-              </div>
-            </Box>
-
+          <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+            <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
+              <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Highest Spending User</h3>
+            </div>
+            <div style={{ marginTop: "10px" }}>
+              <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
+              <p style={{ marginBottom: "5px" }}>Email: {maxSpender.max_spender}</p>
+              <p style={{ marginBottom: "5px" }}>Total Expense: ₹{maxSpender.total_expenses}</p>
+            </div>
+          </Box>
         </Box>
         <Box>
-            <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-              <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
-                <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Lowest Spending User</h3>
-              </div>
-              <div style={{ marginTop: "10px" }}>
-                <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
-                <p style={{ marginBottom: "5px" }}>Name: user2</p>
-                <p style={{ marginBottom: "5px" }}>Email: user2@example.com</p>
-                <p style={{ marginBottom: "5px" }}>Department: Marketing</p>
-                <p style={{ marginBottom: "5px" }}>Total Expense: ₹20,000</p>
-              </div>
-            </Box>
+          <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+            <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
+              <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Lowest Spending User</h3>
+            </div>
+            <div style={{ marginTop: "10px" }}>
+              <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
+              <p style={{ marginBottom: "5px" }}>Email: {minSpender.min_spender}</p>
+              <p style={{ marginBottom: "5px" }}>Total Expense: ₹{minSpender.total_expenses}</p>
+            </div>
+          </Box>
         </Box>
       </Box>
 
