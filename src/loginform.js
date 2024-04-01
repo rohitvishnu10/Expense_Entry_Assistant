@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
 import "./loginform.css";
+//import { AdminLogin } from "./adminlogin.js";
+
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -32,60 +33,43 @@ const LoginForm = () => {
         }
     };
 
-    const onSuccess = (response) => {
-        alert("User signed in");
-        console.log(response);
-        navigate("/home"); // Redirect to home page after successful login
-    };
-
-    const onFailure = (error) => {
-        console.error("Google login failed:", error);
-    };
 
     return (
-        <div className="cover">
-            <h1>Login</h1>
-            <input
-                className="input-login"
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                className="input-login"
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+        <div className="container">
+        <div className="screen">
+        <div className="screen__content">
+            <form className="login">
+            <h2 className="login__header">LOG IN</h2>
 
-            <div className="login-btn" onClick={handleLogin}>
-                Login
+            <div className="login__field">
+            <i className="login__icon fas fa-user"></i>
+            <input className="login__input" type="text" placeholder="Email" value={username} onChange={(e) => setUsername(e.target.value)}/>
             </div>
 
-            <p className="text">Or login using</p>
-
-            <div className="alt-login">
-                <div className="facebook"></div>
-                <div className="google">
-                    <GoogleLogin
-                        clientId="YOUR_GOOGLE_CLIENT_ID"
-                        buttonText=""
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                        cookiePolicy={'single_host_origin'}
-                        isSignedIn={false}
-                        icon={false}
-                        theme="dark"
-                    />
-                </div>
+            <div className="login__field">
+            <i className="login__icon fas fa-lock"></i>
+            <input className="login__input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
+
+            <button className="button login__submit" onClick={handleLogin}>
+              <span className="button__text">Log In Now</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </button>
+            
 
             <div className={popupStyle}>
                 <h3>Login Failed</h3>
                 <p>Username or password incorrect</p>
             </div>
+        </form>
+        </div>
+        <div className="screen__background">
+          <span className="screen__background__shape screen__background__shape4"></span>
+          <span className="screen__background__shape screen__background__shape3"></span>
+          <span className="screen__background__shape screen__background__shape2"></span>
+          <span className="screen__background__shape screen__background__shape1"></span>
+        </div>
+        </div>
         </div>
     );
 };
