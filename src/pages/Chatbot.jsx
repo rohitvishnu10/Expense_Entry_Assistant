@@ -17,14 +17,15 @@ export default function Chatbot() {
     setInputValue(""); // Clear the input text message bar
 
     try {
-      // Replace the URL with your actual endpoint
-      const response = await fetch('http://localhost:8000/userchatinput', {
+      const response = await fetch(`http://127.0.0.1:7000/userchatinput/${localStorage.getItem("username")}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ user_input: inputValue }),
       });
+    
+
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
