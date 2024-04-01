@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
-import {Box,Drawer,ListItem,ListItemButton,ListItemIcon,ListItemText,List,Divider} from "@mui/material";
-import { useNavigate } from 'react-router-dom';
-
+import { Box, Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, List, Divider } from "@mui/material";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
     const menuOptions = [
       {
         text: "Home",
@@ -25,6 +26,17 @@ const Navbar = () => {
         link: "feedback",
       },
     ];
+
+    useEffect(() => {
+      // Scroll to the section based on hash in URL
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, [location]);
+
     return (
       <nav>
         <div className="nav-logo-container">
@@ -35,8 +47,8 @@ const Navbar = () => {
           <a href="/home#about">About</a>
           <a href="/home#userGuide">User Guide</a>
           <a href="/home#feedback">Feedback</a>
-          <button className="admin-button" onClick={()=>(navigate("/adminlogin"))}>Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="user-button" onClick={()=>(navigate("/login"))}>User Login</button>
+          <button className="admin-button" onClick={() => navigate("/adminlogin")}>Admin Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button className="user-button" onClick={() => navigate("/login")}>User Login</button>
         </div>
         
         <div className="navbar-menu-container">
@@ -64,6 +76,6 @@ const Navbar = () => {
         </Drawer>
       </nav>
     );
-  };
-  
-  export default Navbar;
+};
+
+export default Navbar;
