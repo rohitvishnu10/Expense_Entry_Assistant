@@ -8,56 +8,58 @@ function Request() {
   const [selectedRow, setSelectedRow] = useState(null);
   const [pendingRequests, setPendingRequests] = useState([]);
   const [acceptedRequests, setAcceptedRequests] = useState([]);
+  const [rejectedRequests, setRejectedRequests] = useState([]); 
 
   useEffect(() => {
-    const fetchPendingRequests = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:9000/pending_requests/${localStorage.getItem("username")}`);
-        const data = await response.json();
-        setPendingRequests(data);
-      } catch (error) {
-        console.error("Error fetching pending requests:", error);
+    fetchData(selectedFilter); // Fetch data on component mount
+  }, [selectedFilter]);
+
+  const fetchData = async (filter) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:9000/${filter}_requests/${localStorage.getItem("username")}`);
+      const data = await response.json();
+      switch (filter) {
+        case 'pending':
+          setPendingRequests(data);
+          break;
+        case 'accepted':
+          setAcceptedRequests(data);
+          break;
+        case 'rejected':
+          setRejectedRequests(data);
+          break;
+        default:
+          break;
       }
-    };
+    } catch (error) {
+      console.error(`Error fetching ${filter} requests:`, error);
+    }
+  };
 
-    const fetchAcceptedRequests = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:9000/accepted_requests/${localStorage.getItem("username")}`);
-        const data = await response.json();
-        setAcceptedRequests(data);
-      } catch (error) {
-        console.error("Error fetching accepted requests:", error);
-      }
-    };
-
-    // Fetch data on component mount
-    fetchPendingRequests();
-    fetchAcceptedRequests();
-  }, []);
-
-  const handleStatusButtonClick = async (row) => {
-    const confirmApproval = window.confirm("Are you sure you want to approve this request?");
-    if (!confirmApproval) {
+  const handleStatusButtonClick = async (row, action) => {
+    const confirmAction = window.confirm(`Are you sure you want to ${action} this request?`);
+    if (!confirmAction) {
       return;
     }
   
     try {
-      const response = await fetch(`http://127.0.0.1:9000/approve_request/${row._id}`, {
+      const response = await fetch(`http://127.0.0.1:9000/${action}_request/${row._id}`, {
         method: "PUT",
       });
       if (response.ok) {
-        const updatedPendingRequests = pendingRequests.map((req) =>
-          req._id === row._id ? { ...req, accepted: true } : req
-        );
-        setPendingRequests(updatedPendingRequests);
-        window.alert("Request approved successfully");
+        fetchData(selectedFilter); // Fetch updated data after action
+        if (action === 'approve') {
+          window.alert("Request approved successfully");
+        } else {
+          window.alert("Request rejected successfully");
+        }
       } else {
-        console.error("Failed to approve request");
-        window.alert("Failed to approve request. Please try again later.");
+        console.error(`Failed to ${action} request`);
+        window.alert(`Failed to ${action} request. Please try again later.`);
       }
     } catch (error) {
-      console.error("Error approving request:", error);
-      window.alert("An error occurred while approving the request. Please try again later.");
+      console.error(`Error ${action}ing request:`, error);
+      window.alert(`An error occurred while ${action}ing the request. Please try again later.`);
     }
   };
 
@@ -83,9 +85,9 @@ function Request() {
         onChange={handleFilterChange}
         style={{ margin: "20px" }}
       >
-        <MenuItem value="pending">Pending Requests</MenuItem>
-        <MenuItem value="accepted">Accepted Requests</MenuItem>
-        <MenuItem value="Rejected">Rejected Requests</MenuItem>
+        <MenuItem value="pending" onClick={() => fetchData('pending')}>Pending Requests</MenuItem>
+        <MenuItem value="accepted" onClick={() => fetchData('accepted')}>Accepted Requests</MenuItem>
+        <MenuItem value="rejected" onClick={() => fetchData('rejected')}>Rejected Requests</MenuItem>
       </Select>
 
       {selectedFilter === 'pending' && (
@@ -111,12 +113,12 @@ function Request() {
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>
-                      <Button style={{ fontSize: "15px", color: "#35374B", backgroundColor: "#94d5be" }} onClick={() => handleStatusButtonClick(row)}>
+                      <Button style={{ fontSize: "15px", color: "#35374B", backgroundColor: "#94d5be" }} onClick={() => handleStatusButtonClick(row, 'approve')}>
                         Approve
                       </Button>
                     </TableCell>
                     <TableCell>
-                      <Button style={{ marginLeft: "20px",fontSize: "15px", color: "#f5f5f5", backgroundColor: "#dd3f32" }} onClick={() => handleStatusButtonClick(row)}>
+                      <Button style={{ marginLeft: "20px",fontSize: "15px", color: "#f5f5f5", backgroundColor: "#dd3f32" }} onClick={() => handleStatusButtonClick(row, 'reject')}>
                         Reject
                       </Button>
                     </TableCell>
@@ -166,7 +168,7 @@ function Request() {
         </div>
       )}
 
-      {selectedFilter === 'Rejected' && (
+      {selectedFilter === 'rejected' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
@@ -180,10 +182,10 @@ function Request() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {acceptedRequests.map((row, index) => (
+                {rejectedRequests.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>Rejected</TableCell>
+                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell>
