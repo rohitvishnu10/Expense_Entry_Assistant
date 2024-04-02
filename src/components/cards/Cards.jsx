@@ -4,8 +4,17 @@ import "./cards.css";
 import Common from "../../common/Common";
 
 const Cards = () => {
+  // Total amounts
+  const totalAmountAccepted = 4000;
+  const totalAmountPending = 3000;
+  const totalSpent = 7000;
+
+  // Calculate percentages
+  const percentageAccepted = (totalAmountAccepted / totalSpent) * 100;
+  const percentagePending = (totalAmountPending / totalSpent) * 100;
+
   const data = {
-    series: [58],
+    series: [percentageAccepted],
     options: {
       chart: {
         height: 150,
@@ -24,12 +33,13 @@ const Cards = () => {
           },
         },
       },
-      labels: ["58"],
+      labels: [`${percentageAccepted.toFixed(2)}%`],
       colors: ["#ff5b5b"],
     },
   };
+  
   const data1 = {
-    series: [80],
+    series: [percentagePending],
     options: {
       chart: {
         height: 150,
@@ -47,22 +57,33 @@ const Cards = () => {
           },
         },
       },
-      labels: ["80"],
+      labels: [`${percentagePending.toFixed(2)}%`],
       colors: ["#E9B251"],
     },
   };
-  const Progress = ({ done }) => {
-    return (
-      <div className='progress'>
-        <div
-          className='progress-done'
-          style={{
-            opacity: 1,
-            width: `${done}%`,
-          }}
-        ></div>
-      </div>
-    );
+
+  const data2 = {
+    series: [100], // 100% for total spent
+    options: {
+      chart: {
+        height: 150,
+        type: "radialBar",
+      },
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            size: "58%",
+          },
+          dataLabels: {
+            value: {
+              show: false,
+            },
+          },
+        },
+      },
+      labels: ["100%"],
+      colors: ["#6DD365"],
+    },
   };
 
   return (
@@ -75,8 +96,7 @@ const Cards = () => {
               <ReactApexChart options={data.options} series={data.series} type='radialBar' height={150} />
             </div>
             <div className='title row'>
-              <h1>$100</h1>
-              <p>Allotted Money</p>
+              <h1>{totalAmountAccepted}</h1>
             </div>
           </div>
         </div>
@@ -87,11 +107,18 @@ const Cards = () => {
               <ReactApexChart options={data1.options} series={data1.series} type='radialBar' height={150} />
             </div>
             <div className='title row'>
-              <h1>$79</h1>
-              <p></p>
+              <h1>{totalAmountPending}</h1>
             </div>
           </div>
         </div>
+        <div className='cardBox' >
+          <Common title='Total Spent' />
+          <div className='circle'>
+            <div style={{ marginTop:"40px",display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <h1 style={{ color: '#b5c938' }}>{totalSpent}</h1>
+            </div>
+          </div>
+          </div>
       </section>
     </>
   );

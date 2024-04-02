@@ -12,7 +12,6 @@ const Home = () => {
         <div className='container'>
           <div className='heading flexSB'>
             <h3>Welcome back !</h3>
-            <span>ExpenseTracker / DashBoard</span>
           </div>
           <Cards/>
           <Charts />

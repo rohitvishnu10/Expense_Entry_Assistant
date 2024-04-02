@@ -15,8 +15,8 @@
 
 .cardBox1 {
   background-color: black;
-  width: 500px;
-  height: fit-content;
+  width: 900px;
+  height: 400px;
   margin: 0 10px; /* Adjust margin as needed */
   padding: 20px; /* Add padding */
   border-radius: 10px; /* Add rounded corners */

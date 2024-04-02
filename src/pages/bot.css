@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 body {
     font-family: "Source Sans Pro", sans-serif;
-    background-color: #282b38;
+    background-color: #2a2c36;
   }
   .chatbot-container {
-    background-color: #313844;
+    background-color: #2a2c36;
     display: flex;
     flex-direction: column;
-    height: 80vh; /* Example height */
-    width: 85%; /* Example width */
+    height: 84vh; /* Example height */
+    width: 103%; /* Example width */
     margin: auto;
     border-radius: 5px;
     overflow: hidden;
@@ -33,28 +33,32 @@ body {
     font-size: 20px;
   }
   .user {
-    background-color: #007bff;
+    background-color: #9b47ee;
     color:white;
     align-self: flex-start; /* Align bot messages to the left */
-    margin-left: auto; /* Add margin-left:auto to push bot messages to the left */
+    margin-left: auto;
+    font-family: "Source Sans Pro", sans-serif; /* Add margin-left:auto to push bot messages to the left */
   }
   
   .bot {
     background-color: #e6e6e6;
     align-self: flex-end; /* Align user messages to the right */
-    margin-right: auto; /* Add margin-right:auto to push user messages to the right */
+    margin-right: auto;
+    font-family: "Source Sans Pro", sans-serif; /* Add margin-right:auto to push user messages to the right */
   }
   
   .user {
-    background-color: #007bff;
+    background-color: #9b47ee;
     color: white;
     align-self: flex-end;
+    font-family: "Source Sans Pro", sans-serif;
     
   }
   
   .chatbot-input-form {
     display: flex;
     padding: 20px;
+    font-family: "Source Sans Pro", sans-serif;
   }
   
   .chatbot-input-form input {
@@ -62,6 +66,7 @@ body {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 15px;
+    font-family: "Source Sans Pro", sans-serif;
   }
   
   .chatbot-input-form button {
@@ -69,7 +74,7 @@ body {
     margin-left: 10px;
     border: none;
     border-radius: 15px;
-    background-color: #007bff;
+    background-color: #9b47ee;
     color: white;
     cursor: pointer;
     font-family: "Source Sans Pro", sans-serif;
@@ -83,12 +88,14 @@ body {
   .bot-icon {
     width: 20px;
     height: 20px;
-    margin-right: 8px; /* Adjust spacing as needed */
+    margin-right: 30px; 
+    font-family: "Source Sans Pro", sans-serif;/* Adjust spacing as needed */
   }
   .user-icon {
     width: 20px;
     height: 20px;
-    margin-right: 8px; /* Adjust spacing as needed */
+    margin-right: 8px;
+    font-family: "Source Sans Pro", sans-serif; /* Adjust spacing as needed */
   }
   
   .message {
@@ -98,4 +105,22 @@ body {
     padding: 8px 20px;
     border-radius: 10px;
     max-width: 70%;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .message-content {
+    flex-grow: 1;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .user-icon {
+    color: white;
+    font-family: "Source Sans Pro", sans-serif;
   }

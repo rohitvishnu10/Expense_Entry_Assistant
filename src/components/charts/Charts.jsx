@@ -5,14 +5,14 @@ import ReactApexChart from "react-apexcharts";
 
 const Charts = () => {
   const data = {
-    series: [44, 55, 41],
+    series: [44, 55, 41, 17, 15], // Adding two more data points for a total of 5 categories
     options: {
       chart: {
         type: "donut",
         foreColor: "grey",
       },
       fill: {
-        colors: ["#35B8E0", "#6658DD", "#FF8ACC"],
+        colors: ["#35B8E0", "#6658DD", "#FF8ACC", "#FF5733", "#33FF57"], // Adding colors for the additional data points
       },
       stroke: {
         colors: ["#313844"],
@@ -34,82 +34,19 @@ const Charts = () => {
           },
         },
       },
-      labels: ["X", "Y", "Z"],
+      labels: ["X", "Y", "Z", "A", "B"], // Adding labels for the additional data points
       legend: {
         position: "bottom",
       },
     },
-  };
-
-  const bardata = {
-    series: [
-      {
-        name: "Net Profit",
-        data: [65, 45, 75, 35, 30, 85],
-      },
-    ],
-    options: {
-      chart: {
-        type: "bar",
-        height: 350,
-        foreColor: "grey",
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "25%",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        foreColor: "#fff",
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-      },
-      fill: {
-        opacity: 1,
-      },
-      grid: {
-        show: false,
-      },
-      xaxis: {
-        axisTicks: {
-          show: false,
-        },
-        axisBorder: {
-          show: false,
-        },
-        labels: {
-          show: true,
-        },
-      },
-      yaxis: {
-        axisTicks: {
-          show: false,
-        },
-        axisBorder: {
-          show: false,
-        },
-        labels: {
-          show: true,
-        },
-      },
-    },
+    
   };
 
   const line = {
     series: [
       {
-        name: "X",
-        data: [50, 60, 10, 60, 80, 30],
-      },
-      {
-        name: "Y",
-        data: [0, 40, 80, 20, 40, 60],
+        name: "Monthly Wise Report", // Changing the series name
+        data: [50, 60, 10, 60, 80, 30,50, 60, 10, 60, 80, 30], // Using only one line of data
       },
     ],
     options: {
@@ -120,6 +57,7 @@ const Charts = () => {
           enabled: false,
         },
         foreColor: "grey",
+        width: "110%", // Set the width of the chart
       },
       dataLabels: {
         enabled: false,
@@ -128,9 +66,8 @@ const Charts = () => {
         curve: "smooth",
       },
       xaxis: {
-        type: "datetime",
-        categories: ["2015", "2016", "2017", "2018", "2019", "2020"],
-        // Add other xaxis options here
+        type: "category", // Set the x-axis type to category
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","July","Aug","Sept","Oct","Nov","Dec"], // Add the months of the year
         axisTicks: {
           show: false,
         },
@@ -139,6 +76,10 @@ const Charts = () => {
         },
         labels: {
           show: true,
+          rotate: -45, // Rotate the x-axis labels for better visibility
+          style: {
+            colors: "#ffffff", // Set the color of the x-axis labels
+          },
         },
       },
       grid: {
@@ -167,7 +108,7 @@ const Charts = () => {
         </div>
         
         <div className='cardBox1'>
-          <Common title='Day Graph' />
+          <Common title='Monthly Wise Report' />
           <ReactApexChart options={line.options} series={line.series} type='line' height={350} />
         </div>
       </section>

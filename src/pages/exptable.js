@@ -50,23 +50,35 @@ function Exptable() {
 
   return (
     <div style={{ margin: "20px" }}>
-      <Select
-  value={selectedFilter}
-  onChange={handleFilterChange}
-  style={{ margin: "20px", color: "white", outline: "1px solid white" }}
->
-  <MenuItem value="pending" style={{ color: "black" }}>Pending Requests</MenuItem>
-  <MenuItem value="accepted" style={{ color: "black" }}>Accepted Requests</MenuItem>
-  <MenuItem value="Rejected" style={{ color: "black" }}>Rejected Requests</MenuItem>
-</Select>
+    <Select
+      value={selectedFilter}
+      onChange={handleFilterChange}
+      sx={{
+        "& .MuiSelect-icon": {
+          color: "white", // Set the arrowhead color to white
+        },
+        "& .MuiSelect-select": {
+          borderColor: "white", // Set the border color to white
+          color: "white", // Set the text color to white
+          "&:focus": {
+            borderColor: "white", // Set the border color on focus to white
+          },
+        },
+      }}
+    >
+      <MenuItem value="pending" style={{ color: "black" }}>Pending Requests</MenuItem>
+      <MenuItem value="accepted" style={{ color: "black" }}>Accepted Requests</MenuItem>
+      <MenuItem value="Rejected" style={{ color: "black" }}>Rejected Requests</MenuItem>
+    </Select>
+
 
 
       {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} style={{ maxHeight: "100vh", width: "90%" }}>
             <Table>
-              <TableHead style={{ backgroundColor: "black", color: "white" }}>
-                <TableRow>
+              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
+                <TableRow >
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Date</TableCell>
@@ -76,11 +88,11 @@ function Exptable() {
               </TableHead>
               <TableBody>
                 {pendingRequests.map((row, index) => (
-                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Status}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
+                  <TableRow key={index} style={{ backgroundColor: "#1e1e1e"}}>
+                    <TableCell style={{ fontSize: "15px",color: "white" }}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "#6D67E4" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "white" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "white" }}>{row.Category}</TableCell>
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -98,7 +110,7 @@ function Exptable() {
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "black", color: "white" }}>
+              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
@@ -109,11 +121,11 @@ function Exptable() {
               </TableHead>
               <TableBody>
                 {acceptedRequests.map((row, index) => (
-                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Status}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
+                  <TableRow key={index} style={{ backgroundColor: "#1e1e1e"}}>
+                    <TableCell style={{ fontSize: "15px" ,color: "white"}}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "#b5c938" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "white" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "white"}}>{row.Category}</TableCell>
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -131,7 +143,7 @@ function Exptable() {
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "black", color: "white" }}>
+              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
@@ -142,11 +154,11 @@ function Exptable() {
               </TableHead>
               <TableBody>
                 {acceptedRequests.map((row, index) => (
-                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>Rejected</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
+                  <TableRow key={index} style={{ backgroundColor: "#1e1e1e"}}>
+                    <TableCell style={{ fontSize: "15px", color: "white" }}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "red" }}>Rejected</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "white" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "white" }}>{row.Category}</TableCell>
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -200,7 +212,7 @@ function Exptable() {
           )}
         </DialogContent>
         <DialogActions>
-          <Button style={{ color: "white", paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
+          <Button style={{ color: "black", paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
             Close
           </Button>
         </DialogActions>
