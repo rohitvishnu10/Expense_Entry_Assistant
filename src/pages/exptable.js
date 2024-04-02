@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Button } from "@mui/material";
 
 function Exptable() {
-  const [showTable1, setShowTable1] = useState(false);
-  const [showTable2, setShowTable2] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('pending');
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [pendingRequests, setPendingRequests] = useState([]);
   const [acceptedRequests, setAcceptedRequests] = useState([]);
 
   useEffect(() => {
-    // Fetch pending requests
     const fetchPendingRequests = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:7000/pending_requests/${localStorage.getItem("username")}`);
@@ -21,7 +19,6 @@ function Exptable() {
       }
     };
 
-    // Fetch accepted requests
     const fetchAcceptedRequests = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:7000/accepted_requests/${localStorage.getItem("username")}`);
@@ -37,14 +34,8 @@ function Exptable() {
     fetchAcceptedRequests();
   }, []);
 
-  const handleShowTable1Click = () => {
-    setShowTable1(true);
-    setShowTable2(false);
-  };
-
-  const handleShowTable2Click = () => {
-    setShowTable2(true);
-    setShowTable1(false);
+  const handleFilterChange = (event) => {
+    setSelectedFilter(event.target.value);
   };
 
   const handlePopUpClick = (row) => {
@@ -59,35 +50,37 @@ function Exptable() {
 
   return (
     <div style={{ margin: "20px" }}>
-      <Button style={{ textAlign: "center", background: "#EE4266", color: "white", margin: "20px", padding: "20px" }} onClick={handleShowTable1Click}>
-        Show Pending Requests
-      </Button>
-      <Button style={{ textAlign: "center", background: "#FFD23F", padding: "20px" }} onClick={handleShowTable2Click}>
-        Show Accepted Requests
-      </Button>
+      <Select
+  value={selectedFilter}
+  onChange={handleFilterChange}
+  style={{ margin: "20px", color: "white", outline: "1px solid white" }}
+>
+  <MenuItem value="pending" style={{ color: "black" }}>Pending Requests</MenuItem>
+  <MenuItem value="accepted" style={{ color: "black" }}>Accepted Requests</MenuItem>
+  <MenuItem value="Rejected" style={{ color: "black" }}>Rejected Requests</MenuItem>
+</Select>
 
-      {showTable1 && (
+
+      {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
+              <TableHead style={{ backgroundColor: "black", color: "white" }}>
                 <TableRow>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Date</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}>Action</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Details</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {pendingRequests.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}></TableCell>
+                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -101,26 +94,59 @@ function Exptable() {
         </div>
       )}
 
-      {showTable2 && (
+      {selectedFilter === 'accepted' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
-              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
+              <TableHead style={{ backgroundColor: "black", color: "white" }}>
                 <TableRow>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Date</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Details</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {acceptedRequests.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
+                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
+                    <TableCell>
+                      <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
+                        Details
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      )}
+
+      {selectedFilter === 'Rejected' && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead style={{ backgroundColor: "black", color: "white" }}>
+                <TableRow>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Date</TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
+                  <TableCell style={{ fontSize: "15px", color: "white" }}>Details</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {acceptedRequests.map((row, index) => (
+                  <TableRow key={index} style={{ backgroundColor: "#EAEAEB", color: "black" }}>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row["Employee ID"]}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>Rejected</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Date}</TableCell>
+                    <TableCell style={{ fontSize: "15px", color: "black" }}>{row.Category}</TableCell>
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
