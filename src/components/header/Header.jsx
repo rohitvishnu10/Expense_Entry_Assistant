@@ -10,45 +10,51 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Header = ({ dark, setMode }) => {
-  // Toggle Menu
   const [Mobile, setMobile] = useState(false);
+  const [selectedItem, setSelectedItem] = useState('Dashboard');
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setMobile(false);
+  };
 
   return (
     <>
-      <section className='header'>
+      <aside className={Mobile ? "sidebar open" : "sidebar"} style={{ backgroundColor: "#F39F5A" }}>
         <Head dark={dark} setMode={setMode} />
-        <header>
-          <div className='container'>
-            <ul className={Mobile ? "navMenu-list" : "link"} onClick={() => setMobile(false)}>
-              <li>
-                <a href='/home' className='navIcon'>
-                  <DashboardOutlinedIcon className='navIcon active' />
-                  Dashboard
-                </a>
-              </li>
-              <li>
+        <div className="sidebar-menu" >
+          <ul>
+            <li>
+              <a href='/home' className={selectedItem === 'Dashboard' ? 'navIcon active' : 'navIcon'} onClick={() => handleItemClick('Dashboard')}>
+                <DashboardOutlinedIcon className='navIcon' />
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a href='/bot' className={selectedItem === 'Chat Bot' ? 'navIcon active' : 'navIcon'} onClick={() => handleItemClick('Chat Bot')}>
                 <InvertColorsOutlinedIcon className='navIcon' />
-                <a href='/bot'>Chat Bot</a>
-              </li>
-              <li>
+                Chat Bot
+              </a>
+            </li>
+            <li>
+              <a href='/dashboard' className={selectedItem === 'Dashboard' ? 'navIcon active' : 'navIcon'} onClick={() => handleItemClick('Dashboard')}>
                 <GridViewOutlinedIcon className='navIcon' />
-                <a href='/dashboard'>Dashboard</a>
-              </li>
-              <li>
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a href='/' className={selectedItem === 'Support' ? 'navIcon active' : 'navIcon'} onClick={() => handleItemClick('Support')}>
                 <SupportOutlinedIcon className='navIcon' />
-                <a href='/'>Support</a>
-              </li>
-              <li>
-                <StyleOutlinedIcon className='navIcon' />
-                <a href='/'>Style</a>
-              </li>
-            </ul>
-            <button className='toggle' onClick={() => setMobile(!Mobile)}>
-              {Mobile ? <CloseIcon /> : <MenuIcon />}
-            </button>
-          </div>
-        </header>
-      </section>
+                Support
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <button className='toggle' onClick={() => setMobile(!Mobile)}>
+          {Mobile ? <CloseIcon /> : <MenuIcon />}
+        </button>
+      </aside>
     </>
   );
 };

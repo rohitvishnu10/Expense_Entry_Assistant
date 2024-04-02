@@ -26,16 +26,10 @@ const Head = ({ dark, setMode }) => {
             </div>
           </div>
           <div className='right flexCenter'>
-            <div className='search flexCenter'>
-              <input type='text' placeholder='Search...' />
-              <SearchOutlinedIcon className='iconHead' />
-            </div>
-            <NotificationsNoneOutlinedIcon className='iconHead' />
+
             <div className='profile flexCenter'>
               <img className='imageCircle' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/user.png' alt='' />
-
-              <span>{username}</span> {/* Display username here */}
-              <KeyboardArrowDownOutlinedIcon className='iconHead' />
+              <span>{username}</span>
             </div>
             <button onClick={() => setMode(!dark)}>
               <SettingsIcon className='iconHead' />

@@ -1,48 +1,44 @@
-import React, { useEffect, useState } from "react"
-import "./App.css"
-import Footer from "./components/footer/Footer"
-import Header from "./components/header/Header"
-import Home from "./components/home/Home"
-import Bot from "./pages/bot"
-import Optional from "./pages/Optional"
-import Exptable from "./pages/exptable"
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Footer from "./components/footer/Footer";
+import Home from "./components/home/Home";
+import Bot from "./pages/bot";
+import Exptable from "./pages/exptable";
+import Sidebar from "./components/header/Sidebar"; // Import the Sidebar component
 
 function App() {
-  
-  let component;
-switch (window.location.pathname) {
-  case "/home":
-    component = <Home />;
-    break;
-  case "/bot":
-    component = <Bot />;
-    break;
-  case "/dashboard":
-    component = <Exptable />;
-    break;
-  default:
-    // Add a default case to handle unexpected values
-    component = <div>Page not found</div>;
-    break;
-}
+  const [dark, setMode] = useState(getMode());
 
-
-  const getMode = () => {
-    return JSON.parse(localStorage.getItem("mode"))
+  function getMode() {
+    return JSON.parse(localStorage.getItem("mode"));
   }
-  const [dark, setMode] = useState(getMode())
+
   useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(dark))
-  }, [dark])
+    localStorage.setItem("mode", JSON.stringify(dark));
+  }, [dark]);
+
   return (
-    <>
-      <div className={dark ? "app" : "light"}>
-        <Header dark={dark} setMode={setMode} />
-        {component}
-        <Footer />
+    <div className={dark ? "app" : "light"}>
+      <Sidebar dark={dark} setMode={setMode} />
+      <div className="main-content">
+        {getContentComponent(window.location.pathname)}
       </div>
-    </>
-  )
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+function getContentComponent(pathname) {
+  switch (pathname) {
+    case "/home":
+      return <Home />;
+    case "/bot":
+      return <Bot />;
+    case "/dashboard":
+      return <Exptable />;
+    default:
+      return <div>Page not found</div>;
+  }
+}
+
+export default App;

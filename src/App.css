@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+.app {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Sidebar takes 200px, rest of the space for main content */
+  grid-template-rows: 1fr  ; /* Header, main content, footer */
+  height: 100vh;
+}
+
+/* Adjust the styles for the Sidebar component as needed */
+
+.main-content {
+  grid-column: 2 / -1; /* Main content spans from the second column to the end */
+  padding: 20px;
+}
 * {
   padding: 0;
   margin: 0;
