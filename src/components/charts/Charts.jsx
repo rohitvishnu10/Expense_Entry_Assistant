@@ -165,10 +165,7 @@ const Charts = () => {
           <Common title='Category Wise Report' />
           <ReactApexChart options={data.options} series={data.series} type='donut' height={350} />
         </div>
-        <div className='cardBox'>
-          <Common title='Statistics' />
-          <ReactApexChart options={bardata.options} series={bardata.series} type='bar' height={350} />
-        </div>
+        
         <div className='cardBox'>
           <Common title='Day Graph' />
           <ReactApexChart options={line.options} series={line.series} type='line' height={350} />

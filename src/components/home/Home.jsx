@@ -13,10 +13,9 @@ const Home = () => {
             <h3>Welcome back !</h3>
             <span>ExpenseTracker / DashBoard</span>
           </div>
-          <Cards />
+          <Cards/>
           <Charts />
-          <User />
-          <TableData />
+          
         </div>
       </section>
     </>
