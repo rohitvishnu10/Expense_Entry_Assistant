@@ -42,7 +42,7 @@ button {
   background-color: hsl(213, 19%, 18%);
   width: 3rem;
   height: 3rem;
-  color: #ffffff;
+  /* color: #ffffff; */
   border: none;
   outline: none;
   border-radius: 50%;

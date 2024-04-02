@@ -7,7 +7,7 @@ import Footer from "../components/Homepage/Footer";
 
 function HomeApp() {
   return (
-    <div className="App">
+    <div className="App" sx={{ display: "flex",bgcolor:"#292c37" }}>
       <Home />
       <About />
       <UserGuide />

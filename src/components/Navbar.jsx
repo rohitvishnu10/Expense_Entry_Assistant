@@ -143,7 +143,8 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" elevation={0} sx={{backgroundColor:'#ffffff',color:'#2f2f2f'}}>
+      {/* <AppBar position="fixed" elevation={0} sx={{backgroundColor:'#ffffff',color:'#2f2f2f'}}> */}
+      <AppBar position="fixed" elevation={0} sx={{backgroundColor:'#383d49',color:'#2f2f2f'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -155,7 +156,7 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
@@ -171,7 +172,7 @@ export default function Navbar() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             

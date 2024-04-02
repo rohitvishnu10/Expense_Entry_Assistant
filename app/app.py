@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 from pymongo import MongoClient
 from pydantic import BaseModel
 from  schemas import *
-
+from fastapi import HTTPException
 
 app = FastAPI()
 
@@ -29,8 +29,10 @@ def greet():
     return {"hello": "world"}
 
 
-@app.post("/userchatinput")
-def get_input(user_input: dict):
+# @app.post("/userchatinput")
+# def get_input(user_input: dict):
+@app.post("/userchatinput/{eid}")
+def get_input(user_input: dict, eid: str):
     l = list(user_input.values())
     print("Received input:", str(l[0]))
     user = str(l[0])
@@ -54,7 +56,59 @@ def login(login_request:LoginRequest):
         return {"success":True}
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
+@app.get("/accepted_requests/{eid}")
+async def get_accepted_requests(eid: str):
+    # Find accepted requests for the given employee ID
+    employee_accepted_requests = expenses_collection.find({"eid": eid, "accepted": True})
 
+    accepted_requests = []
+    for request in employee_accepted_requests:
+        accepted_requests.append({
+            "_id": str(request["_id"]),
+            "Employee ID": request["eid"],
+            "Status": "Accepted",
+            "Date": request["date"],
+            "Category": request["category"],
+            "category": request["category"],
+            "location": request["location"],
+            "city": request["city"],
+            "amount": request["amount"],
+            "date": request["date"],
+            "day": request["day"],
+            "purpose": request["purpose"],
+            "accepted": request["accepted"],
+            "eid": request["eid"]
+        })
+
+    return accepted_requests
+
+
+
+@app.get("/pending_requests/{eid}")
+async def get_pending_requests(eid: str):
+    # Find pending requests for the given employee ID
+    employee_pending_requests = expenses_collection.find({"eid": eid, "accepted": False})
+
+    pending_requests = []
+    for request in employee_pending_requests:
+        pending_requests.append({
+            "_id": str(request["_id"]),
+            "Employee ID": request["eid"],
+            "Status": "Pending",
+            "Date": request["date"],
+            "Category": request["category"],
+            "category": request["category"],
+            "location": request["location"],
+            "city": request["city"],
+            "amount": request["amount"],
+            "date": request["date"],
+            "day": request["day"],
+            "purpose": request["purpose"],
+            "accepted": request["accepted"],
+            "eid": request["eid"]
+        })
+
+    return pending_requests
 
 
 @app.get("/employees_count/{aid}")

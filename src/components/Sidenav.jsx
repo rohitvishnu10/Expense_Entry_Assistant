@@ -16,8 +16,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import AssistantIcon from '@mui/icons-material/Assistant';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {useNavigate} from "react-router-dom";
-import {useAppStore} from "../appStore";
+import { useNavigate } from "react-router-dom";
+import { useAppStore } from "../appStore";
 
 const drawerWidth = 240;
 

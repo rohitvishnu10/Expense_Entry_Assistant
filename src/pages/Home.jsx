@@ -11,14 +11,13 @@ import '../Dash.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import { colors } from '@mui/material';
 import LineChart from '../charts/LineChart';
 import PieChart from '../charts/PieChart';
 export default function Home() {
   const currentUser = localStorage.getItem("username");
   return (
     <>
-    <div className='bgcolor'>
+    <div className='bgcolor' sx={{ bgcolor:"#292c37" }}>
       
     <Navbar />
     <Box height={70} />
@@ -28,12 +27,12 @@ export default function Home() {
     <Grid container spacing={2}>
   <Grid item xs={8}>
   <Stack spacing={2} direction='row'>
-  <Card sx={{ minWidth: 49 + "%",height:150 }} className="gradient">
-      <CardContent>
+  <Card sx={{ minWidth: 49 + "%",height:150, bgcolor: '#333742' }} className="gradient">
+      <CardContent sx={{ color: '#fff' }}>
       <div className="iconstyle">
             <CreditCardIcon/>
         </div>
-        <Typography gutterBottom variant="h5" component="div" sx={{color: 'white'}}>
+        <Typography gutterBottom variant="h5" component="div" sx={{color: '#fff'}}>
           $500.00
         </Typography>
         <Typography 
@@ -45,26 +44,26 @@ export default function Home() {
         </Typography>
       </CardContent>
     </Card>
-    <Card sx={{ minWidth: 49 + "%",height:150}} className="gradientlight">
-      <CardContent>
+    <Card sx={{ minWidth: 49 + "%",height:150, bgcolor: '#333742'}} className="gradientlight">
+      <CardContent sx={{ color: '#fff' }}>
         <div className="iconstyle">
             <ReceiptLongIcon/>
         </div>
-        <Typography gutterBottom variant="h5" component="div" sx={{color: 'white'}}>
+        <Typography gutterBottom variant="h5" component="div" sx={{color: '#171b2b'}}>
           $900.00
         </Typography>
-        <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
+        <Typography gutterBottom variant="body2" component="div" sx={{ color: "#171b2b" }}>
           Recent Transaction 
         </Typography>
        
       </CardContent>
     </Card> 
-    <Card sx={{ minWidth: 49 + "%",height:150}} className="gradientlight2">
-      <CardContent>
+    <Card sx={{ minWidth: 49 + "%",height:150, bgcolor: '#db4075'}} className="gradientlight2">
+      <CardContent sx={{ color: 'white' }}>
         <div className="iconstyle">
             <AccountCircleIcon/>
         </div>
-        <Typography gutterBottom variant="h5" component="div" sx={{color: 'black'}}>
+        <Typography gutterBottom variant="h5" component="div" sx={{color: '#fff'}}>
           {currentUser}
         </Typography>
         <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
@@ -80,21 +79,21 @@ export default function Home() {
 <Box height={20} />
 <Grid container spacing={2}>
   <Grid item xs={8}>
-  <Card sx={{ height:60+"vh",alignItems: "center"}}>
+  <Card sx={{ height:60+"vh",alignItems: "center",  bgcolor: '#333742'}}>
       <CardContent>
-      <Typography variant="h2" sx={{ fontSize: "17px", marginTop:"5px",marginLeft: "15px", marginBottom: "5px", color: "#434545" }}>
+      {/* <Typography variant="h2" sx={{ fontSize: "17px", marginTop:"5px",marginLeft: "15px", marginBottom: "5px", color: "#434545" }}>
   User Expense Statistics
 </Typography>
 <Typography variant="h4" sx={{ fontSize: "14px",marginTop:"5px", marginLeft: "15px", marginBottom: "10px", color: "#ccd1d1" }}>
   Overall Monthly Expense
-</Typography>
+</Typography> */}
 <LineChart />
 
       </CardContent>
     </Card>
   </Grid>
   <Grid item xs={4}>
-        <Card sx={{ height: "60vh", display: "flex", justifyContent: "center", alignItems: "center",margin:0 }}>
+        <Card sx={{ height: "60vh", display: "flex", justifyContent: "center", alignItems: "center",margin:0, bgcolor: '#333742' }}>
           <CardContent>
             <PieChart />
           </CardContent>
