@@ -161,12 +161,12 @@ const Charts = () => {
   return (
     <>
       <section className='charts grid2'>
-        <div className='cardBox'>
+        <div className='cardBox1'>
           <Common title='Category Wise Report' />
           <ReactApexChart options={data.options} series={data.series} type='donut' height={350} />
         </div>
         
-        <div className='cardBox'>
+        <div className='cardBox1'>
           <Common title='Day Graph' />
           <ReactApexChart options={line.options} series={line.series} type='line' height={350} />
         </div>

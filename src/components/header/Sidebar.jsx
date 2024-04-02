@@ -9,13 +9,14 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-const Item = ({ title, to, icon, selected, setSelected }) => {
 
+const Item = ({ title, to, icon, selected, setSelected }) => {
   return (
     <MenuItem
       active={selected === title}
       style={{
-        color: "#ffffff"
+        color: "#ffffff",
+        marginBottom: "20px", // Increase the gap between components
       }}
       onClick={() => setSelected(title)}
       icon={icon}
@@ -35,7 +36,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        background: "#333843",
+        background: "black", // Changed background color to black
         "& .pro-sidebar-inner": {
           background: "#1F2A40 !important",
         },
@@ -58,7 +59,7 @@ const Sidebar = () => {
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            icon={isCollapsed ? <MenuOutlinedIcon style={{ color: "#ffffff" }} /> : undefined}
             style={{
               margin: "10px 0 20px 0",
               color: colors.grey[100],
@@ -71,9 +72,8 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
+                  <MenuOutlinedIcon style={{ color: "#ffffff" }} />
                 </IconButton>
               </Box>
             )}
@@ -82,10 +82,9 @@ const Sidebar = () => {
           {!isCollapsed && (
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
-
               </Box>
               <Box textAlign="center">
-              <Typography
+                <Typography
                   variant="h5"
                   color="#ffffff"
                   fontWeight="bold"
@@ -93,7 +92,6 @@ const Sidebar = () => {
                 >
                   {localStorage.getItem("username")}
                 </Typography>
-
               </Box>
             </Box>
           )}
@@ -106,8 +104,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
-
             <Item
               title="Expense Requests"
               to="/dashboard"
@@ -115,7 +111,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Item
               title="Expense Tracker"
               to="/bot"
@@ -130,7 +125,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
           </Box>
         </Menu>
       </ProSidebar>

@@ -1,3 +1,14 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardBox {
+  background-color: #000;
+  width: 300px; /* Adjust the width as needed */
+  margin: 15px;
+}
 .cards .circle {
   display: flex;
   align-items: center;
