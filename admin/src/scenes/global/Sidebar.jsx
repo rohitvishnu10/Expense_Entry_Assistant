@@ -118,13 +118,6 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
 
             <Item
               title="Pending Requests"
@@ -134,13 +127,6 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
             <Item
               title="Add User"
               to="/app/form"
@@ -156,22 +142,15 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Charts
-            </Typography>
             <Item
-              title="Bar Chart"
+              title="Department Wise Analytics "
               to="/app/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Pie Chart"
+              title="Category Wise Analytics "
               to="/app/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
