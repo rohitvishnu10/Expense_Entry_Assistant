@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './bot.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Chatbot() {
@@ -56,9 +58,11 @@ export default function Chatbot() {
           </div>
         ))}
       </div> */}
-      
-      <Box height={30} sx={{ display: "flex",bgcolor:"#292c37" }}/>
-      <Box sx={{ display: "flex",bgcolor:"#292c37" }}>
+        <div className='heading flexSB'>
+          <h1><FontAwesomeIcon icon={faRobot} className="icon" />     Create your new expense</h1> {/* Updated heading size */}
+        </div>
+      <Box height={30} sx={{ display: "flex",bgcolor:"#131417" }}/>
+      <Box sx={{ display: "flex",bgcolor:"#131417" }}>
         
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <div className="chatbot-container">

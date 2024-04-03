@@ -84,10 +84,10 @@ button {
     hsl(212, 18%, 14%),
     hsl(220, 16%, 11%)
   );
-  max-width: 400px;
+  max-width: 100%;
   padding: 2rem 1.5rem;
   border-radius: 0.625rem;
-  position: relative;
+  height: 90vh;
   align-items: center;
   left: 450px;
 }

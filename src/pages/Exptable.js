@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Button } from "@mui/material";
+import './Exptable.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 
 function Exptable() {
   const [selectedFilter, setSelectedFilter] = useState('pending');
@@ -60,32 +63,41 @@ function Exptable() {
     setSelectedRow(null);
   };
 
+
   return (
+
     <div style={{ margin: "20px" }}>
-      <Select
-        value={selectedFilter}
-        onChange={handleFilterChange}
-        sx={{
-          "& .MuiSelect-icon": {
-            color: "white", // Set the arrowhead color to white
-          },
-          "& .MuiSelect-select": {
-            borderColor: "white", // Set the border color to white
-            color: "white", // Set the text color to white
-            "&:focus": {
-              borderColor: "white", // Set the border color on focus to white
+      <div className='heading flexSB'>
+        <h1><FontAwesomeIcon icon={faEye} className="icon" />    View your Expenses</h1> {/* Updated heading size */}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+      <label htmlFor="filter" style={{ color: "white", marginRight: "15px",marginLeft:"30px",fontSize:"20px" }}>Filter:</label>
+        <Select
+          id="filter"
+          value={selectedFilter}
+          onChange={handleFilterChange}
+          sx={{
+            "& .MuiSelect-icon": {
+              color: "white", // Set the arrowhead color to white
             },
-          },
-        }}
-      >
-        <MenuItem value="pending" style={{ color: "black" }}>Pending Requests</MenuItem>
-        <MenuItem value="accepted" style={{ color: "black" }}>Accepted Requests</MenuItem>
-        <MenuItem value="rejected" style={{ color: "black" }}>Rejected Requests</MenuItem>
-      </Select>
+            "& .MuiSelect-select": {
+              borderColor: "white", // Set the border color to white
+              color: "white", // Set the text color to white
+              "&:focus": {
+                borderColor: "white", // Set the border color on focus to white
+              },
+            },
+          }}
+        >
+          <MenuItem value="pending" style={{ color: "black",borderColor:"white" }}>Pending Requests</MenuItem>
+          <MenuItem value="accepted" style={{ color: "black" }}>Accepted Requests</MenuItem>
+          <MenuItem value="rejected" style={{ color: "black" }}>Rejected Requests</MenuItem>
+        </Select>
+      </div>
 
       {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper} style={{ maxHeight: "100vh", width: "90%" }}>
+          <TableContainer component={Paper} style={{ border: "2px solid #40A2E3" }}>
             <Table>
               <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow >
@@ -118,7 +130,7 @@ function Exptable() {
 
       {selectedFilter === 'accepted' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} style={{ border: "2px solid #40A2E3" }}>
             <Table>
               <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
@@ -151,7 +163,7 @@ function Exptable() {
 
       {selectedFilter === 'rejected' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} style={{ border: "2px solid #40A2E3" }}>
             <Table>
               <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
