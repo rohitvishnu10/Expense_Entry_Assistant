@@ -5,7 +5,7 @@ import BarChart from "../../components/Adminpage/BarChart";
 const Bar = () => {
   return (
     <Box m="20px">
-      <Header title="Bar Chart" subtitle="Expense Distribution " />
+      <Header title="Department wise Analytics" subtitle="Based on the categories in each department" />
       <Box height="75vh">
         <BarChart />
       </Box>

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem } from "@mui/material";
 import Header from "../../components/Adminpage/Header";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
+import "./requests.css";
 
 function Request() {
   // const [showTable1, setShowTable1] = useState(false);
@@ -96,16 +99,32 @@ function Request() {
 
   return (
     <div style={{ margin: "20px" }}>
-      <Select
-        value={selectedFilter}
-        onChange={handleFilterChange}
-        style={{ margin: "20px" }}
-      >
-        <MenuItem value="pending">Pending Requests</MenuItem>
-        <MenuItem value="accepted">Accepted Requests</MenuItem>
-        <MenuItem value="Rejected">Rejected Requests</MenuItem>
-      </Select>
-
+      <div className='heading flexSB'>
+        <h1><FontAwesomeIcon icon={faEye} className="icon" />    Pending Reimbursements</h1> {/* Updated heading size */}
+      </div>
+      <div>
+      <p className="text4" style={{marginRight:"30px"}}>You have the ability to approve or decline requests.</p>
+      </div>
+      {/* <Header title="Requests" subtitle="Pending and Accepted Requests" />
+      <Button style={{ textAlign: "center", background: "#EE4266", color: "white", margin: "20px", padding: "20px" }} onClick={handleShowTable1Click}>
+        Show Pending Requests
+      </Button>
+      <Button style={{ textAlign: "center", background: "#FFD23F", padding: "20px" }} onClick={handleShowTable2Click}>
+        Show Accepted Requests
+      </Button>
+      {showTable1 && ( */}
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+      <label htmlFor="filter" style={{ color: "white", marginRight: "15px",marginLeft:"30px",fontSize:"20px" }}>Filter:</label>
+        <Select
+          value={selectedFilter}
+          onChange={handleFilterChange}
+          style={{ margin: "20px" }}
+        >
+          <MenuItem value="pending">Pending Requests</MenuItem>
+          <MenuItem value="accepted">Accepted Requests</MenuItem>
+          <MenuItem value="Rejected">Rejected Requests</MenuItem>
+        </Select>
+      </div>
       {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
