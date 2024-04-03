@@ -31,7 +31,7 @@ class LoginRequest(BaseModel):
     username: str
     password: str
 
-@app.post("/login")
+@app.post("/adminlogin")
 def login(login_request:LoginRequest):
     global eid
     data=admindata.find_one({"aid":login_request.username})
@@ -281,7 +281,7 @@ async def get_accepted_requests(aid: str):
                 "date": request["date"],
                 "day": request["day"],
                 "purpose": request["purpose"],
-                "accepted": request["accepted"],    
+                "accepted": request["accepted"],
                 "eid": request["eid"]
             })
 
