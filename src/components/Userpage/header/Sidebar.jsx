@@ -120,7 +120,7 @@ const UserSidebar = () => {
             />
             <Item
               title="Logout"
-              to="/home"
+              to="/"
               icon={<ExitToAppOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

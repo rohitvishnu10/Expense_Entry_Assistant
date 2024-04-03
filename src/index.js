@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Signup />} />
+      {/* <Route path="/" element={<Signup />} /> */}
       <Route path="/app/*" element={<App />}>
         {/* Nested routes can be added here if needed */}
       </Route>
@@ -23,7 +23,7 @@ root.render(
       <Route path="/Chatbot" exact element={<Chatbot/>}></Route>
       <Route path='/Transactions' exact element={<Transaction/>}></Route>
       <Route path="/Settings" exact element={<Settings/>}></Route> */}
-      <Route path="/home" exact element={<HomeApp />}></Route>
+      <Route path="/" exact element={<HomeApp />}></Route>
       <Route path="/adminlogin" exact element={<AdminSignup />}></Route>
 
       <Route path="/bot" element={<App />} />
