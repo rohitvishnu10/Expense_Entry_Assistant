@@ -12,4 +12,4 @@ const Common = (props) => {
   )
 }
 
-export default Common;
+export default Common

@@ -1,0 +1,23 @@
+.charts {
+    margin-top: 10px;
+  }
+  .apexcharts-toolbar {
+    display: none !important;
+  }
+  .apexcharts-legend {
+    margin-top: 50px !important;
+  }
+  .charts {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .cardBox1 {
+    background-color: black;
+    width: 900px;
+    height: 400px;
+    margin: 0 10px; /* Adjust margin as needed */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Add rounded corners */
+  }

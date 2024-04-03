@@ -1,9 +1,7 @@
 import React,{ useState } from 'react';
-import Sidenav from "../components/Sidenav";
-import Navbar from "../components/Navbar";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import '../css/bot.css';
+import './bot.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 
@@ -58,10 +56,10 @@ export default function Chatbot() {
           </div>
         ))}
       </div> */}
-      <Navbar />
+      
       <Box height={30} sx={{ display: "flex",bgcolor:"#292c37" }}/>
       <Box sx={{ display: "flex",bgcolor:"#292c37" }}>
-        <Sidenav />
+        
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <div className="chatbot-container">
             <div className="chatbot-messages">
@@ -89,7 +87,7 @@ export default function Chatbot() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type a message..."
-                style={{ color: 'black' }}
+                style={{ color: 'white' }}
               />
               <button type="submit"> Send</button>
             </form>

@@ -1,10 +1,12 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
     font-family: "CustomFont";
 }
 
 
+
+/* --------------------------- MOBILE VERSION ------------------------------ */
 .page {
     height: 100vh;
     width: 100%;
@@ -20,6 +22,7 @@
     height: 50%;
     position: relative;
     border-radius: 1em;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,6 +47,9 @@
     cursor: pointer;
 }
 
+.google {background-image: url("./icons/google.png");}
+.facebook {background-image: url("./icons/facebook.png");}
+
 .input-login {
     border: none;
     background-color: rgb(229, 226, 226);
@@ -52,6 +58,7 @@
     text-align: center;
     padding: 2em;
     font-size: 0.75em;
+    color: black;
 }
 
 .input-login:focus {
@@ -107,6 +114,7 @@
     background-image: url('./icons/google.png');
 }
 
+/* -------------------- TABLET OPTIMIZATION -------------------- */
 @media only screen and (min-device-width: 37em) {
     .page {
         font-size: 1em;
@@ -118,6 +126,7 @@
     }
 }
 
+/* -------------------- DESKTOP OPTIMIZATION -------------------- */
 @media only screen and (min-device-width: 64em) {
     .page {
         font-size: 1.25em;
