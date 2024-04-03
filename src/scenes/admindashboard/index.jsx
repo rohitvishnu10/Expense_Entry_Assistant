@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Box, useTheme } from "@mui/material";
+import { Box,Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Adminpage/Header";
 import LineChart from "../../components/Adminpage/LineChart";
 import PieChart from "../../components/Adminpage/PieChart";
 import BarChart from "../../components/Adminpage/BarChart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faListAlt, faTasks } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -85,31 +87,59 @@ const Dashboard = () => {
       {/* ROW 1 - Display 4 cards in different colors */}
       <Box
         display="grid"
-        gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+        gridTemplateColumns="repeat(auto-fit, minmax(150px, 1fr))"
         gap="20px"
       >
-        <Box className="card" style={{ backgroundColor: "#FB2576", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+        {/* <Box className="card" style={{ backgroundColor: "#FB2576", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
           <div className="card-inner">
             <h3 style={{ margin: 0, fontSize: "1.5rem" }} >EMPLOYEES</h3>
           </div>
           <h1 style={{ fontSize: "1.2rem" }}>{employeesCount}</h1>
+        </Box> */}
+
+        <Box className="card" style={{ backgroundColor: "#d8aa50", marginTop:"20px",padding: "15px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FontAwesomeIcon icon={faUser} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
+          <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Employees</Typography>
+        </div>
+          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>{employeesCount}</Typography>
         </Box>
-        <Box className="card" style={{ backgroundColor: "#E3651D", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
+
+
+        {/* <Box className="card" style={{ backgroundColor: "#E3651D", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
           <div className="card-inner">
             <h3 style={{ margin: 0, fontSize: "1.5rem" }}>CATEGORIES</h3>
           </div>
           <h1>5</h1>
+        </Box> */}
+
+        <Box className="card" style={{ backgroundColor: "#dec2a4", marginTop:"20px",padding: "15px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
+
+          <div style={{ display: "flex", alignItems: "center" }}>
+          <FontAwesomeIcon icon={faListAlt} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
+          <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Categories</Typography>
+          </div>
+          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>5</Typography>
         </Box>
         
-        <Box className="card" style={{ backgroundColor: "#4CCD99", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
+        {/* <Box className="card" style={{ backgroundColor: "#4CCD99", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
           <div className="card-inner">
             <h3 style={{ margin: 0, fontSize: "1.5rem" }}>PENDING REQUESTS</h3>
           </div>
           <h1>{pendingRequests}</h1>
+        </Box> */}
+
+        <Box className="card" style={{ backgroundColor: "#db7c67", marginTop:"20px",padding: "15px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
+          <div style={{ display: "flex", alignItems: "center" }}>
+          <FontAwesomeIcon icon={faTasks} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
+          <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Pending Requests</Typography>
+        </div>
+          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>{pendingRequests}</Typography>
         </Box>
+
       </Box>
 
-
+{/* 
       <Box display="grid" gridTemplateColumns="1fr 1fr " gap="20px">
         <Box>
           <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
@@ -135,7 +165,7 @@ const Dashboard = () => {
             </div>
           </Box>
         </Box>
-      </Box>
+      </Box> */}
 
 
       {/* ROW 2 - Line Chart, Pie Chart, Bar Chart */}
@@ -143,7 +173,7 @@ const Dashboard = () => {
         <Box>
           <Box m="20px">
             <Header title="Department-wise Expense" subtitle="" />
-            <Box height="50vh">
+            <Box height="45vh">
               <BarChart />
             </Box>
           </Box>
@@ -151,7 +181,7 @@ const Dashboard = () => {
         <Box>
           <Box m="20px">
             <Header title="Category-wise Expense" subtitle="" />
-            <Box height="50vh">
+            <Box height="45vh">
               <PieChart />
             </Box>
           </Box>

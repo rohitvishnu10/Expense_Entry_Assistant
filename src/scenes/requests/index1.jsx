@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem } from "@mui/material";
-import Header from "../../components/Adminpage/Header";
+import Header from "../../components/Header";
 
 function Request() {
-  // const [showTable1, setShowTable1] = useState(false);
-  // const [showTable2, setShowTable2] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('pending');
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -13,76 +10,80 @@ function Request() {
   const [acceptedRequests, setAcceptedRequests] = useState([]);
 
   useEffect(() => {
-    // Fetch pending requests
+
     const fetchPendingRequests = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:9000/pending_requests/${localStorage.getItem("username")}`);
-        const data = await response.json();
-        setPendingRequests(data);
-      } catch (error) {
-        console.error("Error fetching pending requests:", error);
-      }
-    };
+        try {
+          const response = await fetch(`http://127.0.0.1:9000/pending_requests/${localStorage.getItem("username")}`);
+          const data = await response.json();
+          setPendingRequests(data);
+        } catch (error) {
+          console.error("Error fetching pending requests:", error);
+        }
+      };
 
-    // Fetch accepted requests
-    const fetchAcceptedRequests = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:9000/accepted_requests/${localStorage.getItem("username")}`);
-        const data = await response.json();
-        setAcceptedRequests(data);
-      } catch (error) {
-        console.error("Error fetching accepted requests:", error);
-      }
-    };
+      // Fetch accepted requests
+      const fetchAcceptedRequests = async () => {
+        try {
+          const response = await fetch(`http://127.0.0.1:9000/accepted_requests/${localStorage.getItem("username")}`);
+          const data = await response.json();
+          setAcceptedRequests(data);
+        } catch (error) {
+          console.error("Error fetching accepted requests:", error);
+        }
+      };
 
-    // Fetch data on component mount
-    fetchPendingRequests();
-    fetchAcceptedRequests();
-  }, []);
+      // Fetch data on component mount
+      fetchPendingRequests();
+      fetchAcceptedRequests();
+    }, []);
+    // Fetch pending requests and accepted requests
+    // ... (existing useEffect code remains the same) ...
+    const handleShowTable1Click = () => {
+        setShowTable1(true);
+        setShowTable2(false);
+      };
 
-  // const handleShowTable1Click = () => {
-  //   setShowTable1(true);
-  //   setShowTable2(false);
-  // };
+      const handleShowTable2Click = () => {
+        setShowTable2(true);
+        setShowTable1(false);
+      };
 
-  // const handleShowTable2Click = () => {
-  //   setShowTable2(true);
-  //   setShowTable1(false);
-  // };
+      const handleStatusButtonClick = async (row) => {
+        // Show a confirmation alert before approving the request
+        const confirmApproval = window.confirm("Are you sure you want to approve this request?");
+        if (!confirmApproval) {
+          return; // If user cancels, do nothing
+        }
 
-  const handleStatusButtonClick = async (row) => {
-    // Show a confirmation alert before approving the request
-    const confirmApproval = window.confirm("Are you sure you want to approve this request?");
-    if (!confirmApproval) {
-      return; // If user cancels, do nothing
-    }
-  
-    try {
-      // Send PUT request to approve the request
-      const response = await fetch(`http://127.0.0.1:9000/approve_request/${row._id}`, {
-        method: "PUT",
-      });
-      if (response.ok) {
-        // If request is successful, update the 'accepted' field in the local state
-        const updatedPendingRequests = pendingRequests.map((req) =>
-          req._id === row._id ? { ...req, accepted: true } : req
-        );
-        setPendingRequests(updatedPendingRequests);
-        // Show success message
-        window.alert("Request approved successfully");
-      } else {
-        console.error("Failed to approve request");
-        window.alert("Failed to approve request. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error approving request:", error);
-      window.alert("An error occurred while approving the request. Please try again later.");
-    }
-  };
+        try {
+          // Send PUT request to approve the request
+          const response = await fetch(`http://127.0.0.1:9000/approve_request/${row._id}`, {
+            method: "PUT",
+          });
+          if (response.ok) {
+            // If request is successful, update the 'accepted' field in the local state
+            const updatedPendingRequests = pendingRequests.map((req) =>
+              req._id === row._id ? { ...req, accepted: true } : req
+            );
+            setPendingRequests(updatedPendingRequests);
+            // Show success message
+            window.alert("Request approved successfully");
+          } else {
+            console.error("Failed to approve request");
+            window.alert("Failed to approve request. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error approving request:", error);
+          window.alert("An error occurred while approving the request. Please try again later.");
+        }
+      };
+
 
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
   };
+
+
 
   const handlePopUpClick = (row) => {
     setSelectedRow(row);
@@ -96,14 +97,7 @@ function Request() {
 
   return (
     <div style={{ margin: "20px" }}>
-      {/* <Header title="Requests" subtitle="Pending and Accepted Requests" />
-      <Button style={{ textAlign: "center", background: "#EE4266", color: "white", margin: "20px", padding: "20px" }} onClick={handleShowTable1Click}>
-        Show Pending Requests
-      </Button>
-      <Button style={{ textAlign: "center", background: "#FFD23F", padding: "20px" }} onClick={handleShowTable2Click}>
-        Show Accepted Requests
-      </Button>
-      {showTable1 && ( */}
+      <Header title="Requests" subtitle="Pending and Accepted Requests" />
       <Select
         value={selectedFilter}
         onChange={handleFilterChange}
@@ -111,10 +105,9 @@ function Request() {
       >
         <MenuItem value="pending">Pending Requests</MenuItem>
         <MenuItem value="accepted">Accepted Requests</MenuItem>
-        <MenuItem value="Rejected">Rejected Requests</MenuItem>
       </Select>
 
-      {selectedFilter === 'pending' && (
+      {selectedFilter === 'pending' && showTable1 (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
@@ -126,7 +119,6 @@ function Request() {
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Action</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -137,17 +129,10 @@ function Request() {
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>
-                      <Button style={{ fontSize: "15px", color: "#35374B", backgroundColor: "#94d5be" }} onClick={() => handleStatusButtonClick(row)}>
+                      <Button style={{ fontSize: "15px", color: "#35374B", backgroundColor: "#54E346" }} onClick={() => handleStatusButtonClick(row)}>
                         Approve
                       </Button>
                     </TableCell>
-
-                    <TableCell>
-                      <Button style={{ marginLeft: "20px",fontSize: "15px", color: "#f5f5f5", backgroundColor: "#dd3f32" }} onClick={() => handleStatusButtonClick(row)}>
-                        Reject
-                      </Button>
-                    </TableCell>
-
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -161,8 +146,7 @@ function Request() {
         </div>
       )}
 
-      {/* {showTable2 && ( */}
-      {selectedFilter === 'accepted' && (
+      {selectedFilter === 'accepted' && showTable2 (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
           <TableContainer component={Paper}>
             <Table>
@@ -180,39 +164,6 @@ function Request() {
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
-                    <TableCell>
-                      <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
-                        Details
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      )}
-
-      {selectedFilter === 'Rejected' && (
-        <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
-                <TableRow>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}>Employee ID</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}>Status</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}>Date</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {acceptedRequests.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>Rejected</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell>
