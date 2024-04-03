@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   return (
     <MenuItem
       active={selected === title}
@@ -21,15 +21,15 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      {!isCollapsed && <Typography>{title}</Typography>}
       <Link to={to} />
     </MenuItem>
   );
 };
 
 const UserSidebar = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
@@ -61,7 +61,7 @@ const UserSidebar = () => {
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon style={{ color: "#ffffff" }} /> : undefined}
             style={{
-              margin: "10px 0 20px 0",
+              margin: "30px 0 50px 0",
               color: colors.grey[100],
             }}
           >
@@ -80,7 +80,7 @@ const UserSidebar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="10px">
               <Box display="flex" justifyContent="center" alignItems="center">
               </Box>
               <Box textAlign="center">
@@ -88,7 +88,7 @@ const UserSidebar = () => {
                   variant="h5"
                   color="#ffffff"
                   fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
+                  sx={{ m: "10px 0 50px 0" }}
                 >
                   {localStorage.getItem("username")}
                 </Typography>
@@ -96,27 +96,30 @@ const UserSidebar = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "0%"}>
             <Item
               title="Dashboard"
               to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
             <Item
-              title="Expense Claims"
+              title="Claimed Requests"
               to="/tabledata"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
             <Item
-              title="Expense AssistantX"
+              title="Expense Assistant"
               to="/bot"
               icon={<AndroidOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
             <Item
               title="Logout"
@@ -124,6 +127,7 @@ const UserSidebar = () => {
               icon={<ExitToAppOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
           </Box>
         </Menu>

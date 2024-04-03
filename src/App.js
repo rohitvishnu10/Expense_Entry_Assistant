@@ -25,7 +25,7 @@ import "./App.css";
 import Footer from "./components/Userpage/footer/Footer";
 import Home from "./components/Userpage/home/Home";
 // import Bot from "./pages/bot";
-import Exptable from "./pages/exptable";
+import Exptable from "./pages/Exptable";
 import UserSidebar from "./components/Userpage/header/Sidebar"; // Import the Sidebar component
 
 function App() {

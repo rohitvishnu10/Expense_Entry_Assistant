@@ -1,17 +1,261 @@
+/* Home.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 .home {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #161a29; */
-    display: grid;
-  grid-template-columns: auto 1fr; /* Sidebar takes 200px, rest of the space for main content */
-  grid-template-rows: 1fr  ; /* Header, main content, footer */
-  height: 100vh;
-  }
+  padding: 20px;
+}
+
+.chatButton {
+  margin-bottom: 20px;
+}
+
+.chatButton .button {
+  padding: 10px 20px;
+  background-color: #800080;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.chatButton .button:hover {
+  background-color: #0056b3;
+}
+
+.recentExpenses {
+  margin-bottom: 20px;
+}
+
+.recentExpenses table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recentExpenses table th, .recentExpenses table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.recentExpenses table th {
+  background-color: #f2f2f2;
+}
+
+.chatbotDescription {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.contain {
+  width: 100%; /* Ensure the container spans the entire width */
+   /* Optionally, set a max-width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Home.css */
+
+/* Styles for the full width button */
+.fullWidthButton {
+  display: inline-block;
+  width: 50%;
+  padding: 15px;
+  background-color:  #4169E1;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 40px;
+  transition: background-color 0.3s;
   
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+
+}
+
+.fullWidthButton:hover {
+  background-color:  #4e4ecc ;
+}
+
+/* Styles for the icon */
+.icon {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+/* Additional styles for the grid and cards */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Adjust as needed */
+  grid-gap: 20px; /* Adjust as needed */
+}
+
+.card {
+  background-color: #CCCCCC; /* Adjust as needed */
+  padding: 20px; /* Adjust as needed */
+  border-radius: 5px; /* Adjust as needed */
+}
+
+/* Home.css */
+
+/* Styles for the chat button */
+.chatButton {
+  margin-bottom: 20px;
+}
+
+/* Additional styles for the grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr; /* Adjust as needed */
+  grid-gap: 20px; /* Adjust as needed */
+  margin-top: 20px; /* Add margin to create space between the button and the grid */
+}
+
+.card {
+  background-color: #1E1E3F; /* Adjust as needed */
+  padding: 20px; /* Adjust as needed */
+  border-radius: 5px; /* Adjust as needed */
+}
+.header {
+  background-color: #131417;
+  padding: 20px;
+}
+
+.title {
+  color: #ffffff;
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+
+.home {
+  padding: 20px; /* Increase padding if needed */
+}
+
+.card {
+  padding: 20px; /* Increase padding for each card if needed */
+}
+
+
+/* Home.css */
+
+/* Styles for the heading */
+.heading h1 {
+  margin-top: 50px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 36px; /* Increase the font size for the heading */
+  margin-bottom: 20px; 
+  /* Add space below the heading */
+}
+
+/* Styles for the spacer */
+.spacer {
+  height: 20px; /* Add space between components */
+}
+
+/* Styles for the table content */
+.recentExpenses table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Add space above the table */
+}
+
+.recentExpenses table th, .recentExpenses table td {
+  border: 1px solid #ddd;
+  padding: 20px; /* Add padding in each cell */
+  text-align: left;
+}
+
+.heading h1 {
+  color: #fff; /* Set the heading text color to white */
+}
+
+.recentExpenses {
+  color: #fff; /* Set the table text color to white */
+}
+
+/* Add space between the buttons */
+.spacer {
+  margin-bottom: 20px;
+}
+/* Home.css */
+
+/* Styles for the full width button */
+.fullWidthButton {
+  display: flex;
+  color: #fff;
+  padding: 20px;
+  background-color: #007bff;
+  color: #fff; /* Set the text color to white */
+  text-decoration: none;
+  border: none;
+  border-radius: 40px;
+  width: auto;
+  margin: 10px;
+  transition: background-color 0.3s; 
+  font-family: "Quicksand", sans-serif;/* Add right margin to create space between the buttons */
+}
+.fullWidthButton1 {
+  display: flex;
+  color: #fff;
+  padding: 20px;
+  background-color: #6a5ece;
+  color: #fff; /* Set the text color to white */
+  text-decoration: none;
+  border: none;
+  border-radius: 40px;
+  width: auto;
+  margin: 10px;
+  transition: background-color 0.3s; 
+  font-family: "Quicksand", sans-serif;/* Add right margin to create space between the buttons */
+}
+
+.fullWidthButton:hover {
+  background-color: #0056b3;
+}
+.fullWidthButton1:hover {
+  background-color: #5b53a2;
+}
+
+/* Styles for the grid container */
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Set the grid columns to be 1fr 1fr */
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Quicksand", sans-serif;
+}
+
+thead {
+  background-color: #f2f2f2;
+  font-family: "Quicksand", sans-serif; /* Light gray background for table header */
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-family: "Quicksand", sans-serif; /* Bottom border for table cells */
+}
+
+tr:hover {
+  background-color: #7b9cdd;
+  font-family: "Quicksand", sans-serif; /* Light gray background on hover */
+}
+.text{
+  font-family: "Quicksand", sans-serif;
+}
+.text1{
+  font-family: "Quicksand", sans-serif;
+  color:#CCCCCC;
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+
+.text2{
+  font-family: "Quicksand", sans-serif;
+  color:#CCCCCC;
+  font-size: 19px;
+}

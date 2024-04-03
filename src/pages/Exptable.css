@@ -1,0 +1,8 @@
+.heading h1 {
+    margin-top: 50px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 36px; /* Increase the font size for the heading */
+    margin-bottom: 10px; 
+    margin-left: 30px;
+    /* Add space below the heading */
+  }
