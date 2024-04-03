@@ -112,7 +112,7 @@ const UserSidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Expense AssitantX"
+              title="Expense AssistantX"
               to="/bot"
               icon={<AndroidOutlinedIcon />}
               selected={selected}
