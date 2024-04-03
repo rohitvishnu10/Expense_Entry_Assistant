@@ -64,23 +64,6 @@ const LoginForm = () => {
                 Login
             </div>
 
-            <p className="text">Or login using</p>
-
-            <div className="alt-login">
-                <div className="facebook"></div>
-                <div className="google">
-                    <GoogleLogin
-                        clientId="YOUR_GOOGLE_CLIENT_ID"
-                        buttonText=""
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                        cookiePolicy={'single_host_origin'}
-                        isSignedIn={false}
-                        icon={false}
-                        theme="dark"
-                    />
-                </div>
-            </div>
 
             <div className={popupStyle}>
                 <h3>Login Failed</h3>

@@ -19,10 +19,6 @@ root.render(
     </Routes>
     <Routes>
       <Route path="/login" exact element={<Signup />} />
-      {/* <Route path="/dashboard" exact element={<Home />}></Route>
-      <Route path="/Chatbot" exact element={<Chatbot/>}></Route>
-      <Route path='/Transactions' exact element={<Transaction/>}></Route>
-      <Route path="/Settings" exact element={<Settings/>}></Route> */}
       <Route path="/" exact element={<HomeApp />}></Route>
       <Route path="/adminlogin" exact element={<AdminSignup />}></Route>
 

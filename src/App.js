@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-// import Home from './pages/Home';
-// import Chatbot from './pages/Chatbot';
-// import Settings from './pages/Settings';
-// import Transactions from './pages/Transactions';
-// import Signup from './signupform';
-// import HomeApp from './pages/Homepage';
 import Topbar from './scenes/global/Topbar';
 import Sidebar from './scenes/global/Sidebar';
 import Dashboard from './scenes/admindashboard';

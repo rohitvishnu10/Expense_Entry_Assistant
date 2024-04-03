@@ -139,35 +139,6 @@ const Dashboard = () => {
 
       </Box>
 
-{/* 
-      <Box display="grid" gridTemplateColumns="1fr 1fr " gap="20px">
-        <Box>
-          <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-            <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
-              <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Highest Spending User</h3>
-            </div>
-            <div style={{ marginTop: "10px" }}>
-              <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
-              <p style={{ marginBottom: "5px" }}>Email: {maxSpender.max_spender}</p>
-              <p style={{ marginBottom: "5px" }}>Total Expense: ₹{maxSpender.total_expenses}</p>
-            </div>
-          </Box>
-        </Box>
-        <Box>
-          <Box className="user-card" style={{ backgroundColor: "#31363F", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-            <div className="card-inner" style={{ borderBottom: "2px solid #3AAFA9", paddingBottom: "10px" }}>
-              <h3 style={{ margin: 0, fontSize: "1.5rem" }}>Lowest Spending User</h3>
-            </div>
-            <div style={{ marginTop: "10px" }}>
-              <h2 style={{ fontSize: "1.2rem" }}>User Details</h2>
-              <p style={{ marginBottom: "5px" }}>Email: {minSpender.min_spender}</p>
-              <p style={{ marginBottom: "5px" }}>Total Expense: ₹{minSpender.total_expenses}</p>
-            </div>
-          </Box>
-        </Box>
-      </Box> */}
-
-
       {/* ROW 2 - Line Chart, Pie Chart, Bar Chart */}
       <Box display="grid" gridTemplateColumns="1fr 1fr" gap="10px">
         <Box>

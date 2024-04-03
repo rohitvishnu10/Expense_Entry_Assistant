@@ -118,13 +118,6 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            {/* <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography> */}
 
             <Item
               title="Pending Reimbursements"
@@ -133,14 +126,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
-            {/* <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography> */}
 
             <Item
               title="Add User"
@@ -157,13 +142,6 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
-            {/* <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Charts
-            </Typography> */}
 
             <Item
               title="Department Wise Analytics"

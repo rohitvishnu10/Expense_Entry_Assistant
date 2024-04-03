@@ -96,14 +96,6 @@ function Request() {
 
   return (
     <div style={{ margin: "20px" }}>
-      {/* <Header title="Requests" subtitle="Pending and Accepted Requests" />
-      <Button style={{ textAlign: "center", background: "#EE4266", color: "white", margin: "20px", padding: "20px" }} onClick={handleShowTable1Click}>
-        Show Pending Requests
-      </Button>
-      <Button style={{ textAlign: "center", background: "#FFD23F", padding: "20px" }} onClick={handleShowTable2Click}>
-        Show Accepted Requests
-      </Button>
-      {showTable1 && ( */}
       <Select
         value={selectedFilter}
         onChange={handleFilterChange}

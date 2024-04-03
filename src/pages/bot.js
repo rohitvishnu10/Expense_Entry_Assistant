@@ -44,20 +44,6 @@ export default function Chatbot() {
 
   return (
     <>
-    {/* <Navbar />
-    <Box height={30} />
-    <Box sx={{ display: "flex" }}>
-    <Sidenav />
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-    <div className="chatbot-container">
-      <div className="chatbot-messages">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            {message.sender === 'bot' && <i className="fas fa-robot bot-icon"></i>}
-            <div>{message.text}</div>
-          </div>
-        ))}
-      </div> */}
         <div className='heading flexSB'>
           <h1><FontAwesomeIcon icon={faRobot} className="icon" />     Create your new expense</h1> {/* Updated heading size */}
         </div>

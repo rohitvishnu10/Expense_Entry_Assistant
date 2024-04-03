@@ -23,17 +23,6 @@ offering valuable insights into spending patterns.  <br />
 Enjoy hassle-free expense management with our intuitive chatbot solution. If you have any questions, feel free to reach out to our support team for assistance."
         </p>
       </div>
-      {/* <div className="work-section-bottom">
-        {workInfoData.map((data) => (
-          <div className="work-section-info" key={data.title}>
-            <div className="info-boxes-img-container">
-              <img src={data.image} alt="" />
-            </div>
-            <h2>{data.title}</h2>
-            <p>{data.text}</p>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };

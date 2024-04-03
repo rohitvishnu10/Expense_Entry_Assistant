@@ -47,8 +47,6 @@
     cursor: pointer;
 }
 
-.google {background-image: url("./icons/google.png");}
-.facebook {background-image: url("./icons/facebook.png");}
 
 .input-login {
     border: none;
@@ -111,7 +109,7 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('./icons/google.png');
+    /* background-image: url('./icons/google.png'); */
 }
 
 /* -------------------- TABLET OPTIMIZATION -------------------- */
