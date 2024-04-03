@@ -105,14 +105,14 @@ const UserSidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Expense Requests"
+              title="Expense Claims"
               to="/tabledata"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Expense Tracker"
+              title="Expense AssitantX"
               to="/bot"
               icon={<AndroidOutlinedIcon />}
               selected={selected}

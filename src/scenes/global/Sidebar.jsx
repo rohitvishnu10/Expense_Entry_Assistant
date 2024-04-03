@@ -127,7 +127,7 @@ const Sidebar = () => {
             </Typography> */}
 
             <Item
-              title="Pending Requests"
+              title="Pending Reimbursements"
               to="/app/requests"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
