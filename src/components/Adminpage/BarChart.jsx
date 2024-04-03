@@ -7,6 +7,24 @@ const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:9000/cats_bar/${localStorage.getItem("username")}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        setCategories(jsonData.categories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // Fetch data from the URL using localStorage.getItem("username")
@@ -58,7 +76,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["food", "travel", "accomodation", "entertainment"]}
+      keys={categories} // Use categories fetched from the API
       indexBy="department" // Change the indexBy to "department"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}

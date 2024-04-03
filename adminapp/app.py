@@ -160,8 +160,10 @@ async def get_department_spending(aid: str):
         #  Retrieve all employees working under the companyid
         employees = employeedata.find({"companyid": companyid}, {"eid": 1})
 
+        unique_categories = expenses_collection.distinct("category")
+
         # Calculate category-wise spending for each employee
-        category_totals = {"food": 0, "travel": 0, "accomodation": 0, "miscellaneous": 0}
+        category_totals = {category.lower(): 0 for category in unique_categories}
         for employee in employees:
             eid = employee["eid"]
             employee_expenses = expenses_collection.find({"eid": eid, "accepted": "true"})
@@ -174,6 +176,81 @@ async def get_department_spending(aid: str):
 
     except Exception as e:
         return {"error": str(e)}
+    
+
+@app.get("/cat_count/{aid}")
+async def count_unique_categories(aid: str):
+    try:
+        # Retrieve admin data using aid
+        admin_data = admindata.find_one({"aid": aid})
+        if not admin_data:
+            raise HTTPException(status_code=404, detail="Admin not found")
+        
+        # Extract company ID (cid) from admin data
+        company_id = admin_data["cid"]
+        
+        # Find all employees under the company ID
+        employees = employeedata.find({"companyid": company_id}, {"eid": 1})
+        
+        # Initialize a dictionary to store the count of unique categories
+        category_count = {}
+        
+        # Iterate over each employee
+        for employee in employees:
+            eid = employee["eid"]
+            
+            # Find expenses for the current employee
+            employee_expenses = expenses_collection.find({"eid": eid})
+            
+            # Iterate over each expense and count unique categories
+            for expense in employee_expenses:
+                category = expense["category"]
+                
+                # Increment category count or initialize to 1 if not present
+                category_count[category] = category_count.get(category, 0) + 1
+        
+        return len(category_count)
+    
+    except Exception as e:
+        return {"error": str(e)}
+    
+@app.get("/cats_bar/{aid}")
+async def catsbar(aid: str):
+    try:
+        # Retrieve admin data using aid
+        admin_data = admindata.find_one({"aid": aid})
+        if not admin_data:
+            raise HTTPException(status_code=404, detail="Admin not found")
+        
+        # Extract company ID (cid) from admin data
+        company_id = admin_data["cid"]
+        
+        # Find all employees under the company ID
+        employees = employeedata.find({"companyid": company_id}, {"eid": 1})
+        
+        # Initialize a dictionary to store the count of unique categories
+        category_count = {}
+        
+        # Iterate over each employee
+        for employee in employees:
+            eid = employee["eid"]
+            
+            # Find expenses for the current employee
+            employee_expenses = expenses_collection.find({"eid": eid})
+            
+            # Iterate over each expense and count unique categories
+            for expense in employee_expenses:
+                category = expense["category"]
+                
+                # Increment category count or initialize to 1 if not present
+                category_count[category] = category_count.get(category, 0) + 1
+        
+        return { "categories": list(category_count.keys())}
+    
+    except Exception as e:
+        return {"error": str(e)}
+
+
     
 @app.get("/pending_requests/{aid}")
 async def get_pending_requests(aid: str):
@@ -204,7 +281,7 @@ async def get_pending_requests(aid: str):
                 "city": request["city"],
                 "amount": request["amount"],
                 "date": request["date"],
-                "day": request["day"],
+                
                 "purpose": request["purpose"],
                 "accepted": request["accepted"],
                 "eid": request["eid"]
@@ -241,7 +318,7 @@ async def get_rejected_requests(aid: str):
                 "city": request["city"],
                 "amount": request["amount"],
                 "date": request["date"],
-                "day": request["day"],
+                
                 "purpose": request["purpose"],
                 "accepted": request["accepted"],
                 "eid": request["eid"]
@@ -279,7 +356,7 @@ async def get_accepted_requests(aid: str):
                 "city": request["city"],
                 "amount": request["amount"],
                 "date": request["date"],
-                "day": request["day"],
+                
                 "purpose": request["purpose"],
                 "accepted": request["accepted"],
                 "eid": request["eid"]

@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [pendingRequests, setPendingRequests] = useState(0);
   const [maxSpender, setMaxSpender] = useState({});
   const [minSpender, setMinSpender] = useState({});
+  const [categoryCount, setCategoryCount] = useState(0);
 
   useEffect(() => {
     const fetchEmployeesCount = async () => {
@@ -43,36 +44,20 @@ const Dashboard = () => {
       }
     };
 
-
-    const fetchMaxSpender = async () => {
+    const fetchCatCount = async () => {
       try {
-        const maxSpenderResponse = await fetch(`http://127.0.0.1:9000/get_max_spender/${localStorage.getItem("username")}`);
-        if (!maxSpenderResponse.ok) {
-          throw new Error('Failed to fetch maximum spender');
+        const response = await fetch(`http://127.0.0.1:9000/cat_count/${localStorage.getItem("username")}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch category count');
         }
-        const maxSpenderData = await maxSpenderResponse.json();
-        setMaxSpender(maxSpenderData);
+        const data = await response.json();
+        setCategoryCount(data);
       } catch (error) {
-        console.error('Error fetching maximum spender:', error);
+        console.error('Error fetching category count:', error);
       }
     };
 
-    const fetchMinSpender = async () => {
-      try {
-        const minSpenderResponse = await fetch(`http://127.0.0.1:9000/get_min_spender/${localStorage.getItem("username")}`);
-        if (!minSpenderResponse.ok) {
-          throw new Error('Failed to fetch minimum spender');
-        }
-        const minSpenderData = await minSpenderResponse.json();
-        setMinSpender(minSpenderData);
-      } catch (error) {
-        console.error('Error fetching minimum spender:', error);
-      }
-    };
-
-    fetchMaxSpender();
-    fetchMinSpender();
-
+    fetchCatCount();
     fetchEmployeesCount();
     fetchPendingRequests();
   }, []);
@@ -119,7 +104,7 @@ const Dashboard = () => {
           <FontAwesomeIcon icon={faListAlt} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
           <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Categories</Typography>
           </div>
-          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>5</Typography>
+          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>{categoryCount}</Typography>
         </Box>
         
         {/* <Box className="card" style={{ backgroundColor: "#4CCD99", marginTop:"20px",padding: "20px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
