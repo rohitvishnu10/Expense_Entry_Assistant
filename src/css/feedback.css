@@ -84,10 +84,10 @@ button {
     hsl(212, 18%, 14%),
     hsl(220, 16%, 11%)
   );
-  max-width: 100%;
+  max-width: 30%;
   padding: 2rem 1.5rem;
   border-radius: 0.625rem;
-  height: 90vh;
+  height: 55vh;
   align-items: center;
   left: 450px;
 }
@@ -102,6 +102,8 @@ button {
 .container h1,
 .thank-you h2 {
   margin-bottom: 1rem;
+  color:rgb(254, 250, 250);
+  font-weight:550;
 }
 
 .container p,
