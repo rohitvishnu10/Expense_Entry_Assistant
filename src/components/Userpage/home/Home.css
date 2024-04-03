@@ -1,9 +1,13 @@
 .home {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #161a29;
+    background-color: #161a29; */
+    display: grid;
+  grid-template-columns: auto 1fr; /* Sidebar takes 200px, rest of the space for main content */
+  grid-template-rows: 1fr  ; /* Header, main content, footer */
+  height: 100vh;
   }
   
   .container {

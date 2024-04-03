@@ -5,12 +5,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from './signupform';
 import AdminSignup from "./Login/Adminlogin/signupform";
-// import Home from "./pages/Home";
-// import Chatbot from "./pages/Chatbot";
-// import Transaction from "./pages/Transactions";
-// import Settings from "./pages/Settings";
 import HomeApp from "./pages/Homepage";
-import Optional from "./pages/Optional";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -31,11 +26,10 @@ root.render(
       <Route path="/home" exact element={<HomeApp />}></Route>
       <Route path="/adminlogin" exact element={<AdminSignup />}></Route>
 
-      <Route path="/userhome" element={<App />} />
-      <Route path="/" element={<Signup />} />
       <Route path="/bot" element={<App />} />
       <Route path="/dashboard" element={<App />} />
+      <Route path='/tabledata' element={<App/>} />
    
-   </Routes>
+    </Routes>
   </BrowserRouter>
 );

@@ -99,14 +99,14 @@ const UserSidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/home"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Expense Requests"
-              to="/dashboard"
+              to="/tabledata"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -120,7 +120,7 @@ const UserSidebar = () => {
             />
             <Item
               title="Logout"
-              to="/"
+              to="/home"
               icon={<ExitToAppOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
