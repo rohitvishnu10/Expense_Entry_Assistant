@@ -58,6 +58,7 @@
     text-align: center;
     padding: 2em;
     font-size: 0.75em;
+    color: black;
 }
 
 .input-login:focus {

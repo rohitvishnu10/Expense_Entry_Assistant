@@ -57,7 +57,7 @@ def login(login_request: LoginRequest):
 @app.get("/accepted_requests/{eid}")
 async def get_accepted_requests(eid: str):
     # Find accepted requests for the given employee ID
-    employee_accepted_requests = expenses_collection.find({"eid": eid, "accepted": True})
+    employee_accepted_requests = expenses_collection.find({"eid": eid, "accepted": "true"})
     
     accepted_requests = []
     for request in employee_accepted_requests:
@@ -85,7 +85,7 @@ from fastapi import HTTPException
 @app.get("/pending_requests/{eid}")
 async def get_pending_requests(eid: str):
     # Find pending requests for the given employee ID
-    employee_pending_requests = expenses_collection.find({"eid": eid, "accepted": False})
+    employee_pending_requests = expenses_collection.find({"eid": eid, "accepted": "false"})
     
     pending_requests = []
     for request in employee_pending_requests:
@@ -107,3 +107,29 @@ async def get_pending_requests(eid: str):
         })
 
     return pending_requests
+
+@app.get("/rejected_requests/{eid}")
+async def get_pending_requests(eid: str):
+    # Find pending requests for the given employee ID
+    employee_rejected_requests = expenses_collection.find({"eid": eid, "accepted": "rejected"})
+    
+    rejected_requests = []
+    for request in employee_rejected_requests:
+        rejected_requests.append({
+            "_id": str(request["_id"]),
+            "Employee ID": request["eid"],
+            "Status": "Pending",
+            "Date": request["date"],
+            "Category": request["category"],
+            "category": request["category"],
+            "location": request["location"],
+            "city": request["city"],
+            "amount": request["amount"],
+            "date": request["date"],
+            "day": request["day"],
+            "purpose": request["purpose"],
+            "accepted": request["accepted"],
+            "eid": request["eid"]
+        })
+
+    return rejected_requests
