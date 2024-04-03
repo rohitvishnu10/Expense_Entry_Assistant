@@ -222,9 +222,6 @@ function Exptable() {
               <div style={{ fontWeight: "bold" }}>Date:</div>
               <div style={{ paddingLeft: "10px" }}>{selectedRow.Date}</div>
 
-              <div style={{ fontWeight: "bold" }}>Day:</div>
-              <div style={{ paddingLeft: "10px" }}>{selectedRow.day}</div>
-
               <div style={{ fontWeight: "bold" }}>Purpose:</div>
               <div style={{ paddingLeft: "10px" }}>{selectedRow.purpose}</div>
 

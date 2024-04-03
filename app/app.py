@@ -182,7 +182,6 @@ async def get_accepted_requests(eid: str):
             "city": request["city"],
             "amount": request["amount"],
             "date": request["date"],
-            "day": request["day"],
             "purpose": request["purpose"],
             "accepted": request["accepted"],
             "eid": request["eid"]
@@ -210,7 +209,6 @@ async def get_pending_requests(eid: str):
             "city": request["city"],
             "amount": request["amount"],
             "date": request["date"],
-            "day": request["day"],
             "purpose": request["purpose"],
             "accepted": request["accepted"],
             "eid": request["eid"]
@@ -236,7 +234,6 @@ async def get_pending_requests(eid: str):
             "city": request["city"],
             "amount": request["amount"],
             "date": request["date"],
-            "day": request["day"],
             "purpose": request["purpose"],
             "accepted": request["accepted"],
             "eid": request["eid"]
