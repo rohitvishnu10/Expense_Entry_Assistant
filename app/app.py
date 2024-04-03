@@ -240,3 +240,27 @@ async def get_pending_requests(eid: str):
         })
 
     return rejected_requests
+
+
+@app.get("/last_expenses/{eid}")
+async def get_last_expenses(eid: str):
+    try:
+        expenses = expenses_collection.find({"eid": eid})
+        
+        last_expenses = []
+        for expense in expenses:
+            last_expenses.append({
+                "_id": str(expense["_id"]),
+                "category": expense["category"],
+                "location": expense["location"],
+                "city": expense["city"],
+                "amount": expense["amount"],
+                "date": expense["date"],
+                "purpose": expense["purpose"],
+                "eid": expense["eid"],
+                "accepted": expense.get("accepted", None)
+            })
+        
+        return last_expenses[-5:][::-1]  # Slice the last 5 and reverse the order
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
