@@ -35,9 +35,9 @@ const Form2 = () => {
               <Box
                 display="grid"
                 gap="30px"
-                gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                gridTemplateColumns="repeat(1, minmax(0, 0.5fr))"
                 sx={{
-                  "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                  "& > div": { gridColumn: "span 1" },
                 }}
               >
 
@@ -56,7 +56,8 @@ const Form2 = () => {
                 />
               </Box>
   
-              <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr)">
+              <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" } }}>
+              
                 <Button
                   type="submit"
                   variant="contained"

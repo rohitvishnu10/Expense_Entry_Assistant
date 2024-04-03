@@ -17,7 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -25,11 +25,12 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       active={selected === title}
       style={{
         color: colors.grey[100],
+        marginBottom: "20px",
       }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      {!isCollapsed && <Typography>{title}</Typography>}
       <Link to={to} />
     </MenuItem>
   );
@@ -66,7 +67,7 @@ const Sidebar = () => {
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            icon={isCollapsed ? <MenuOutlinedIcon  style={{ color: "#ffffff" }}/> : undefined}
             style={{
               margin: "10px 0 20px 0",
               color: colors.grey[100],
@@ -88,7 +89,7 @@ const Sidebar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="10px">
               <Box display="flex" justifyContent="center" alignItems="center">
 
               </Box>
@@ -109,13 +110,14 @@ const Sidebar = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "0%"}>
             <Item
               title="Dashboard"
               to="/app"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
 
             {/* <Typography
@@ -127,11 +129,12 @@ const Sidebar = () => {
             </Typography> */}
 
             <Item
-              title="Pending Requests"
+              title="Pending Reimbursements"
               to="/app/requests"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
 
             {/* <Typography
@@ -148,6 +151,7 @@ const Sidebar = () => {
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
             <Item
               title="Delete User"
@@ -155,6 +159,7 @@ const Sidebar = () => {
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
 
             {/* <Typography
@@ -171,6 +176,7 @@ const Sidebar = () => {
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
             <Item
               title="Category Wise Analytics"
@@ -178,6 +184,7 @@ const Sidebar = () => {
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsed={isCollapsed}
             />
 
 

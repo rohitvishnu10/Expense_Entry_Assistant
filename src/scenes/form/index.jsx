@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Adminpage/Header";
-import { useState } from "react";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -51,9 +51,9 @@ const Form = () => {
             <Box
               display="grid"
               gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+              gridTemplateColumns="repeat(2, minmax(0, 1fr))"
               sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                "& > div": { gridColumn: "span 1" },
               }}
             >
               <TextField
@@ -67,7 +67,6 @@ const Form = () => {
                 name="name"
                 error={!!touched.name && !!errors.name}
                 helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 4" }}
               />
 
               <TextField
@@ -81,7 +80,6 @@ const Form = () => {
                 name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
@@ -94,7 +92,6 @@ const Form = () => {
                 name="password"
                 error={touched.password && !!errors.password}
                 helperText={touched.password && errors.password}
-                sx={{ gridColumn: "span 4" }}
               />
 
               <TextField
@@ -108,12 +105,11 @@ const Form = () => {
                 name="department"
                 error={!!touched.department && !!errors.department}
                 helperText={touched.department && errors.department}
-                sx={{ gridColumn: "span 4" }}
               />
               
             </Box>
             
-            <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: isNonMobile ? undefined : "span 4" } }}>
+            <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" } }}>
               <Button
                 type="submit"
                 variant="contained"

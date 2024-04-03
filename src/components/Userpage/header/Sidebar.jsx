@@ -85,12 +85,15 @@ const UserSidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h5"
+                  variant="h2"
                   color="#ffffff"
                   fontWeight="bold"
-                  sx={{ m: "10px 0 50px 0" }}
+                  sx={{ m: "10px 0 0 0" }}
                 >
                   {localStorage.getItem("username")}
+                </Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  User
                 </Typography>
               </Box>
             </Box>
@@ -106,7 +109,7 @@ const UserSidebar = () => {
               isCollapsed={isCollapsed}
             />
             <Item
-              title="Claimed Requests"
+              title="Expense Claims"
               to="/tabledata"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
