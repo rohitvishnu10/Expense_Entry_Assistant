@@ -6,7 +6,7 @@ const Pie = () => {
   return (
     <Box m="20px">
       <Header title="Category wise Analytics" subtitle="Based on the categories" />
-      <Box height="75vh">
+      <Box height="25vh">
         <PieChart />
       </Box>
     </Box>

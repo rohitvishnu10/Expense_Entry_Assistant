@@ -84,7 +84,13 @@ function Request() {
 
   return (
     <div style={{ margin: "20px" }}>
-      <Header title="Requests" subtitle="Pending and Accepted Requests" />
+      <div className='heading flexSB'>
+        <h1><FontAwesomeIcon icon={faEye} className="icon" />    Pending Reimbursements</h1> {/* Updated heading size */}
+      </div>
+      <div>
+      <p className="text4" style={{marginRight:"30px"}}>You have the ability to approve or decline requests.</p>
+      </div>
+      <label htmlFor="filter" style={{ color: "white", marginRight: "15px",marginLeft:"30px",fontSize:"20px" }}>Filter:</label>
       <Select
         value={selectedFilter}
         onChange={handleFilterChange}
@@ -107,7 +113,6 @@ function Request() {
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Category</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}>Action</TableCell>
                   <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
-                  <TableCell style={{ fontSize: "15px", color: "white" }}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -121,12 +126,11 @@ function Request() {
                       <Button style={{ fontSize: "15px", color: "#35374B", backgroundColor: "#94d5be" }} onClick={() => handleStatusButtonClick(row, 'approve')}>
                         Approve
                       </Button>
-                    </TableCell>
-                    <TableCell>
                       <Button style={{ marginLeft: "20px",fontSize: "15px", color: "#f5f5f5", backgroundColor: "#dd3f32" }} onClick={() => handleStatusButtonClick(row, 'reject')}>
                         Reject
                       </Button>
                     </TableCell>
+
                     <TableCell>
                       <Button style={{ fontSize: "15px", color: "#40A2E3" }} onClick={() => handlePopUpClick(row)}>
                         Details
@@ -233,9 +237,6 @@ function Request() {
 
               <div style={{ fontWeight: "bold" }}>Date:</div>
               <div style={{ paddingLeft: "10px" }}>{selectedRow.Date}</div>
-
-              <div style={{ fontWeight: "bold" }}>Day:</div>
-              <div style={{ paddingLeft: "10px" }}>{selectedRow.day}</div>
 
               <div style={{ fontWeight: "bold" }}>Purpose:</div>
               <div style={{ paddingLeft: "10px" }}>{selectedRow.purpose}</div>

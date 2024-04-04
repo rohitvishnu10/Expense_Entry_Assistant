@@ -11,10 +11,7 @@ const UserGuide = () => {
 
 Our chatbot is designed to streamline expense management for your convenience. Here's how it works: <br /> <br />
 
-1.<b>Input Expenses: </b>    Employees can easily enter their expenses directly into the chatbot interface. Please note that the default currency we accept is Indian Rupees (INR).
- If the expense is in another currency such as Dollars (USD), Dirhams (AED), Euros (EUR), or Pounds (GBP), please mention the currency name along with the amount. 
- The chatbot will automatically convert and store the values in Rupees for you.  <br />
- <br />
+1.<b>Input Expenses: </b> By deault , it will be taken in rupees. <br />
 2.<b> Request Approval:</b>   Once expenses are entered, employees can request approval through the chatbot, ensuring quick reimbursement. <br />
 <br />
 3.<b>Dashboard Visualizations: </b>   Our website provides a user-friendly dashboard where you can view summaries and visualizations of expenses, 

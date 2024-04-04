@@ -121,7 +121,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "Amount Spent", // Adjust the y-axis legend
+        legend: isDashboard ? undefined : "", // Adjust the y-axis legend
         legendPosition: "middle",
         legendOffset: -40,
       }}

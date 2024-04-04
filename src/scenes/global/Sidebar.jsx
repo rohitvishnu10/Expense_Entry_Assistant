@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   const theme = useTheme();
@@ -160,6 +161,14 @@ const Sidebar = () => {
               title="Category Wise Analytics"
               to="/app/pie"
               icon={<PieChartOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+              isCollapsed={isCollapsed}
+            />
+            <Item
+              title="Logout"
+              to="/"
+              icon={<ExitToAppOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
               isCollapsed={isCollapsed}
