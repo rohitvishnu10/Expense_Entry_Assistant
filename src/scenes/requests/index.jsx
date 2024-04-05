@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogActions , TextField } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 import "./requests.css";
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Grid } from '@mui/material';
 
 function Request() {
   const [selectedFilter, setSelectedFilter] = useState('pending');
@@ -16,6 +17,10 @@ function Request() {
   const [actionToConfirm, setActionToConfirm] = useState('');  // New state for confirmation dialog
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [searchValue, setSearchValue] = useState(''); 
+  const [categoryFilter, setCategoryFilter] = useState(''); // New state for category filter
+  const [dateFilter, setDateFilter] = useState('');
+
   useEffect(() => {
     fetchData(selectedFilter); // Fetch data on component mount
   }, [selectedFilter]);
@@ -92,6 +97,13 @@ function Request() {
     setOpenDialog(false);
     setSelectedRow(null);
   };
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+  
+  const handleDateFilterChange = (event) => {
+    setDateFilter(event.target.value);
+  };
 
   return (
     <div style={{ margin: "20px" }}>
@@ -101,16 +113,49 @@ function Request() {
       <div>
       <p className="text4" style={{marginRight:"30px"}}>You have the ability to approve or decline requests.</p>
       </div>
-      <label htmlFor="filter" style={{ color: "white", marginRight: "15px",marginLeft:"30px",fontSize:"20px" }}>Filter:</label>
-      <Select
-        value={selectedFilter}
-        onChange={handleFilterChange}
-        style={{ margin: "20px" }}
-      >
-        <MenuItem value="pending" onClick={() => fetchData('pending')}>Pending Requests</MenuItem>
-        <MenuItem value="accepted" onClick={() => fetchData('accepted')}>Accepted Requests</MenuItem>
-        <MenuItem value="rejected" onClick={() => fetchData('rejected')}>Rejected Requests</MenuItem>
-      </Select>
+      <Grid container alignItems="center" justifyContent="center"> {/* Use Grid for layout */}
+        <Grid item>
+          <label htmlFor="filter" style={{ color: "white", marginRight: "15px", marginLeft: "30px", fontSize: "20px" }}>Filter:</label>
+          <Select
+            value={selectedFilter}
+            onChange={handleFilterChange}
+            style={{ margin: "20px" }}
+          >
+            <MenuItem value="pending" onClick={() => fetchData('pending')}>Pending Requests</MenuItem>
+            <MenuItem value="accepted" onClick={() => fetchData('accepted')}>Accepted Requests</MenuItem>
+            <MenuItem value="rejected" onClick={() => fetchData('rejected')}>Rejected Requests</MenuItem>
+          </Select>
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Search by Employee ID"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            variant="outlined"
+            style={{ width: "300px" }}
+          />
+        </Grid>
+        <Grid item>
+        <div style={{ display: "flex", justifyContent: "center", margin: "20px" }}>
+          <TextField
+            label="Filter by Category"
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            variant="outlined"
+            style={{ width: "300px" }}
+          />
+        </div>
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Filter by Date"
+            value={dateFilter}
+            onChange={handleDateFilterChange}
+            variant="outlined"
+            style={{ width: "300px" }}
+          />
+        </Grid>
+      </Grid>
 
       {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
@@ -127,7 +172,13 @@ function Request() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {pendingRequests.map((row, index) => (
+                {pendingRequests
+                  .filter((row) =>
+                  row["Employee ID"].toLowerCase().includes(searchValue.toLowerCase()) &&
+                  row.Category.toLowerCase().includes(categoryFilter.toLowerCase()) &&
+                  row.Date.toLowerCase().includes(dateFilter.toLowerCase())
+                )
+                .map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
                     <TableCell style={{ fontSize: "15px",color: "#6D67E4" }}>{row.Status}</TableCell>
@@ -169,7 +220,13 @@ function Request() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {acceptedRequests.map((row, index) => (
+                {acceptedRequests
+                  .filter((row) =>
+                  row["Employee ID"].toLowerCase().includes(searchValue.toLowerCase()) &&
+                  row.Category.toLowerCase().includes(categoryFilter.toLowerCase()) &&
+                  row.Date.toLowerCase().includes(dateFilter.toLowerCase())
+                  )
+              .map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
                     <TableCell style={{ fontSize: "15px",color: "#b5c938" }}>{row.Status}</TableCell>
@@ -202,7 +259,13 @@ function Request() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rejectedRequests.map((row, index) => (
+                {rejectedRequests
+                .filter((row) =>
+                row["Employee ID"].toLowerCase().includes(searchValue.toLowerCase()) &&
+                row.Category.toLowerCase().includes(categoryFilter.toLowerCase()) &&
+                row.Date.toLowerCase().includes(dateFilter.toLowerCase())
+                )
+              .map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
                     <TableCell style={{ fontSize: "15px",color: "red" }}>{row.Status}</TableCell>
