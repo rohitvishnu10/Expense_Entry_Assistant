@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { useLocation } from "react-router-dom";
 
 const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   return (
@@ -28,10 +29,24 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
 };
 
 const UserSidebar = () => {
+  const location = useLocation();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/bot") {
+      setSelected("Expense Assistant");
+    } else if (path === "/tabledata") {
+      setSelected("Expense Claims");
+    } else if (path === "/dashboard") {
+      setSelected("Dashboard");
+    } else if (path === "/") {
+      setSelected("Logout");
+    }
+  }, [location.pathname]);
 
   return (
     <Box
@@ -88,7 +103,7 @@ const UserSidebar = () => {
                   variant="h5"
                   color="#ffffff"
                   fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
+                  sx={{ m: "20px 10px 10px 0" }}
                 >
                   {localStorage.getItem("username")}
                 </Typography>

@@ -5,6 +5,7 @@ import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 import "./requests.css";
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Grid } from '@mui/material';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 function Request() {
   const [selectedFilter, setSelectedFilter] = useState('pending');
@@ -104,6 +105,12 @@ function Request() {
   const handleDateFilterChange = (event) => {
     setDateFilter(event.target.value);
   };
+  const handleDownloadReport = () => {
+
+    const reportUrl = 'http://example.com/download/report';
+    window.open(reportUrl, '_blank'); // Open the report in a new tab for download
+  };
+  
 
   return (
     <div style={{ margin: "20px" }}>
@@ -147,13 +154,14 @@ function Request() {
         </div>
         </Grid>
         <Grid item>
-          <TextField
-            label="Filter by Date"
-            value={dateFilter}
-            onChange={handleDateFilterChange}
-            variant="outlined"
-            style={{ width: "300px" }}
-          />
+          <Button
+            variant="contained"
+            onClick={handleDownloadReport}
+            style={{ width: "300px", backgroundColor: "#008DDA", color: "#fff",padding:"20px",fontSize:"15px" }}
+            startIcon={<CloudDownloadIcon />}
+          >
+            Download report
+          </Button>
         </Grid>
       </Grid>
 

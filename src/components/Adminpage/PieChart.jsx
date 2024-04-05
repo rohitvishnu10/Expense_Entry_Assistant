@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../../theme";
 import { useTheme } from "@mui/material";
+import "./piechart.css";
 
 const PieChart = () => {
   const theme = useTheme();
@@ -32,64 +33,45 @@ const PieChart = () => {
     <ResponsivePie
       data={data}
       theme={{
-        textColor: "white",
-        axis: {
-          domain: {
-            line: {
-              stroke: colors.grey[100],
-            },
-          },
-          legend: {
-            text: {
-              fill: colors.grey[100],
-            },
-          },
-          ticks: {
-            line: {
-              stroke: colors.grey[100],
-              strokeWidth: 1,
-            },
-            text: {
-              fill: colors.grey[100],
-              fontSize: 20,
-            },
-          },
-        },
-        legends: {
-          text: {
-            fill: colors.grey[100],
-            fontSize: 15, // Increase the legend text size
-          },
-        },
+        // ... (other theme properties remain the same)
         tooltip: {
           container: {
             color: "black", // Set tooltip text color to black
           },
         },
-        arcLabelsTextColor: {
-          from: 'color',
-          modifiers: [['darker', 2]],
+        text: {
+          fill: colors.grey[100],
+          fontSize: 15,
         },
       }}
-      enableArcLinkLabels={false}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
+      colors={{ scheme: 'set3' }}
+      borderWidth={1}
       borderColor={{
-        from: "color",
-        modifiers: [["darker", 0.2]],
+        from: 'color',
+        modifiers: [['darker', 0.2]]
       }}
+      
+      arcLinkLabelsSkipAngle={10}
+      arcLinkLabelsTextColor="#ffffff"
+      arcLinkLabelsThickness={4}
+      arcLinkLabelsColor="#ffffff"
+      enableArcLabels={false}
+      arcLabelsSkipAngle={10}
+      arcLabelsTextColor="#ffffff"
       defs={[
         {
           id: 'dots',
           type: 'patternDots',
           background: 'inherit',
           color: 'rgba(255, 255, 255, 0.3)',
-          size: 10,
+          size: 4,
           padding: 1,
-          stagger: true,
+          stagger: true
         },
         {
           id: 'lines',
@@ -98,20 +80,61 @@ const PieChart = () => {
           color: 'rgba(255, 255, 255, 0.3)',
           rotation: -45,
           lineWidth: 6,
-          spacing: 10,
-        },
+          spacing: 10
+        }
       ]}
       fill={[
-        { match: { id: 'ruby' }, id: 'dots' },
-        { match: { id: 'c' }, id: 'dots' },
-        { match: { id: 'go' }, id: 'dots' },
-        { match: { id: 'python' }, id: 'dots' },
-        { match: { id: 'scala' }, id: 'lines' },
-        { match: { id: 'lisp' }, id: 'lines' },
-        { match: { id: 'elixir' }, id: 'lines' },
-        { match: { id: 'javascript' }, id: 'lines' },
+        {
+          match: {
+            id: 'ruby'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'c'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'go'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'python'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'scala'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'lisp'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'elixir'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'javascript'
+          },
+          id: 'lines'
+        }
       ]}
-      legends={[
+      legends={
+        [
         {
           anchor: 'bottom',
           direction: 'row',
@@ -130,11 +153,11 @@ const PieChart = () => {
             {
               on: 'hover',
               style: {
-                itemTextColor: '#ffffff',
-              },
-            },
-          ],
-        },
+                itemTextColor: '#ffffff'
+              }
+            }
+          ]
+        }
       ]}
     />
   );

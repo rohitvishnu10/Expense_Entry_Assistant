@@ -75,7 +75,7 @@ const BarChart = ({ isDashboard = false }) => {
         legends: {
           text: {
             fill: colors.grey[100],
-            fontSize: 15,
+            fontSize: 16,
           },
         },
         tooltip: {
@@ -87,6 +87,8 @@ const BarChart = ({ isDashboard = false }) => {
           from: 'color',
           modifiers: [['darker', 2]],
         },
+        arcLabelsTextFontWeight: "bold",
+        
       }}
       keys={categories}
       indexBy="department"
@@ -94,7 +96,7 @@ const BarChart = ({ isDashboard = false }) => {
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={{ scheme: "nivo" }}
+      colors={{ scheme: "set3" }}
       borderColor={{
         from: "color",
         modifiers: [["darker", "1.6"]],
@@ -122,13 +124,15 @@ const BarChart = ({ isDashboard = false }) => {
         tickTextColor: "white", // Set the y-axis tick text color to white
         tickTextFontSize: 14, // Set the y-axis tick text font size
       }}
-      enableLabel={true}
+      enableLabel={false}
       labelSkipWidth={12}
       labelSkipHeight={12}
       labelTextColor={{
         from: "color",
         modifiers: [["darker", 1.6]],
       }}
+      totalsOffset={29}
+
       legends={[
         {
           dataFrom: "keys",
@@ -141,7 +145,7 @@ const BarChart = ({ isDashboard = false }) => {
           itemWidth: 100,
           itemHeight: 30,
           itemDirection: "left-to-right",
-          itemOpacity: 0.85,
+          itemOpacity: 0.9,
           symbolSize: 20,
           effects: [
             {

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -32,13 +33,14 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      {!isCollapsed && <Typography>{title}</Typography>}
+      {!isCollapsed && <Typography variant="h6" style={{ fontSize: "16px"}}>{title}</Typography>}
       <Link to={to} />
     </MenuItem>
   );
 };
 
 const Sidebar = () => {
+  const location = useLocation();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -47,6 +49,22 @@ const Sidebar = () => {
   const handleLogoutConfirmation = () => {
     setLogoutConfirmationOpen(true);
   };
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/app") {
+      setSelected("Dashboard");
+    } else if (path === "/app/requests") {
+      setSelected("Pending Reimbursements");
+    } else if (path === "/app/form") {
+      setSelected("Add User");
+    } else if (path === "/app/bar") {
+      setSelected("Department Wise Analytics");
+    } else if (path === "/app/pie") {
+      setSelected("Category Wise Analytics");
+    } else if (path === "/") {
+      setSelected("Logout");
+    }
+  }, [location.pathname]);
 
   const handleLogout = (confirmed) => {
     setLogoutConfirmationOpen(false);

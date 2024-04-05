@@ -7,6 +7,7 @@ import PieChart from "../../components/Adminpage/PieChart";
 import BarChart from "../../components/Adminpage/BarChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faListAlt, faTasks } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -128,14 +129,15 @@ const Dashboard = () => {
           </div>
           <h1>{pendingRequests}</h1>
         </Box> */}
-
-        <Box className="card" style={{ backgroundColor: "#db7c67", marginTop:"20px",padding: "15px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
-          <div style={{ display: "flex", alignItems: "center" }}>
-          <FontAwesomeIcon icon={faTasks} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
-          <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Pending Requests</Typography>
-        </div>
-          <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>{pendingRequests}</Typography>
-        </Box>
+        <NavLink to="/app/requests">
+          <Box className="card" style={{ backgroundColor: "#db7c67", marginTop:"20px",padding: "15px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }} >
+            <div style={{ display: "flex", alignItems: "center" }}>
+            <FontAwesomeIcon icon={faTasks} style={{ fontSize: "24px",marginRight: "10px",marginBottom: "20px", color: "white" }} />
+            <Typography variant="h6" style={{ color: "white",height: "60px", fontSize:"24px",fontWeight: "bold" }}>Pending Requests</Typography>
+          </div>
+            <Typography variant="h4" style={{ fontSize: "1.5rem", color: "white" }}>{pendingRequests}</Typography>
+          </Box>
+        </NavLink>
 
       </Box>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 import "./Home.css";
@@ -32,14 +32,14 @@ const Home = () => {
           <h1>Welcome back!</h1>
         </div>
         <div className='buttonGrid'>
-          <Link to="/bot" className="fullWidthButton">
+          <NavLink to="/bot" className="fullWidthButton" activeClassName="active">
             <FontAwesomeIcon icon={faRobot} className="icon" />
             Quick start an expense ... 
-          </Link>
-          <Link to="/tabledata" className="fullWidthButton1" >
+          </NavLink>
+          <NavLink to="/tabledata" className="fullWidthButton1" activeClassName="active">
             <FontAwesomeIcon icon={faEye} className="icon" />
             View expenses 
-          </Link>
+          </NavLink>
         </div>
         <div className='spacer'></div>
         <div className='grid'>
@@ -61,7 +61,7 @@ const Home = () => {
                     <tr key={index}>
                       <td>{expense.date}</td>
                       <td>{expense.category}</td>
-                      <td>{expense.accepted}</td>
+                      <td>Accepted/Rejected/pending</td>
                       <td>₹{expense.amount.toFixed(2)}</td>
                     </tr>
                   ))}
