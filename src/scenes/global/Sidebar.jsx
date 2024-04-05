@@ -23,19 +23,18 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <MenuItem
-        active={selected === title}
-        style={{
-          color: colors.grey[100],
-          marginBottom: "20px",
-        }}
-        onClick={() => setSelected(title)}
-        icon={icon}
-      >
-        {!isCollapsed && <Typography>{title}</Typography>}
-      </MenuItem>
-    </Link>
+    <MenuItem
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+        marginBottom: "20px",
+      }}
+      onClick={() => setSelected(title)}
+      icon={icon}
+    >
+      {!isCollapsed && <Typography>{title}</Typography>}
+      <Link to={to} />
+    </MenuItem>
   );
 };
 
