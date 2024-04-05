@@ -46,9 +46,10 @@ const BarChart = ({ isDashboard = false }) => {
 
   // Sample data for 10 bars with department names
   return (
-    <ResponsiveBar
+<ResponsiveBar
       data={data}
       theme={{
+        textColor: "white", // Set text color using the colors from theme
         axis: {
           domain: {
             line: {
@@ -67,42 +68,33 @@ const BarChart = ({ isDashboard = false }) => {
             },
             text: {
               fill: colors.grey[100],
+              fontSize: 15, // Set the font size for axis labels
             },
           },
         },
         legends: {
           text: {
             fill: colors.grey[100],
+            fontSize: 15,
           },
         },
+        tooltip: {
+          container: {
+            color: "black", // Set tooltip text color to black
+          },
+        },
+        arcLabelsTextColor: {
+          from: 'color',
+          modifiers: [['darker', 2]],
+        },
       }}
-      keys={categories} // Use categories fetched from the API
-      indexBy="department" // Change the indexBy to "department"
+      keys={categories}
+      indexBy="department"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
       colors={{ scheme: "nivo" }}
-      defs={[
-        {
-          id: "dots",
-          type: "patternDots",
-          background: "inherit",
-          color: "#38bcb2",
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: "lines",
-          type: "patternLines",
-          background: "inherit",
-          color: "#eed312",
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
       borderColor={{
         from: "color",
         modifiers: [["darker", "1.6"]],
@@ -112,20 +104,25 @@ const BarChart = ({ isDashboard = false }) => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: -45, // Rotate the x-axis labels for better visibility
-        legend: isDashboard ? undefined : "", // Adjust the x-axis legend
+        tickRotation: -45,
+        legend: isDashboard ? undefined : "",
         legendPosition: "middle",
-        legendOffset: 32,
+        legendOffset: 90,
+        tickValues: 5, // Example: Set the number of tick values
+        tickTextColor: "white", // Set the x-axis tick text color to white
+        tickTextFontSize: 14, // Set the x-axis tick text font size
       }}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "", // Adjust the y-axis legend
+        legend: isDashboard ? undefined : "",
         legendPosition: "middle",
         legendOffset: -40,
+        tickTextColor: "white", // Set the y-axis tick text color to white
+        tickTextFontSize: 14, // Set the y-axis tick text font size
       }}
-      enableLabel={false}
+      enableLabel={true}
       labelSkipWidth={12}
       labelSkipHeight={12}
       labelTextColor={{
@@ -138,11 +135,11 @@ const BarChart = ({ isDashboard = false }) => {
           anchor: "bottom-right",
           direction: "column",
           justify: false,
-          translateX: 120,
+          translateX: 110,
           translateY: 0,
           itemsSpacing: 2,
           itemWidth: 100,
-          itemHeight: 20,
+          itemHeight: 30,
           itemDirection: "left-to-right",
           itemOpacity: 0.85,
           symbolSize: 20,
@@ -150,7 +147,8 @@ const BarChart = ({ isDashboard = false }) => {
             {
               on: "hover",
               style: {
-                itemOpacity: 1,
+                itemTextColor: '#ffffff',
+                
               },
             },
           ],
@@ -158,7 +156,7 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + ": " + e.indexValue;
+        return "₹" + e.id + ": " + e.formattedValue + ": " + e.indexValue;
       }}
     />
   );

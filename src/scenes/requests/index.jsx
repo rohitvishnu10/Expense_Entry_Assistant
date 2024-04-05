@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem } from "@mui/material";
-import Header from "../../components/Adminpage/Header";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faEye } from '@fortawesome/free-solid-svg-icons';
 import "./requests.css";
-
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function Request() {
   const [selectedFilter, setSelectedFilter] = useState('pending');
@@ -14,7 +12,10 @@ function Request() {
   const [pendingRequests, setPendingRequests] = useState([]);
   const [acceptedRequests, setAcceptedRequests] = useState([]);
   const [rejectedRequests, setRejectedRequests] = useState([]); 
-
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [actionToConfirm, setActionToConfirm] = useState('');  // New state for confirmation dialog
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   useEffect(() => {
     fetchData(selectedFilter); // Fetch data on component mount
   }, [selectedFilter]);
@@ -40,33 +41,43 @@ function Request() {
       console.error(`Error fetching ${filter} requests:`, error);
     }
   };
-
-  const handleStatusButtonClick = async (row, action) => {
-    const confirmAction = window.confirm(`Are you sure you want to ${action} this request?`);
-    if (!confirmAction) {
-      return;
-    }
+  const handleStatusButtonClick = (row, action) => {
+    setSelectedRow(row);
+    setOpenDialog(false); // Close the details dialog, if open
+    setActionToConfirm(action); // Set the action to confirm
+    setConfirmationOpen(true); // Open the confirmation dialog
+  };
   
+
+  const handleConfirmAction = async () => {
+    setConfirmationOpen(false); // Close the confirmation dialog
     try {
-      const response = await fetch(`http://127.0.0.1:9000/${action}_request/${row._id}`, {
+      const response = await fetch(`http://127.0.0.1:9000/${actionToConfirm}_request/${selectedRow._id}`, {
         method: "PUT",
       });
       if (response.ok) {
         fetchData(selectedFilter); // Fetch updated data after action
-        if (action === 'approve') {
-          window.alert("Request approved successfully");
-        } else {
-          window.alert("Request rejected successfully");
+        if (actionToConfirm === 'approve') {
+          setSuccessMessage('Approved successfully!');
+          setSuccessDialogOpen(true); // Open the success dialog
+        } else if (actionToConfirm === 'reject') {
+          setSuccessMessage('Rejected successfully!');
+          setSuccessDialogOpen(true); // Open the success dialog
         }
       } else {
-        console.error(`Failed to ${action} request`);
-        window.alert(`Failed to ${action} request. Please try again later.`);
+        console.error(`Failed to ${actionToConfirm} request`);
+        window.alert(`Failed to ${actionToConfirm} request. Please try again later.`);
       }
     } catch (error) {
-      console.error(`Error ${action}ing request:`, error);
-      window.alert(`An error occurred while ${action}ing the request. Please try again later.`);
+      console.error(`Error ${actionToConfirm}ing request:`, error);
+      window.alert(`An error occurred while ${actionToConfirm}ing the request. Please try again later.`);
+    } finally {
+      setOpenDialog(false); // Close the details dialog
     }
   };
+
+  
+
 
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
@@ -103,7 +114,7 @@ function Request() {
 
       {selectedFilter === 'pending' && (
         <div style={{ display: "flex", justifyContent: "center", margin: "30px" }}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} style={{ border: "2px solid #40A2E3" }}>
             <Table>
               <TableHead style={{ backgroundColor: "#365486", opacity: "0.87", color: "white" }}>
                 <TableRow>
@@ -119,7 +130,7 @@ function Request() {
                 {pendingRequests.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "#6D67E4" }}>{row.Status}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>
@@ -161,7 +172,7 @@ function Request() {
                 {acceptedRequests.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "#b5c938" }}>{row.Status}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell>
@@ -194,7 +205,7 @@ function Request() {
                 {rejectedRequests.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell style={{ fontSize: "15px" }}>{row["Employee ID"]}</TableCell>
-                    <TableCell style={{ fontSize: "15px" }}>{row.Status}</TableCell>
+                    <TableCell style={{ fontSize: "15px",color: "red" }}>{row.Status}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Date}</TableCell>
                     <TableCell style={{ fontSize: "15px" }}>{row.Category}</TableCell>
                     <TableCell>
@@ -248,6 +259,37 @@ function Request() {
         </DialogContent>
         <DialogActions>
           <Button style={{ color: "white", paddingLeft: "10px" }} onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={confirmationOpen}
+        onClose={() => setConfirmationOpen(false)}
+      >
+        <DialogTitle style={{ fontSize: "2rem" }}></DialogTitle>
+        <DialogContent style={{ fontSize: "1.5rem"}}>
+          <p style={{ fontWeight: "bold",fontFamily: "Quicksand",color: "white" }}>Are you sure you want to {actionToConfirm === 'approve' ? 'approve' : 'reject'} this request?</p>
+        </DialogContent>
+        <DialogActions style={{ fontSize: "2rem"}}>
+          <Button style={{  paddingLeft: "10px" ,fontSize: "15px", color: "#35374B", marginRight: "20px",backgroundColor: "#90D26D",marginBottom:"30px"}} onClick={handleConfirmAction} color="primary">
+          <FontAwesomeIcon icon={faCheck} style={{ marginRight: "5px" }} /> Yes 
+          </Button>
+          <Button style={{ color: "white", paddingLeft: "10px",backgroundColor:"#E72929",fontSize: "15px",marginRight: "20px",marginBottom:"30px"}} onClick={() => setConfirmationOpen(false)} color="primary">
+          <FontAwesomeIcon icon={faTimes} style={{ marginRight: "5px" }} /> No 
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={successDialogOpen}
+        onClose={() => setSuccessDialogOpen(false)}
+      >
+        <DialogTitle style={{ fontSize: "2rem" }}>Success</DialogTitle>
+        <DialogContent style={{ fontSize: "1.5rem"}}>
+          <p style={{ fontWeight: "bold", fontFamily: "Quicksand" }}>{successMessage}</p>
+        </DialogContent>
+        <DialogActions>
+          <Button style={{ color: "white", paddingLeft: "10px" }} onClick={() => setSuccessDialogOpen(false)} color="primary">
             Close
           </Button>
         </DialogActions>

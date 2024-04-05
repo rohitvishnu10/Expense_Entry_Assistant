@@ -52,6 +52,7 @@ const Home = () => {
                   <tr>
                     <th style={{ color: 'black' }}>Date</th>
                     <th style={{ color: 'black' }}>Category</th>
+                    <th style={{ color: 'black' }}>Status</th>
                     <th style={{ color: 'black' }}>Amount (₹)</th>
                   </tr>
                 </thead>
@@ -60,6 +61,7 @@ const Home = () => {
                     <tr key={index}>
                       <td>{expense.date}</td>
                       <td>{expense.category}</td>
+                      <td>Accepted/Rejected/pending</td>
                       <td>₹{expense.amount.toFixed(2)}</td>
                     </tr>
                   ))}

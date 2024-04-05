@@ -17,23 +17,25 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
 
 const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-        marginBottom: "20px",
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      {!isCollapsed && <Typography>{title}</Typography>}
-      <Link to={to} />
-    </MenuItem>
+    <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <MenuItem
+        active={selected === title}
+        style={{
+          color: colors.grey[100],
+          marginBottom: "20px",
+        }}
+        onClick={() => setSelected(title)}
+        icon={icon}
+      >
+        {!isCollapsed && <Typography>{title}</Typography>}
+      </MenuItem>
+    </Link>
   );
 };
 
@@ -42,7 +44,19 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [logoutConfirmationOpen, setLogoutConfirmationOpen] = useState(false);
+  const handleLogoutConfirmation = () => {
+    setLogoutConfirmationOpen(true);
+  };
 
+  const handleLogout = (confirmed) => {
+    setLogoutConfirmationOpen(false);
+    if (confirmed) {
+      window.location.href = "/"; // Redirect to the home page
+    } else {
+      setSelected("Dashboard"); // Reset selected item to "Dashboard"
+    }
+  };
   return (
     <Box
       sx={{
@@ -139,15 +153,6 @@ const Sidebar = () => {
               setSelected={setSelected}
               isCollapsed={isCollapsed}
             />
-            <Item
-              title="Delete User"
-              to="/app/form2"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
-            />
-
 
             <Item
               title="Department Wise Analytics"
@@ -166,18 +171,37 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
             <Item
-              title="Logout"
-              to="/"
-              icon={<ExitToAppOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
+            title="Logout"
+            to="/"
+            icon={<ExitToAppOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+            isCollapsed={isCollapsed}
+            onClick={handleLogoutConfirmation}
             />
-
 
           </Box>
         </Menu>
       </ProSidebar>
+      <Dialog
+        open={logoutConfirmationOpen}
+        onClose={() => handleLogout(false)}
+      >
+        <DialogTitle>Logout Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to logout?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleLogout(false)} color="primary">
+            No
+          </Button>
+          <Button onClick={() => handleLogout(true)} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

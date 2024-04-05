@@ -85,14 +85,14 @@ const UserSidebar = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h4"
+                  variant="h5"
                   color="#ffffff"
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
                   {localStorage.getItem("username")}
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
+                <Typography variant="h7" color={colors.greenAccent[500]}>
                   User
                 </Typography>
               </Box>
