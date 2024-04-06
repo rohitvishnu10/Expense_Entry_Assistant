@@ -87,8 +87,8 @@ def handle_interaction(user_input, thread, client, ASSISTANT_ID, eid=None):
         #expenses_dict = json.loads(json_part)  # Convert JSON string to dictionary
         #expenses_collection.insert_one(expenses_dict)  # Insert into MongoDB
 
-    # chatbot_response = chatbot_response.replace("JSON Format:", "")
-    # chatbot_response = chatbot_response.replace(json_part, "")
+    chatbot_response = chatbot_response.replace("JSON Format:", "")
+    #chatbot_response = chatbot_response.replace(json_part, "")
     print(chatbot_response)
     print(new_parse)
     return chatbot_response
