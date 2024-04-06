@@ -32,107 +32,110 @@ const Form = () => {
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+  <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={formValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(2, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: "span 1" },
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Full name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.name}
-                name="name"
-                error={!!touched.name && !!errors.name}
-                helperText={touched.name && errors.name}
-              />
+  <Formik
+    onSubmit={handleFormSubmit}
+    initialValues={formValues}
+    validationSchema={checkoutSchema}
+  >
+    {({
+      values,
+      errors,
+      touched,
+      handleBlur,
+      handleChange,
+      handleSubmit,
+    }) => (
+      <form onSubmit={handleSubmit}>
+        <Box
+          display="grid"
+          gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" } }}// Add marginBottom to each div
+        >
+        </Box>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+        <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Full name"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.name}
+            name="name"
+            error={!!touched.name && !!errors.name}
+            helperText={touched.name && errors.name}
+          />
+        </Box>
 
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="password"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password}
-                name="password"
-                error={touched.password && !!errors.password}
-                helperText={touched.password && errors.password}
-              />
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+        <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Email"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.email}
+            name="email"
+            error={!!touched.email && !!errors.email}
+            helperText={touched.email && errors.email}
+          />
+        </Box>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" ,marginBottom: "30px"} }}>
+        <TextField
+            fullWidth
+            variant="filled"
+            type="password"
+            label="Password"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.password}
+            name="password"
+            error={touched.password && !!errors.password}
+            helperText={touched.password && errors.password}
+          />
+        </Box>
+                
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" ,marginBottom: "30px"} }}>
+        <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Department"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.department}
+            name="department"
+            error={!!touched.department && !!errors.department}
+            helperText={touched.department && errors.department}
+          />
+        </Box>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              padding: "18px 32px",
+              marginTop: "40px",
+              backgroundColor: "#644eea",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              "&:hover": {
+                backgroundColor: "#0056b3",
+              },
+            }}
+          >
+            Create New User
+          </Button>
+        </Box>
+      </form>
+    )}
+  </Formik>
+</Box>
 
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Department"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.department}
-                name="department"
-                error={!!touched.department && !!errors.department}
-                helperText={touched.department && errors.department}
-              />
-              
-            </Box>
-            
-            <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" } }}>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  padding: "18px 32px",
-                  marginTop: "40px",
-                  backgroundColor: "#644eea",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#0056b3",
-                  },
-                }}
-              >
-                Create New User
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
   );
 };
 

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
 
 const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
   const theme = useTheme();
@@ -31,18 +33,47 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      {!isCollapsed && <Typography>{title}</Typography>}
+      {!isCollapsed && <Typography variant="h6" style={{ fontSize: "16px"}}>{title}</Typography>}
       <Link to={to} />
     </MenuItem>
   );
 };
 
 const Sidebar = () => {
+  const location = useLocation();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [logoutConfirmationOpen, setLogoutConfirmationOpen] = useState(false);
+  const handleLogoutConfirmation = () => {
+    setLogoutConfirmationOpen(true);
+  };
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/app") {
+      setSelected("Dashboard");
+    } else if (path === "/app/requests") {
+      setSelected("Pending Reimbursements");
+    } else if (path === "/app/form") {
+      setSelected("Add User");
+    } else if (path === "/app/bar") {
+      setSelected("Department Wise Analytics");
+    } else if (path === "/app/pie") {
+      setSelected("Category Wise Analytics");
+    } else if (path === "/") {
+      setSelected("Logout");
+    }
+  }, [location.pathname]);
 
+  const handleLogout = (confirmed) => {
+    setLogoutConfirmationOpen(false);
+    if (confirmed) {
+      window.location.href = "/"; // Redirect to the home page
+    } else {
+      setSelected("Dashboard"); // Reset selected item to "Dashboard"
+    }
+  };
   return (
     <Box
       sx={{
@@ -139,15 +170,6 @@ const Sidebar = () => {
               setSelected={setSelected}
               isCollapsed={isCollapsed}
             />
-            <Item
-              title="Delete User"
-              to="/app/form2"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
-            />
-
 
             <Item
               title="Department Wise Analytics"
@@ -166,18 +188,37 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
             <Item
-              title="Logout"
-              to="/"
-              icon={<ExitToAppOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-              isCollapsed={isCollapsed}
+            title="Logout"
+            to="/"
+            icon={<ExitToAppOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+            isCollapsed={isCollapsed}
+            onClick={handleLogoutConfirmation}
             />
-
 
           </Box>
         </Menu>
       </ProSidebar>
+      <Dialog
+        open={logoutConfirmationOpen}
+        onClose={() => handleLogout(false)}
+      >
+        <DialogTitle>Logout Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to logout?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleLogout(false)} color="primary">
+            No
+          </Button>
+          <Button onClick={() => handleLogout(true)} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

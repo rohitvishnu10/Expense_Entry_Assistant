@@ -1,0 +1,5 @@
+/* PieChart.css */
+.pie-chart-container text.nivo-arc-link {
+    fill: red; /* Change the color of the arc link labels to red */
+  }
+  

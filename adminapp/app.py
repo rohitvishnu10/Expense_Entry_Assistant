@@ -287,7 +287,7 @@ async def get_pending_requests(aid: str):
                 "eid": request["eid"]
             })
 
-    return pending_requests
+    return pending_requests[::-1]
 
 @app.get("/rejected_requests/{aid}")
 async def get_rejected_requests(aid: str):
@@ -324,7 +324,7 @@ async def get_rejected_requests(aid: str):
                 "eid": request["eid"]
             })
 
-    return rejected_requests
+    return rejected_requests[::-1]
 
     
 
@@ -362,7 +362,7 @@ async def get_accepted_requests(aid: str):
                 "eid": request["eid"]
             })
 
-    return accepted_requests
+    return accepted_requests[::-1]
 
 
 @app.put("/approve_request/{request_id}")

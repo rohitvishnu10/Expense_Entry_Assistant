@@ -261,6 +261,6 @@ async def get_last_expenses(eid: str):
                 "accepted": expense.get("accepted", None)
             })
         
-        return last_expenses[-5:][::-1]  # Slice the last 5 and reverse the order
+        return last_expenses[-5:][::-1]  
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

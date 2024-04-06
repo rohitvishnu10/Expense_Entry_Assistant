@@ -1,64 +1,166 @@
 import React, { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
+import { ResponsivePie } from "@nivo/pie";
+import { tokens } from "../../theme";
+import { useTheme } from "@mui/material";
+import "./piechart.css";
 
 const PieChart = () => {
-  const [data, setData] = useState({
-    series: [],
-    options: {
-      chart: {
-        type: "pie",
-        foreColor: "#ffffff",
-        width: 300, // Set the width of the pie chart
-        height: 200, // Set the height of the pie chart to 200px
-      },
-      plotOptions: {
-        pie: {
-          size: 50, // Set the radius of the pie chart to 50px
-        },
-      },
-      labels: [],
-    },
-  });
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the URL using localStorage.getItem("username")
     const fetchCategorySpending = async () => {
       try {
-        const response = await fetch(
-          `http://127.0.0.1:9000/cat_spending/${localStorage.getItem("username")}`
-        );
+        const response = await fetch(`http://127.0.0.1:9000/cat_spending/${localStorage.getItem("username")}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const jsonData = await response.json();
-        const seriesData = Object.values(jsonData);
-        const categoryLabels = Object.keys(jsonData);
-        setData({
-          series: seriesData,
-          options: {
-            chart: {
-              type: "pie",
-              foreColor: "#ffffff",
-              width: 300, // Set the width of the pie chart
-              height: 200, // Set the height of the pie chart to 200px
-            },
-            plotOptions: {
-              pie: {
-                size: 50, // Set the radius of the pie chart to 50px
-              },
-            },
-            labels: categoryLabels,
-          },
-        });
+        // Convert category totals object to array of objects
+        const newData = Object.entries(jsonData).map(([id, value]) => ({ id, value }));
+        setData(newData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchCategorySpending();
   }, []);
 
-  return <ReactApexChart options={data.options} series={data.series} type="pie" />;
+  return (
+    <ResponsivePie
+      data={data}
+      theme={{
+        // ... (other theme properties remain the same)
+        tooltip: {
+          container: {
+            color: "black", // Set tooltip text color to black
+          },
+        },
+        text: {
+          fill: colors.grey[100],
+          fontSize: 15,
+        },
+      }}
+      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      innerRadius={0.5}
+      padAngle={0.7}
+      cornerRadius={3}
+      activeOuterRadiusOffset={8}
+      colors={{ scheme: 'set3' }}
+      borderWidth={1}
+      borderColor={{
+        from: 'color',
+        modifiers: [['darker', 0.2]]
+      }}
+      
+      arcLinkLabelsSkipAngle={10}
+      arcLinkLabelsTextColor="#ffffff"
+      arcLinkLabelsThickness={4}
+      arcLinkLabelsColor="#ffffff"
+      enableArcLabels={false}
+      arcLabelsSkipAngle={10}
+      arcLabelsTextColor="#ffffff"
+      defs={[
+        {
+          id: 'dots',
+          type: 'patternDots',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          size: 4,
+          padding: 1,
+          stagger: true
+        },
+        {
+          id: 'lines',
+          type: 'patternLines',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          rotation: -45,
+          lineWidth: 6,
+          spacing: 10
+        }
+      ]}
+      fill={[
+        {
+          match: {
+            id: 'ruby'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'c'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'go'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'python'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'scala'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'lisp'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'elixir'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'javascript'
+          },
+          id: 'lines'
+        }
+      ]}
+      legends={
+        [
+        {
+          anchor: 'bottom',
+          direction: 'row',
+          justify: false,
+          translateX: 0,
+          translateY: 56,
+          itemsSpacing: 0,
+          itemWidth: 100,
+          itemHeight: 18,
+          itemTextColor: '#999',
+          itemDirection: 'left-to-right',
+          itemOpacity: 1,
+          symbolSize: 18,
+          symbolShape: 'circle',
+          effects: [
+            {
+              on: 'hover',
+              style: {
+                itemTextColor: '#ffffff'
+              }
+            }
+          ]
+        }
+      ]}
+    />
+  );
 };
 
 export default PieChart;
