@@ -124,6 +124,7 @@ button {
 
 .thank-you {
   text-align: center;
+  margin-left: 450px;
 }
 
 .thank-you.hidden {
