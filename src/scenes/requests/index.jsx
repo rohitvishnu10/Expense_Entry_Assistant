@@ -105,11 +105,52 @@ function Request() {
   const handleDateFilterChange = (event) => {
     setDateFilter(event.target.value);
   };
-  const handleDownloadReport = () => {
 
-    const reportUrl = 'http://example.com/download/report';
-    window.open(reportUrl, '_blank'); // Open the report in a new tab for download
+  const handleDownloadReport = () => {
+    // Define the filename for the downloaded file
+    const fileName = 'report.csv';
+  
+    // Based on the selected filter, choose the appropriate data to download
+    let selectedRequests = [];
+    switch (selectedFilter) {
+      case 'pending':
+        selectedRequests = pendingRequests;
+        break;
+      case 'accepted':
+        selectedRequests = acceptedRequests;
+        break;
+      case 'rejected':
+        selectedRequests = rejectedRequests;
+        break;
+      default:
+        break;
+    }
+  
+    // Apply filters based on Employee ID and category
+    selectedRequests = selectedRequests.filter(row =>
+      row["Employee ID"].toLowerCase().includes(searchValue.toLowerCase()) &&
+      row.Category.toLowerCase().includes(categoryFilter.toLowerCase()) &&
+      row.Date.toLowerCase().includes(dateFilter.toLowerCase())
+    );
+  
+    // Create CSV content from the selected requests
+    const csvHeader = "Employee ID,Status,Date,Category,Location,City,Amount,Purpose"; // Updated CSV header
+    const csvRows = selectedRequests.map(row =>
+      `${row["Employee ID"]},${row.Status},${row.Date},${row.Category},${row.location},${row.city},${row.amount},${row.purpose}` // Include additional details
+    );
+    const csvContent = "data:text/csv;charset=utf-8," + csvHeader + "\n" + csvRows.join("\n");
+  
+    // Create a link element
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link); // Required for Firefox
+  
+    // Trigger the download
+    link.click();
   };
+  
   
 
   return (
