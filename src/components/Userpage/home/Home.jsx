@@ -61,7 +61,7 @@ const Home = () => {
                     <tr key={index}>
                       <td>{expense.date}</td>
                       <td>{expense.category}</td>
-                      <td>Accepted/Rejected/pending</td>
+                      <td>{expense.accepted}</td>
                       <td>₹{expense.amount.toFixed(2)}</td>
                     </tr>
                   ))}
