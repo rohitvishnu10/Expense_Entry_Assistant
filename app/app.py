@@ -187,7 +187,7 @@ async def get_accepted_requests(eid: str):
             "eid": request["eid"]
         })
 
-    return accepted_requests
+    return accepted_requests[::-1]
 
 from fastapi import HTTPException
 
@@ -214,7 +214,7 @@ async def get_pending_requests(eid: str):
             "eid": request["eid"]
         })
 
-    return pending_requests
+    return pending_requests[::-1]
 
 @app.get("/rejected_requests/{eid}")
 async def get_pending_requests(eid: str):
@@ -239,7 +239,7 @@ async def get_pending_requests(eid: str):
             "eid": request["eid"]
         })
 
-    return rejected_requests
+    return rejected_requests[::-1]
 
 
 @app.get("/last_expenses/{eid}")
