@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React,{useState} from "react"
+import "./loginform.css"
+import email_icon from "./Assets/email.png"
+import password_icon from "./Assets/password.png"
+import person_icon from "./Assets/person.png"
 import { useNavigate } from "react-router-dom";
-import "./loginform.css";
 
-const LoginForm = () => {
+
+const Login=()=>{
+    const [action,setAction] = useState("Login");
     const navigate = useNavigate();
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
     const [password, setPassword] = useState("");
     const [popupStyle, setPopupStyle] = useState("hide");
+
 
     const handleLogin = async () => {
         try {
@@ -31,44 +37,37 @@ const LoginForm = () => {
         }
     };
 
-    const onSuccess = (response) => {
-        alert("User signed in");
-        console.log(response);
-        navigate("/dashboard"); // Redirect to home page after successful login
-    };
-
-    const onFailure = (error) => {
-        console.error("Google login failed:", error);
-    };
-
     return (
-        <div className="cover">
-            <h1>Login</h1>
-            <input
-                className="input-login"
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                className="input-login"
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className="login-btn" onClick={handleLogin}>
-                Login
+        <div className="login-container">
+        <div className="logincontainer">
+            <div className="loginheader">
+                <div className="text">{action}</div>
+                    <div className="underline"></div>   
             </div>
+            <div className="inputs">
 
-            <div className={popupStyle}>
+                <div className="input">
+                    <img src={person_icon}/>
+                    <input type="email" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+
+                </div>
+
+                <div className="input">
+                    <img src={password_icon}/>
+                    <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)}/>
+                </div>
+
+            </div>
+            <div className="submit-container" onClick={handleLogin}>
+                <span className="submit">Login</span>
+            </div>
+            {/* <div className={popupStyle}>
                 <h3>Login Failed</h3>
                 <p>Username or password incorrect</p>
-            </div>
-        </div>
-    );
-};
+            </div> */}
 
-export default LoginForm;
+        </div>
+        </div>
+    )
+}
+export default Login;
