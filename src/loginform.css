@@ -16,12 +16,11 @@ align-items: center;
     flex-direction: column;
     margin: auto;
     margin-top: 150px;
-    /* background-color: #adadad; */
     background-color: #313844;
     padding-bottom: 30px;
     width:520px ;
     border-radius: 10px;
-    height: 420px;
+    height: 450px;
 }
 
 .loginheader{
@@ -31,7 +30,6 @@ align-items: center;
     gap: 9px;
     width: 100%;
     margin-top: 30px;
-    /* background-color: #adadad; */
     background-color: #313844;
 
 }
@@ -52,6 +50,7 @@ align-items: center;
     gap: 25px;
     /* background-color: #adadad; */
     background-color: #313844;
+    margin-bottom: 20px;
 
 }
 .input{
@@ -78,6 +77,7 @@ align-items: center;
     color: black;
     font-size: 19px;
     margin-left:6px;
+    margin-bottom: 0px;
 }
 
 .input:focus-within {
@@ -88,11 +88,16 @@ align-items: center;
     border-color: #6a5ece; /* Change the border color to the desired color when the input is focused */
     color: #6a5ece;
   }
-
+.error-message{
+    color: rgb(212, 60, 60);
+    /* align-items: center; */
+    /* margin-left: 80px; */
+    text-align: center;
+}
 .submit-container{
     display: flex;
     gap:30px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 140px;
     /* background-color: #161a29; */
     background-color: #313844;
