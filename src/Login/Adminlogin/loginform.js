@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
 import "./loginform.css";
+import password_icon from "../../Assets/password.png"
+import person_icon from "../../Assets/person.png"
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    const [action] = useState("Login");
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
     const [password, setPassword] = useState("");
-    const [popupStyle, setPopupStyle] = useState("hide");
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            setErrorMessage("Please fill in both username and password fields.");
+            return;
+        } else{
+            setErrorMessage("");
+        }
         try {
             const response = await fetch("http://127.0.0.1:9000/adminlogin", {
                 method: "POST",
@@ -24,50 +33,35 @@ const LoginForm = () => {
                 localStorage.setItem("username", username);
                 navigate("/app"); // Redirect to home page after successful login
             } else {
-                setPopupStyle("login-popup");
-                setTimeout(() => setPopupStyle("hide"), 3000);
+                setErrorMessage("Login failed. Please check your username or password.");
+               
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
-    const onSuccess = (response) => {
-        alert("User signed in");
-        console.log(response);
-        navigate("/app"); // Redirect to home page after successful login
-    };
-
-    const onFailure = (error) => {
-        console.error("Google login failed:", error);
-    };
-
     return (
-        <div className="cover">
-            <h1>Login</h1>
-            <input
-                className="input-login"
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                className="input-login"
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className="login-btn" onClick={handleLogin}>
-                Login
-            </div>
-
-
-            <div className={popupStyle}>
-                <h3>Login Failed</h3>
-                <p>Username or password incorrect</p>
+        <div className="login-container">
+            <div className="logincontainer">
+                <div className="loginheader">
+                    <div className="text">{action}</div>
+                        <div className="underline"></div>   
+                </div>
+                <div className="inputs">
+                    <div className="input">
+                        <img src={person_icon}/>
+                        <input type="email" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    </div>
+                    <div className="input">
+                        <img src={password_icon}/>
+                        <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                </div>
+                <div className="submit-container" onClick={handleLogin}>
+                    <span className="submit">Login</span>
+                </div>
             </div>
         </div>
     );

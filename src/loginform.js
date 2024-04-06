@@ -1,17 +1,15 @@
 import React,{useState} from "react"
 import "./loginform.css"
-import email_icon from "./Assets/email.png"
 import password_icon from "./Assets/password.png"
 import person_icon from "./Assets/person.png"
 import { useNavigate } from "react-router-dom";
 
 
 const Login=()=>{
-    const [action,setAction] = useState("Login");
+    const [action] = useState("Login");
     const navigate = useNavigate();
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
     const [password, setPassword] = useState("");
-    const [popupStyle, setPopupStyle] = useState("hide");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async () => {
@@ -65,10 +63,6 @@ const Login=()=>{
                 <div className="submit-container" onClick={handleLogin}>
                     <span className="submit">Login</span>
                 </div>
-                {/* <div className={popupStyle}>
-                    <h3>Login Failed</h3>
-                    <p>Username or password incorrect</p>
-                </div> */}
             </div>
         </div>
     )

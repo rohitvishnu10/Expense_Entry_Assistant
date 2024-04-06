@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     box-sizing: border-box;
     font-family: "CustomFont";
@@ -6,7 +6,6 @@
 
 
 
-/* --------------------------- MOBILE VERSION ------------------------------ */
 .page {
     height: 100vh;
     width: 100%;
@@ -17,7 +16,7 @@
 }
 
 .cover {
-    /* background-color: white; */
+    background-color: white;
     width: 70%;
     height: 50%;
     position: relative;
@@ -58,14 +57,10 @@
     font-size: 0.75em;
 }
 
-.input-login:focus {
-    outline-color: rgb(32, 177, 255);
-}
 
 .login-btn {
     width: 40%;
     height: 3em;
-    background-color: rgb(32, 177, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,10 +103,8 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    /* background-image: url('./icons/google.png'); */
 }
 
-/* -------------------- TABLET OPTIMIZATION -------------------- */
 @media only screen and (min-device-width: 37em) {
     .page {
         font-size: 1em;
@@ -123,7 +116,6 @@
     }
 }
 
-/* -------------------- DESKTOP OPTIMIZATION -------------------- */
 @media only screen and (min-device-width: 64em) {
     .page {
         font-size: 1.25em;
@@ -133,4 +125,4 @@
         width: 25%;
         height: 65%;
     }
-}
+} */
