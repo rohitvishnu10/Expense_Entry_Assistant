@@ -6,7 +6,6 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 
-
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -34,18 +33,16 @@ export default function Chatbot() {
       const responseData = await response.json();
       const botResponse = responseData.response;
 
-      // Check if bot response contains expense data
       const jsonStart = botResponse.indexOf("{");
       if (jsonStart !== -1) {
         const jsonEnd = botResponse.lastIndexOf("}");
         const jsonPart = botResponse.substring(jsonStart, jsonEnd + 1);
         const expenses = JSON.parse(jsonPart).expenses;
         setExpenseData(expenses);
-        // Display only the textual part of the response without the JSON part
         const textualResponse = botResponse.substring(0, jsonStart);
         setMessages(prevMessages => [...prevMessages, { text: textualResponse, sender: "bot" }]);
+        setMessages(prevMessages => [...prevMessages, { text: "Expense Summary", sender: "bot" }]);
       } else {
-        // If the response does not contain expense data, display the entire response
         setMessages(prevMessages => [...prevMessages, { text: botResponse, sender: "bot" }]);
       }
 
@@ -70,34 +67,36 @@ export default function Chatbot() {
                   {message.sender === 'bot' && <i className="fas fa-robot bot-icon"></i>}
                   <div className="message-content" style={{ color: message.sender === 'user' ? 'white' : 'black' }}>{message.text}</div>
                   {message.sender === 'user' && <i className="fas fa-user user-icon"></i>}
+                  {message.sender === 'bot' && message.text === "Expense Summary" && (
+                    <div className="expense-table" style={{ border: '1px solid black', maxWidth: '90%', margin: '10px 0', fontFamily: 'Source Sans Pro, sans-serif' }}>
+                      <table style={{ width: '100%', color: 'black', fontFamily: 'Source Sans Pro, sans-serif', borderCollapse: 'collapse' }}>
+                        <thead style={{ backgroundColor: '#e6e6e6', color: 'black', fontFamily: 'Source Sans Pro, sans-serif' }}>
+                          <tr>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>Category</th>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>Location</th>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>City</th>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>Amount</th>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>Date</th>
+                            <th style={{ border: '1px solid black', padding: '8px' }}>Purpose</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {expenseData.length > 0 && (
+                            <tr>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].category}</td>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].location}</td>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].city}</td>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].amount}</td>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].date}</td>
+                              <td style={{ border: '1px solid black', padding: '8px' }}>{expenseData[expenseData.length - 1].purpose}</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 </div>
               ))}
-              {expenseData && (
-                <div className="expense-table" style={{ border: '1px solid white', maxWidth: '70%', margin: '10px 0',fontFamily: 'Source Sans Pro, sans-serif' }}>
-                  <table style={{ width: '100%', color: 'white', fontFamily: 'Source Sans Pro, sans-serif'}}>
-                    <thead style={{ backgroundColor: '#e6e6e6', color: 'black',fontFamily: 'Source Sans Pro, sans-serif' }}>
-                      <tr>
-                        <th>Category</th>
-                        <th>Location</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Purpose</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {expenseData.map((expense, index) => (
-                        <tr key={index}>
-                          <td>{expense.category}</td>
-                          <td>{expense.location}</td>
-                          <td>{expense.amount}</td>
-                          <td>{expense.date}</td>
-                          <td>{expense.purpose}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
             </div>
 
             <form className="chatbot-input-form" onSubmit={handleMessageSubmit}>
