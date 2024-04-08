@@ -195,13 +195,22 @@ function Request() {
         </div>
         </Grid>
         <Grid item>
+          <TextField
+              label="Filter by Date"
+              value={dateFilter}
+              onChange={handleDateFilterChange}
+              variant="outlined"
+              style={{ width: "300px" }}
+            />
+        </Grid>
+        <Grid item>
           <Button
             variant="contained"
             onClick={handleDownloadReport}
-            style={{ width: "300px", backgroundColor: "#008DDA", color: "#fff",padding:"20px",fontSize:"15px" }}
+            style={{ width: "200px", backgroundColor: "#008DDA", color: "#fff",padding:"14px",fontSize:"15px", marginLeft:"18px" }}
             startIcon={<CloudDownloadIcon />}
           >
-            Download report
+            Download Report
           </Button>
         </Grid>
       </Grid>

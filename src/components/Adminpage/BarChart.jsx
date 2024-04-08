@@ -92,7 +92,7 @@ const BarChart = ({ isDashboard = false }) => {
       }}
       keys={categories}
       indexBy="department"
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      margin={{ top: 50, right: 163, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
@@ -142,7 +142,7 @@ const BarChart = ({ isDashboard = false }) => {
           translateX: 110,
           translateY: 0,
           itemsSpacing: 2,
-          itemWidth: 100,
+          itemWidth: 90,
           itemHeight: 30,
           itemDirection: "left-to-right",
           itemOpacity: 0.9,

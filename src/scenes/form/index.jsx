@@ -31,7 +31,10 @@ const Form = () => {
   };
 
   return (
-    <Box m="20px">
+    <Box m="20px"
+    display="flex"
+    flexDirection="column"
+    alignItems="center">
   <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
   <Formik
@@ -53,7 +56,7 @@ const Form = () => {
           gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" } }}// Add marginBottom to each div
         >
         </Box>
-        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 2",marginBottom: "30px" } }}>
         <TextField
             fullWidth
             variant="filled"
@@ -68,7 +71,7 @@ const Form = () => {
           />
         </Box>
 
-        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 2",marginBottom: "30px" } }}>
         <TextField
             fullWidth
             variant="filled"
@@ -82,7 +85,7 @@ const Form = () => {
             helperText={touched.email && errors.email}
           />
         </Box>
-        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" ,marginBottom: "30px"} }}>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 2" ,marginBottom: "30px"} }}>
         <TextField
             fullWidth
             variant="filled"
@@ -97,7 +100,7 @@ const Form = () => {
           />
         </Box>
                 
-        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1" ,marginBottom: "30px"} }}>
+        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 2" ,marginBottom: "30px"} }}>
         <TextField
             fullWidth
             variant="filled"
@@ -111,7 +114,7 @@ const Form = () => {
             helperText={touched.department && errors.department}
           />
         </Box>
-        <Box display="grid" gap="30px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 1",marginBottom: "30px" } }}>
+        <Box display="grid" gap="150px" gridTemplateColumns="repeat(2, minmax(0, 1fr))" sx={{ "& > div": { gridColumn: "span 2",marginBottom: "30px" ,marginLeft:"30px"} }}>
           <Button
             type="submit"
             variant="contained"
@@ -121,6 +124,8 @@ const Form = () => {
               backgroundColor: "#644eea",
               color: "#fff",
               border: "none",
+              
+              width:"200px",
               borderRadius: "5px",
               cursor: "pointer",
               "&:hover": {
